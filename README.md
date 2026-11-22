@@ -50,3 +50,8 @@ regression tests, not a substitute for a buyer acceptance test.
 **Current security boundary:** records are separated per login/user in the
 local demo. Shared company accounts and multi-user approval hierarchies require
 additional design before any production rollout.
+
+
+## Security configuration
+
+Local development defaults to `DEBUG=True`, binds to loopback in `start-local.bat`, and generates a fresh secret key when the server starts. For production, set `DJANGO_DEBUG=false`, provide a private high-entropy `DJANGO_SECRET_KEY`, and set `DJANGO_ALLOWED_HOSTS` to the exact hostnames before starting Django. Production mode redirects to HTTPS and enables secure session/CSRF cookies and one-hour HSTS. HSTS subdomain and browser-preload policies remain off until the real domain and every subdomain are confirmed. Never commit secrets. See [the security review](docs/SECURITY_REVIEW.md) for the tested controls and remaining launch work.

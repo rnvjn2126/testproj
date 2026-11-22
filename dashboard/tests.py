@@ -1,273 +1,802 @@
-"""Integration and domain tests for the local steel quotation MVP.
-
-All customers, suppliers, rates, and phone details in these tests are synthetic.
-"""
-from datetime import timedelta
 from decimal import Decimal
 
 from django.contrib.auth import get_user_model
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.urls import reverse
-from django.utils import timezone
 
-from .forms import QuoteCreateForm
 from .models import (
-    Customer,
-    FollowUp,
-    Product,
-    Quote,
-    QuoteLine,
-    QuotePricingSettings,
-    RFQ,
-    RFQLine,
-    Supplier,
-    SupplierOffer,
+    Customer, FollowUp, Product, Quote, QuoteLine, QuotePricingSettings, RFQ,
+    RFQLine, Supplier, SupplierOffer,
 )
 
 
-class SteelWorkflowTests(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        users = get_user_model()
-        cls.owner = users.objects.create_user(
-            username="trader1", password="TestPass!12345",
-        )
-        cls.other_user = users.objects.create_user(
-            username="trader2", password="TestPass!12345",
-        )
-        cls.customer = Customer.objects.create(
-            owner=cls.owner, name="Demo Buyer", company_name="Sample Industries",
-        )
-        cls.other_customer = Customer.objects.create(
-            owner=cls.other_user, name="Other Buyer",
-        )
-        cls.supplier = Supplier.objects.create(
-            owner=cls.owner, name="Demo Steel Supply",
-        )
-        cls.other_supplier = Supplier.objects.create(
-            owner=cls.other_user, name="Other Supplier",
-        )
-        cls.product = Product.objects.create(
-            owner=cls.owner,
-            name="SS 304 Round Bar",
-            grade="SS 304",
-            shape=Product.Shape.ROUND_BAR,
-            unit=Product.Unit.KG,
-        )
-        cls.other_product = Product.objects.create(
-            owner=cls.other_user, name="Private Product",
-            shape=Product.Shape.SHEET, unit=Product.Unit.KG,
-        )
-        today = timezone.localdate()
-        cls.rfq = RFQ.objects.create(
-            owner=cls.owner, customer=cls.customer,
-            reference="RFQ-DEMO-1", received_on=today,
-        )
-        cls.other_rfq = RFQ.objects.create(
-            owner=cls.other_user, customer=cls.other_customer,
-            reference="RFQ-PRIVATE", received_on=today,
-        )
-        cls.line = RFQLine.objects.create(
-            owner=cls.owner, rfq=cls.rfq, product=cls.product,
-            quantity=Decimal("1000.000"), unit=Product.Unit.KG,
-        )
-        cls.offer = SupplierOffer.objects.create(
-            owner=cls.owner, rfq_line=cls.line, supplier=cls.supplier,
-            available_quantity=Decimal("1.000"), unit=Product.Unit.TONNE,
-            unit_price=Decimal("188000.0000"),
-            freight_cost=Decimal("3000.00"),
-            packaging_cost=Decimal("2000.00"), delivery_days=7,
-        )
-        cls.quote = Quote.objects.create(
-            owner=cls.owner, rfq=cls.rfq, number="QT-DEMO-001",
-            revision=1, issue_date=today, valid_until=today + timedelta(days=7),
-            target_margin_percent=Decimal("12.00"),
-            minimum_margin_percent=Decimal("8.00"),
-            maximum_discount_percent=Decimal("5.00"),
-            tax_rate_percent=Decimal("18.00"),
-            status=Quote.Status.READY,
-        )
-        cls.quote_line = QuoteLine.objects.create(
-            owner=cls.owner, quote=cls.quote,
-            rfq_line=cls.line, supplier_offer=cls.offer,
-            quantity=Decimal("1000.000"), unit=Product.Unit.KG,
-            landed_cost_per_unit=Decimal("193.0000"),
-            selling_price_per_unit=Decimal("225.0000"),
-            discount_percent=Decimal("0.00"),
-        )
+class FoundationTests(TestCase):
+    def test_home_requires_login(self):
+        response = self.client.get(reverse("dashboard:home"))
+        self.assertRedirects(response, f"{reverse('login')}?next={reverse('dashboard:home')}")
 
-    def login_owner(self):
-        self.client.force_login(self.owner)
+    def test_login_opens_dashboard(self):
+        get_user_model().objects.create_user(username="demo", password="local-test-password")
+        response = self.client.post(reverse("login"), {
+            "username": "demo", "password": "local-test-password",
+        })
+        self.assertRedirects(response, reverse("dashboard:home"))
+        self.assertContains(self.client.get(reverse("dashboard:home")), "Steel quotation workspace")
 
-    def test_anonymous_user_is_redirected_to_login(self):
-        response = self.client.get(reverse("dashboard:rfq_list"))
-        self.assertEqual(response.status_code, 302)
-        self.assertIn("login", response.url)
-
-    def test_customer_list_does_not_disclose_other_account(self):
-        self.login_owner()
-        response = self.client.get(reverse("dashboard:customer_list"))
+    def test_login_page_is_available(self):
+        response = self.client.get(reverse("login"))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Demo Buyer")
-        self.assertNotContains(response, "Other Buyer")
+        self.assertContains(response, "Sign in")
 
-    def test_other_account_customer_cannot_be_edited(self):
-        self.login_owner()
-        response = self.client.get(
-            reverse("dashboard:customer_update", args=[self.other_customer.pk])
-        )
-        self.assertEqual(response.status_code, 404)
 
-    def test_other_account_rfq_cannot_be_opened(self):
-        self.login_owner()
-        response = self.client.get(
-            reverse("dashboard:rfq_detail", args=[self.other_rfq.pk])
-        )
-        self.assertEqual(response.status_code, 404)
+class CatalogueTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username="owner", password="local-test-password")
+        self.other = get_user_model().objects.create_user(username="other", password="local-test-password")
+        self.client.force_login(self.user)
 
-    def test_supplier_and_product_lists_are_scoped(self):
-        self.login_owner()
-        suppliers = self.client.get(reverse("dashboard:supplier_list"))
-        products = self.client.get(reverse("dashboard:product_list"))
-        self.assertEqual(suppliers.status_code, 200)
-        self.assertEqual(products.status_code, 200)
-        self.assertContains(suppliers, "Demo Steel Supply")
-        self.assertNotContains(suppliers, "Other Supplier")
-        self.assertContains(products, "SS 304 Round Bar")
-        self.assertNotContains(products, "Private Product")
+    def test_owner_can_create_each_catalogue_record(self):
+        submissions = [
+            ("dashboard:customer_create", {"name": "Synthetic Customer"}, Customer),
+            ("dashboard:supplier_create", {"name": "Synthetic Supplier"}, Supplier),
+            ("dashboard:product_create", {"name": "Round bar", "grade": "304", "shape": "round_bar", "dimensions": "25 mm diameter", "unit": "kg", "weight_basis": "na", "weight_kg": ""}, Product),
+        ]
+        for route, data, model in submissions:
+            response = self.client.post(reverse(route), data)
+            self.assertEqual(response.status_code, 302)
+            record = model.objects.get()
+            self.assertEqual(record.owner, self.user)
 
-    def test_enquiry_rejects_foreign_customer(self):
-        self.rfq.customer = self.other_customer
-        with self.assertRaises(ValidationError):
-            self.rfq.full_clean()
+    def test_create_forms_ignore_submitted_owner(self):
+        response = self.client.post(reverse("dashboard:customer_create"), {
+            "name": "Owned by session", "owner": self.other.pk,
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Customer.objects.get(name="Owned by session").owner, self.user)
 
-    def test_enquiry_line_rejects_foreign_product(self):
-        self.line.product = self.other_product
-        with self.assertRaises(ValidationError):
-            self.line.full_clean()
+    def test_catalogue_lists_are_scoped_to_signed_in_owner(self):
+        Customer.objects.create(owner=self.user, name="My Customer")
+        Customer.objects.create(owner=self.other, name="Other Customer")
+        response = self.client.get(reverse("dashboard:customer_list"))
+        self.assertContains(response, "My Customer")
+        self.assertNotContains(response, "Other Customer")
 
-    def test_offer_rejects_foreign_supplier(self):
-        self.offer.supplier = self.other_supplier
-        with self.assertRaises(ValidationError):
-            self.offer.full_clean()
-
-    def test_tonne_to_kg_conversion_is_exact(self):
-        self.assertEqual(self.offer.unit_conversion_factor, Decimal("1000"))
-        self.assertEqual(
-            self.offer.converted_available_quantity, Decimal("1000"),
-        )
-        self.assertTrue(self.offer.covers_full_quantity)
-        self.assertEqual(self.offer.normalized_unit_price, Decimal("188"))
-        self.assertEqual(
-            self.offer.landed_cost_per_requested_unit, Decimal("193"),
-        )
-        self.assertEqual(self.offer.total_landed_cost, Decimal("193000"))
-
-    def test_partial_offer_cannot_cover_whole_enquiry(self):
-        self.offer.available_quantity = Decimal("0.400")
-        self.offer.save(update_fields=["available_quantity"])
-        self.assertFalse(self.offer.covers_full_quantity)
-        settings = QuotePricingSettings(owner=self.owner)
-        form = QuoteCreateForm(
-            owner=self.owner, lines=[self.line], pricing_settings=settings,
-        )
-        offer_field, _ = form.line_fields[self.line.pk]
-        self.assertNotIn(
-            self.offer.pk,
-            list(form.fields[offer_field].queryset.values_list("pk", flat=True)),
-        )
-
-    def test_unconvertible_metre_offer_rejected(self):
-        self.offer.unit = Product.Unit.METRE
-        with self.assertRaises(ValidationError):
-            self.offer.full_clean()
-
-    def test_quote_money_math_uses_gross_margin_not_markup(self):
-        self.assertEqual(self.quote.total_landed_cost, Decimal("193000.00"))
-        self.assertEqual(self.quote.total_selling_price, Decimal("225000.00"))
-        self.assertEqual(self.quote.gross_margin_percent, Decimal("14.22"))
-        self.assertEqual(self.quote.tax_amount, Decimal("40500.00"))
-        self.assertEqual(self.quote.grand_total, Decimal("265500.00"))
-        self.assertEqual(
-            self.quote_line.target_price_per_unit, Decimal("219.3182"),
-        )
-
-    def test_discounted_quote_line_needs_review_below_floor(self):
-        self.quote.minimum_margin_percent = Decimal("15.00")
-        self.assertTrue(self.quote_line.needs_review)
-
-    def test_quote_detail_and_pdf_reject_other_user(self):
-        self.client.force_login(self.other_user)
-        for name in ("dashboard:quote_detail", "dashboard:quote_pdf"):
-            response = self.client.get(reverse(name, args=[self.quote.pk]))
+    def test_other_users_records_cannot_be_viewed_edited_or_deleted(self):
+        records = [
+            (Customer.objects.create(owner=self.other, name="Private Customer"), "customer"),
+            (Supplier.objects.create(owner=self.other, name="Private Supplier"), "supplier"),
+            (Product.objects.create(owner=self.other, name="Private Product", shape="sheet", unit="kg"), "product"),
+        ]
+        for record, kind in records:
+            for action in ("update", "delete"):
+                response = self.client.get(reverse(f"dashboard:{kind}_{action}", args=[record.pk]))
+                self.assertEqual(response.status_code, 404)
+            response = self.client.post(reverse(f"dashboard:{kind}_delete", args=[record.pk]))
             self.assertEqual(response.status_code, 404)
+            self.assertTrue(type(record).objects.filter(pk=record.pk).exists())
 
-    def test_quote_pdf_is_available_when_margin_is_safe(self):
-        self.login_owner()
-        response = self.client.get(
-            reverse("dashboard:quote_pdf", args=[self.quote.pk])
+    def test_owner_can_edit_and_delete_catalogue_records(self):
+        records = [
+            (Customer.objects.create(owner=self.user, name="Old customer"), "customer", {"name": "New customer"}),
+            (Supplier.objects.create(owner=self.user, name="Old supplier"), "supplier", {"name": "New supplier"}),
+            (Product.objects.create(owner=self.user, name="Old product", shape="sheet", unit="kg"), "product", {
+                "name": "New product", "shape": "plate", "unit": "tonne", "weight_basis": "na",
+            }),
+        ]
+        for record, kind, data in records:
+            response = self.client.post(reverse(f"dashboard:{kind}_update", args=[record.pk]), data)
+            self.assertEqual(response.status_code, 302)
+            record.refresh_from_db()
+            self.assertEqual(record.name, data["name"])
+            self.assertEqual(record.owner, self.user)
+            response = self.client.post(reverse(f"dashboard:{kind}_delete", args=[record.pk]))
+            self.assertEqual(response.status_code, 302)
+            self.assertFalse(type(record).objects.filter(pk=record.pk).exists())
+
+    def test_product_weight_is_validated_and_weight_basis_is_explicit(self):
+        invalid = self.client.post(reverse("dashboard:product_create"), {
+            "name": "Invalid bar", "shape": "round_bar", "unit": "piece", "weight_basis": "na", "weight_kg": "12.5",
+        })
+        self.assertEqual(invalid.status_code, 200)
+        self.assertFalse(Product.objects.filter(name="Invalid bar").exists())
+        valid = self.client.post(reverse("dashboard:product_create"), {
+            "name": "Weighted bar", "shape": "round_bar", "unit": "piece", "weight_basis": "theoretical", "weight_kg": "12.5",
+        })
+        self.assertEqual(valid.status_code, 302)
+        self.assertEqual(str(Product.objects.get(name="Weighted bar").weight_kg), "12.500")
+
+    def test_product_rejects_unknown_units_and_non_positive_weight(self):
+        for unit, weight in (("bundle", ""), ("kg", "0"), ("piece", "-2")):
+            with self.subTest(unit=unit, weight=weight):
+                response = self.client.post(reverse("dashboard:product_create"), {
+                    "name": f"Invalid {unit} {weight}", "shape": "round_bar", "unit": unit,
+                    "weight_basis": "actual", "weight_kg": weight,
+                })
+                self.assertEqual(response.status_code, 200)
+
+
+class RFQIntakeTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username="rfq-owner", password="local-test-password")
+        self.other = get_user_model().objects.create_user(username="rfq-other", password="local-test-password")
+        self.customer = Customer.objects.create(owner=self.user, name="Synthetic customer")
+        self.product = Product.objects.create(owner=self.user, name="304 round bar", shape="round_bar", unit="kg")
+        self.foreign_customer = Customer.objects.create(owner=self.other, name="Other customer")
+        self.foreign_product = Product.objects.create(owner=self.other, name="Private plate", shape="plate", unit="kg")
+        self.client.force_login(self.user)
+
+    def payload(self, **overrides):
+        data = {
+            "customer": self.customer.pk, "reference": "ENQ-001", "source": "whatsapp",
+            "received_on": "2026-11-22", "required_by": "", "notes": "Synthetic enquiry",
+            "lines-TOTAL_FORMS": "2", "lines-INITIAL_FORMS": "0", "lines-MIN_NUM_FORMS": "1", "lines-MAX_NUM_FORMS": "1000",
+            "lines-0-product": self.product.pk, "lines-0-description": "", "lines-0-grade": "304",
+            "lines-0-dimensions": "25 mm diameter", "lines-0-quantity": "125.500", "lines-0-unit": "kg", "lines-0-DELETE": "",
+            "lines-1-product": "", "lines-1-description": "Sheet", "lines-1-grade": "", "lines-1-dimensions": "2 x 1 m x 3 mm",
+            "lines-1-quantity": "12", "lines-1-unit": "piece", "lines-1-DELETE": "",
+        }
+        data.update(overrides)
+        return data
+
+    def test_owner_can_create_enquiry_with_multiple_metric_lines(self):
+        response = self.client.post(reverse("dashboard:rfq_create"), self.payload())
+        self.assertEqual(response.status_code, 302)
+        rfq = RFQ.objects.get()
+        self.assertRedirects(response, reverse("dashboard:rfq_detail", args=[rfq.pk]))
+        self.assertEqual(rfq.owner, self.user)
+        self.assertEqual(rfq.customer, self.customer)
+        self.assertEqual(rfq.lines.count(), 2)
+        self.assertTrue(all(line.owner == self.user for line in rfq.lines.all()))
+        self.assertEqual(str(rfq.lines.get(product=self.product).quantity), "125.500")
+
+    def test_account_boundaries_exclude_foreign_customer_product_and_rfq(self):
+        response = self.client.get(reverse("dashboard:rfq_create"))
+        self.assertContains(response, "Synthetic customer")
+        self.assertNotContains(response, "Other customer")
+        foreign_rfq = RFQ.objects.create(owner=self.other, customer=self.foreign_customer, received_on="2026-11-21")
+        self.assertEqual(self.client.get(reverse("dashboard:rfq_detail", args=[foreign_rfq.pk])).status_code, 404)
+        self.assertNotContains(self.client.get(reverse("dashboard:rfq_list")), str(foreign_rfq))
+
+    def test_foreign_customer_and_product_cannot_be_submitted(self):
+        bad_customer = self.client.post(reverse("dashboard:rfq_create"), self.payload(customer=self.foreign_customer.pk))
+        self.assertEqual(bad_customer.status_code, 200)
+        self.assertFalse(RFQ.objects.exists())
+        bad_product = self.client.post(reverse("dashboard:rfq_create"), self.payload(**{"lines-0-product": self.foreign_product.pk}))
+        self.assertEqual(bad_product.status_code, 200)
+        self.assertFalse(RFQ.objects.exists())
+
+    def test_invalid_quantity_unit_and_missing_item_details_are_rejected(self):
+        for changes in (
+            {"lines-0-quantity": "0"}, {"lines-0-quantity": "-2"}, {"lines-0-unit": "bundle"},
+            {"lines-0-product": "", "lines-0-grade": "", "lines-0-dimensions": "", "lines-0-description": ""},
+        ):
+            with self.subTest(changes=changes):
+                response = self.client.post(reverse("dashboard:rfq_create"), self.payload(**changes))
+                self.assertEqual(response.status_code, 200)
+                self.assertFalse(RFQ.objects.exists())
+
+    def test_signed_in_user_required_for_intake(self):
+        self.client.logout()
+        response = self.client.get(reverse("dashboard:rfq_create"))
+        self.assertEqual(response.status_code, 302)
+
+
+class SupplierOfferTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username="offer-owner", password="local-test-password")
+        self.other = get_user_model().objects.create_user(username="offer-other", password="local-test-password")
+        self.customer = Customer.objects.create(owner=self.user, name="Offer customer")
+        self.product = Product.objects.create(owner=self.user, name="Synthetic round bar", shape="round_bar", unit="kg")
+        self.supplier = Supplier.objects.create(owner=self.user, name="Supplier Alpha")
+        self.other_supplier = Supplier.objects.create(owner=self.other, name="Private Supplier")
+        self.rfq = RFQ.objects.create(owner=self.user, customer=self.customer, reference="OFF-001", received_on="2026-11-22")
+        self.line = RFQLine.objects.create(
+            owner=self.user, rfq=self.rfq, product=self.product, quantity="100", unit=Product.Unit.KG,
         )
+        self.client.force_login(self.user)
+
+    def post_offer(self, **overrides):
+        data = {
+            "supplier": self.supplier.pk,
+            "available_quantity": "100",
+            "unit": Product.Unit.KG,
+            "unit_price": "90.0000",
+            "freight_cost": "500.00",
+            "packaging_cost": "100.00",
+            "delivery_days": "4",
+        }
+        data.update(overrides)
+        return self.client.post(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, self.line.pk]), data)
+
+    def make_offer(self, **overrides):
+        values = {
+            "owner": self.user,
+            "rfq_line": self.line,
+            "supplier": self.supplier,
+            "available_quantity": "100",
+            "unit": Product.Unit.KG,
+            "unit_price": "90.0000",
+            "freight_cost": "500.00",
+            "packaging_cost": "100.00",
+            "delivery_days": 4,
+        }
+        values.update(overrides)
+        offer = SupplierOffer(**values)
+        offer.full_clean()
+        offer.save()
+        return offer
+
+    def test_owner_can_add_offer_and_comparison_displays_landed_cost(self):
+        response = self.post_offer()
+        self.assertRedirects(response, reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        offer = SupplierOffer.objects.get()
+        self.assertEqual(offer.owner, self.user)
+        self.assertEqual(offer.rfq_line, self.line)
+        detail = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        self.assertContains(detail, "INR 96.0000")
+        self.assertContains(detail, "INR 9600.00")
+        self.assertContains(detail, "Freight (INR 500.00)")
+        self.assertContains(detail, "packaging/incidental cost (INR 100.00)")
+        self.assertContains(detail, "Covers 100.000")
+        self.assertContains(detail, "4 days")
+
+    def test_offers_are_sorted_by_normalized_landed_rate_and_tonne_is_converted(self):
+        expensive = self.make_offer()
+        cheaper = self.make_offer(
+            available_quantity="0.1", unit=Product.Unit.TONNE, unit_price="90000.0000",
+            freight_cost="300.00", packaging_cost="0.00", delivery_days=2,
+            supplier=Supplier.objects.create(owner=self.user, name="Supplier Beta"),
+        )
+        self.assertEqual(cheaper.unit_conversion_factor, 1000)
+        self.assertEqual(cheaper.landed_cost_per_requested_unit, 93)
+        response = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        self.assertEqual(response.context["rfq"].lines.all()[0].comparison_offers, [cheaper, expensive])
+        self.assertContains(response, "Converted metric tonne to kilogram (kg) using the metric weight ratio.")
+        self.assertContains(response, "0.100 Metric tonne")
+        self.assertContains(response, "100.000 Kilogram (kg) after conversion")
+
+    def test_partial_offer_cost_allocates_freight_over_covered_quantity(self):
+        offer = self.make_offer(available_quantity="50", freight_cost="100.00", packaging_cost="50.00")
+        self.assertEqual(offer.covered_quantity, 50)
+        self.assertFalse(offer.covers_full_quantity)
+        self.assertEqual(offer.landed_cost_per_requested_unit, 93)
+        self.assertEqual(offer.total_landed_cost, 4650)
+
+    def test_piece_conversion_uses_recorded_catalogue_weight(self):
+        self.product.weight_kg = "2.500"
+        self.product.weight_basis = Product.WeightBasis.THEORETICAL
+        self.product.save()
+        self.line.quantity = "25"
+        self.line.save()
+        offer = self.make_offer(
+            available_quantity="20", unit=Product.Unit.PIECE, unit_price="250.0000",
+            freight_cost="250.00", packaging_cost="0.00",
+        )
+        self.assertEqual(offer.unit_conversion_factor, 2.5)
+        self.assertEqual(offer.converted_available_quantity, 50)
+        self.assertEqual(offer.landed_cost_per_requested_unit, 110)
+        self.assertEqual(offer.total_landed_cost, 2750)
+        self.assertIn("theoretical weight of 2.500 kg per piece", offer.conversion_assumption)
+        self.product.weight_kg = "5.000"
+        self.product.save()
+        self.assertEqual(offer.landed_cost_per_requested_unit, 110)
+        self.assertIn("2.500 kg per piece", offer.conversion_assumption)
+
+    def test_offer_units_must_be_convertible_and_invalid_quantities_are_rejected(self):
+        self.line.unit = Product.Unit.METRE
+        self.line.save()
+        invalid_unit = self.post_offer(unit=Product.Unit.TONNE)
+        self.assertEqual(invalid_unit.status_code, 200)
+        self.assertFalse(SupplierOffer.objects.exists())
+        self.line.unit = Product.Unit.KG
+        self.line.save()
+        for changes in (
+            {"available_quantity": "0"}, {"available_quantity": "-2"},
+            {"unit_price": "0"}, {"freight_cost": "-1"}, {"delivery_days": "-1"},
+        ):
+            with self.subTest(changes=changes):
+                response = self.post_offer(**changes)
+                self.assertEqual(response.status_code, 200)
+                self.assertFalse(SupplierOffer.objects.exists())
+
+    def test_supplier_and_enquiry_ownership_boundaries_are_enforced(self):
+        foreign_supplier = self.post_offer(supplier=self.other_supplier.pk)
+        self.assertEqual(foreign_supplier.status_code, 200)
+        self.assertFalse(SupplierOffer.objects.exists())
+        invalid_offer = SupplierOffer(
+            owner=self.user, rfq_line=self.line, supplier=self.other_supplier,
+            available_quantity="100", unit=Product.Unit.KG, unit_price="90", delivery_days=4,
+        )
+        with self.assertRaises(ValidationError):
+            invalid_offer.full_clean()
+
+        # Even invalid rows written outside the application cannot expose a foreign supplier.
+        SupplierOffer.objects.create(
+            owner=self.user, rfq_line=self.line, supplier=self.other_supplier,
+            available_quantity="100", unit=Product.Unit.KG, unit_price="90", delivery_days=4,
+        )
+        detail = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        self.assertNotContains(detail, "Private Supplier")
+
+        other_customer = Customer.objects.create(owner=self.other, name="Other offer customer")
+        other_rfq = RFQ.objects.create(owner=self.other, customer=other_customer, received_on="2026-11-22")
+        other_line = RFQLine.objects.create(owner=self.other, rfq=other_rfq, quantity="100", unit=Product.Unit.KG, description="Other steel")
+        self.assertEqual(self.client.get(reverse("dashboard:rfq_detail", args=[other_rfq.pk])).status_code, 404)
+        self.assertEqual(
+            self.client.get(reverse("dashboard:supplier_offer_create", args=[other_rfq.pk, other_line.pk])).status_code,
+            404,
+        )
+        self.assertEqual(
+            self.client.get(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, other_line.pk])).status_code,
+            404,
+        )
+
+    def test_offer_entry_requires_login(self):
+        self.client.logout()
+        response = self.client.get(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, self.line.pk]))
+        self.assertEqual(response.status_code, 302)
+
+
+class QuotePricingTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username="quote-owner", password="local-test-password")
+        self.other = get_user_model().objects.create_user(username="quote-other", password="local-test-password")
+        self.customer = Customer.objects.create(owner=self.user, name="Quotation customer")
+        self.product = Product.objects.create(owner=self.user, name="Quote bar", shape="round_bar", unit=Product.Unit.KG)
+        self.supplier = Supplier.objects.create(owner=self.user, name="Quote supplier")
+        self.rfq = RFQ.objects.create(owner=self.user, customer=self.customer, reference="Q-001", received_on="2026-11-22")
+        self.line = RFQLine.objects.create(
+            owner=self.user, rfq=self.rfq, product=self.product, quantity="100", unit=Product.Unit.KG,
+        )
+        self.offer = SupplierOffer.objects.create(
+            owner=self.user, rfq_line=self.line, supplier=self.supplier, available_quantity="100",
+            unit=Product.Unit.KG, unit_price="90.0000", freight_cost="500.00",
+            packaging_cost="100.00", delivery_days=4,
+        )
+        self.client.force_login(self.user)
+
+    def post_quote(self, discount="0.00"):
+        return self.client.post(reverse("dashboard:quote_create", args=[self.rfq.pk]), {
+            f"offer_{self.line.pk}": self.offer.pk,
+            f"discount_{self.line.pk}": discount,
+        })
+
+    def test_default_target_margin_calculates_a_transparent_quote(self):
+        response = self.post_quote()
+        quote = Quote.objects.get()
+        self.assertRedirects(response, reverse("dashboard:quote_detail", args=[quote.pk]))
+        self.assertEqual(quote.status, Quote.Status.READY)
+        line = quote.lines.get()
+        self.assertEqual(line.landed_cost_per_unit, 96)
+        self.assertEqual(line.target_price_per_unit, Decimal("109.0909"))
+        self.assertEqual(line.selling_price_per_unit, Decimal("109.0909"))
+        self.assertEqual(line.total_landed_cost, Decimal("9600.00"))
+        self.assertEqual(line.total_selling_price, Decimal("10909.09"))
+        self.assertEqual(line.gross_margin_percent, Decimal("12.00"))
+        detail = self.client.get(reverse("dashboard:quote_detail", args=[quote.pk]))
+        self.assertContains(detail, "INR 96.0000")
+        self.assertContains(detail, "INR 109.0909")
+        self.assertContains(detail, "12.00%")
+        self.assertContains(detail, "Margin = (selling price - landed cost) / selling price")
+
+    def test_discount_above_account_guardrail_is_rejected(self):
+        settings = QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
+            maximum_discount_percent="4.00",
+        )
+        response = self.post_quote(discount="4.01")
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Quote.objects.exists())
+        settings.refresh_from_db()
+        self.assertEqual(settings.maximum_discount_percent, Decimal("4.00"))
+
+    def test_below_floor_quote_is_held_for_staff_review_and_settings_are_snapshotted(self):
+        settings = QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
+            maximum_discount_percent="10.00",
+        )
+        response = self.post_quote(discount="5.00")
+        quote = Quote.objects.get()
+        line = quote.lines.get()
+        self.assertRedirects(response, reverse("dashboard:quote_detail", args=[quote.pk]))
+        self.assertEqual(quote.status, Quote.Status.NEEDS_REVIEW)
+        self.assertEqual(line.gross_margin_percent, Decimal("7.37"))
+        self.assertTrue(line.needs_review)
+        self.assertContains(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])), "not approved for customer issue")
+
+        settings.target_margin_percent = Decimal("20.00")
+        settings.save()
+        quote.refresh_from_db()
+        self.assertEqual(quote.target_margin_percent, Decimal("12.00"))
+        self.assertEqual(quote.maximum_discount_percent, Decimal("10.00"))
+
+    def test_negative_margin_never_auto_approves(self):
+        QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="0.00",
+            maximum_discount_percent="30.00",
+        )
+        response = self.post_quote(discount="25.00")
+        quote = Quote.objects.get()
+        line = quote.lines.get()
+        self.assertEqual(response.status_code, 302)
+        self.assertLess(line.gross_margin_percent, Decimal("0.00"))
+        self.assertEqual(quote.status, Quote.Status.NEEDS_REVIEW)
+        self.assertIsNone(quote.approved_by)
+        self.assertContains(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])), "Negative margin")
+
+    def test_partial_offer_cannot_be_used_for_full_quantity_quotation(self):
+        self.offer.available_quantity = Decimal("50.000")
+        self.offer.save()
+        response = self.client.get(reverse("dashboard:quote_create", args=[self.rfq.pk]))
+        self.assertContains(response, "Add a supplier offer that covers the full requested quantity")
+        self.assertNotContains(response, "INR 96.0000 per Kilogram")
+        submitted = self.post_quote()
+        self.assertEqual(submitted.status_code, 200)
+        self.assertFalse(Quote.objects.exists())
+
+    def test_every_requested_line_needs_a_full_coverage_offer(self):
+        another_line = RFQLine.objects.create(
+            owner=self.user, rfq=self.rfq, description="Sheet", quantity="4", unit=Product.Unit.PIECE,
+        )
+        response = self.client.get(reverse("dashboard:quote_create", args=[self.rfq.pk]))
+        self.assertContains(response, "Sheet: no full-quantity offer yet")
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Quote.objects.exists())
+        self.assertTrue(RFQLine.objects.filter(pk=another_line.pk).exists())
+
+    def test_staff_action_is_required_and_records_reviewer(self):
+        QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
+            maximum_discount_percent="10.00",
+        )
+        quote = self.post_quote(discount="5.00")
+        quote = Quote.objects.get()
+        approve_url = reverse("dashboard:quote_approve", args=[quote.pk])
+        forbidden = self.client.post(approve_url)
+        self.assertEqual(forbidden.status_code, 403)
+        quote.refresh_from_db()
+        self.assertEqual(quote.status, Quote.Status.NEEDS_REVIEW)
+        self.user.is_staff = True
+        self.user.save(update_fields=["is_staff"])
+        approved = self.client.post(approve_url)
+        self.assertRedirects(approved, reverse("dashboard:quote_detail", args=[quote.pk]))
+        quote.refresh_from_db()
+        self.assertEqual(quote.status, Quote.Status.APPROVED)
+        self.assertEqual(quote.approved_by, self.user)
+        self.assertIsNotNone(quote.approved_at)
+
+    def test_quote_pages_and_approval_are_scoped_to_owner(self):
+        self.post_quote()
+        quote = Quote.objects.get()
+        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])).status_code, 200)
+        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk + 100])).status_code, 404)
+
+        other_customer = Customer.objects.create(owner=self.other, name="Other quote customer")
+        foreign_rfq = RFQ.objects.create(owner=self.other, customer=other_customer, received_on="2026-11-22")
+        self.assertEqual(self.client.get(reverse("dashboard:quote_create", args=[foreign_rfq.pk])).status_code, 404)
+        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])).status_code, 200)
+        quote.owner = self.other
+        quote.save()
+        self.user.is_staff = True
+        self.user.save(update_fields=["is_staff"])
+        self.assertEqual(self.client.post(reverse("dashboard:quote_approve", args=[quote.pk])).status_code, 404)
+
+    def test_pricing_settings_are_account_scoped_and_reject_percentages_at_100(self):
+        foreign_settings = QuotePricingSettings.objects.create(owner=self.other, target_margin_percent="20.00")
+        response = self.client.get(reverse("dashboard:quote_pricing_settings"))
+        self.assertContains(response, "12.00")
+        self.assertNotContains(response, "20.00")
+        invalid = self.client.post(reverse("dashboard:quote_pricing_settings"), {
+            "target_margin_percent": "100", "minimum_margin_percent": "8", "maximum_discount_percent": "5",
+        })
+        self.assertEqual(invalid.status_code, 200)
+        settings = QuotePricingSettings.objects.get(owner=self.user)
+        self.assertEqual(settings.target_margin_percent, Decimal("12.00"))
+        self.assertEqual(QuotePricingSettings.objects.get(pk=foreign_settings.pk).owner, self.other)
+
+    def test_quote_pricing_requires_login_and_approval_requires_post(self):
+        settings = QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
+            maximum_discount_percent="10.00",
+        )
+        self.post_quote(discount="5.00")
+        quote = Quote.objects.get()
+        self.client.logout()
+        self.assertEqual(self.client.get(reverse("dashboard:quote_create", args=[self.rfq.pk])).status_code, 302)
+        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])).status_code, 302)
+        self.assertEqual(self.client.post(reverse("dashboard:quote_pricing_settings"), {}).status_code, 302)
+        self.client.force_login(self.user)
+        self.user.is_staff = True
+        self.user.save(update_fields=["is_staff"])
+        self.assertEqual(self.client.get(reverse("dashboard:quote_approve", args=[quote.pk])).status_code, 405)
+
+
+class QuotePipelineAndPDFBoundaryTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username="pipeline-owner", password="local-test-password")
+        self.other = get_user_model().objects.create_user(username="pipeline-other", password="local-test-password")
+        self.customer = Customer.objects.create(owner=self.user, name="Pipeline customer")
+        self.product = Product.objects.create(owner=self.user, name="Pipeline bar", shape="round_bar", unit=Product.Unit.KG)
+        self.supplier = Supplier.objects.create(owner=self.user, name="Pipeline supplier")
+        self.rfq = RFQ.objects.create(owner=self.user, customer=self.customer, reference="PIPE-001", received_on="2026-11-22")
+        self.line = RFQLine.objects.create(owner=self.user, rfq=self.rfq, product=self.product, quantity="10", unit=Product.Unit.KG)
+        self.offer = SupplierOffer.objects.create(
+            owner=self.user, rfq_line=self.line, supplier=self.supplier, available_quantity="10",
+            unit=Product.Unit.KG, unit_price="90", delivery_days=2,
+        )
+        self.client.force_login(self.user)
+
+    def create_quote(self, valid_until=None):
+        payload = {
+            f"offer_{self.line.pk}": self.offer.pk,
+            f"discount_{self.line.pk}": "0.00",
+            "valid_until": valid_until or "2099-12-31",
+        }
+        response = self.client.post(reverse("dashboard:quote_create", args=[self.rfq.pk]), payload)
+        self.assertEqual(response.status_code, 302)
+        return Quote.objects.get()
+
+    def test_quote_pipeline_only_allows_valid_owner_transitions(self):
+        quote = self.create_quote()
+        update_url = reverse("dashboard:quote_update_status", args=[quote.pk])
+        invalid = self.client.post(update_url, {"status": Quote.Status.ACCEPTED})
+        self.assertEqual(invalid.status_code, 400)
+        quote.refresh_from_db()
+        self.assertEqual(quote.status, Quote.Status.READY)
+        sent = self.client.post(update_url, {"status": Quote.Status.SENT})
+        self.assertRedirects(sent, reverse("dashboard:quote_detail", args=[quote.pk]))
+        quote.refresh_from_db()
+        self.assertEqual(quote.status, Quote.Status.SENT)
+        self.assertIsNotNone(quote.sent_at)
+        closed = self.client.post(update_url, {"status": Quote.Status.ACCEPTED})
+        self.assertRedirects(closed, reverse("dashboard:quote_detail", args=[quote.pk]))
+        quote.refresh_from_db()
+        self.assertEqual(quote.status, Quote.Status.ACCEPTED)
+        self.assertIsNotNone(quote.closed_at)
+        self.assertEqual(self.client.get(update_url).status_code, 405)
+
+    def test_quote_document_terms_tax_and_revisions_are_snapshotted(self):
+        create_url = reverse("dashboard:quote_create", args=[self.rfq.pk])
+        response = self.client.post(create_url, {
+            f"offer_{self.line.pk}": self.offer.pk,
+            f"discount_{self.line.pk}": "0.00",
+            "issue_date": "2026-11-22",
+            "valid_until": "2026-11-30",
+            "tax_rate_percent": "18.00",
+            "payment_terms": "30 days from invoice",
+            "delivery_terms": "Delivery to buyer's warehouse",
+        })
+        self.assertEqual(response.status_code, 302)
+        original = Quote.objects.get()
+        self.assertRegex(original.number, r"^QT-2026-\d{6}$")
+        self.assertEqual(original.revision, 1)
+        self.assertEqual(original.tax_amount, Decimal("184.09"))
+        self.assertEqual(original.grand_total, Decimal("1206.82"))
+        self.assertEqual(original.payment_terms, "30 days from invoice")
+
+        revision_url = reverse("dashboard:quote_revision_create", args=[original.pk])
+        self.assertContains(self.client.get(revision_url), "Prepare revision 2")
+        response = self.client.post(revision_url, {
+            f"offer_{self.line.pk}": self.offer.pk,
+            f"discount_{self.line.pk}": "1.00",
+            "issue_date": "2026-11-23",
+            "valid_until": "2026-12-01",
+            "tax_rate_percent": "5.00",
+            "payment_terms": "Advance payment",
+            "delivery_terms": "Ex works",
+        })
+        self.assertEqual(response.status_code, 302)
+        revision = Quote.objects.get(revision_of=original)
+        self.assertEqual(revision.number, original.number)
+        self.assertEqual(revision.revision, 2)
+        self.assertEqual(revision.tax_rate_percent, Decimal("5.00"))
+        self.assertEqual(revision.target_margin_percent, original.target_margin_percent)
+        self.assertEqual(revision.lines.get().supplier_offer, original.lines.get().supplier_offer)
+
+    def test_customer_pdf_has_terms_and_sales_totals_without_procurement_data(self):
+        quote = self.create_quote()
+        quote.payment_terms = "<script>Pay within 30 days</script>"
+        quote.tax_rate_percent = Decimal("18.00")
+        quote.save(update_fields=["payment_terms", "tax_rate_percent", "updated_at"])
+
+        response = self.client.get(reverse("dashboard:quote_pdf", args=[quote.pk]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/pdf")
         self.assertTrue(response.content.startswith(b"%PDF-"))
+        self.assertIn(b"Pipeline customer", response.content)
+        self.assertIn(b"Pay within 30 days", response.content)
+        self.assertNotIn(b"<script>", response.content)
+        self.assertNotIn(b"Pipeline supplier", response.content)
+        self.assertNotIn(b"90.0000", response.content)
+        self.assertNotIn(b"Gross margin", response.content)
 
-    def test_quote_pdf_blocks_unapproved_low_margin(self):
-        self.login_owner()
-        self.quote.status = Quote.Status.NEEDS_REVIEW
-        self.quote.save(update_fields=["status"])
-        response = self.client.get(
-            reverse("dashboard:quote_pdf", args=[self.quote.pk])
+    def test_quote_list_and_pdf_reject_foreign_account_records(self):
+        quote = self.create_quote()
+        foreign_customer = Customer.objects.create(owner=self.other, name="Private pipeline customer")
+        foreign_rfq = RFQ.objects.create(owner=self.other, customer=foreign_customer, received_on="2026-11-22")
+        foreign_quote = Quote.objects.create(
+            owner=self.other, rfq=foreign_rfq, number="PRIVATE-001", issue_date="2026-11-22",
+            valid_until="2099-12-31", target_margin_percent="12", minimum_margin_percent="8",
+            maximum_discount_percent="5",
         )
-        self.assertEqual(response.status_code, 403)
+        pipeline = self.client.get(reverse("dashboard:quote_list"))
+        self.assertContains(pipeline, quote.number)
+        self.assertNotContains(pipeline, foreign_quote.number)
+        self.assertEqual(self.client.get(reverse("dashboard:quote_pdf", args=[foreign_quote.pk])).status_code, 404)
+        pdf = self.client.get(reverse("dashboard:quote_pdf", args=[quote.pk]))
+        self.assertEqual(pdf.status_code, 200)
+        self.assertEqual(pdf["Content-Type"], "application/pdf")
+        self.assertNotIn(b"Pipeline supplier", pdf.content)
 
-    def test_quote_approval_requires_staff(self):
-        self.login_owner()
-        self.quote.status = Quote.Status.NEEDS_REVIEW
-        self.quote.save(update_fields=["status"])
-        response = self.client.post(
-            reverse("dashboard:quote_approve", args=[self.quote.pk])
+        foreign_supplier = Supplier.objects.create(owner=self.other, name="Foreign supplier")
+        foreign_line = SupplierOffer.objects.create(
+            owner=self.other, rfq_line=self.line, supplier=foreign_supplier, available_quantity="10",
+            unit=Product.Unit.KG, unit_price="1", delivery_days=1,
         )
-        self.assertEqual(response.status_code, 403)
+        saved_line = quote.lines.get()
+        QuoteLine.objects.create(
+            owner=self.user, quote=quote, rfq_line=self.line, supplier_offer=foreign_line,
+            quantity="10", unit=Product.Unit.KG, landed_cost_per_unit="1", discount_percent="0",
+            selling_price_per_unit="2",
+        )
+        self.assertEqual(self.client.get(reverse("dashboard:quote_pdf", args=[quote.pk])).status_code, 403)
+        self.assertTrue(QuoteLine.objects.filter(pk=saved_line.pk).exists())
 
-    def test_csv_export_excludes_other_user_products(self):
-        self.login_owner()
+
+class FollowUpAndPipelineTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username="followup-owner", password="local-test-password")
+        self.other = get_user_model().objects.create_user(username="followup-other", password="local-test-password")
+        self.customer = Customer.objects.create(
+            owner=self.user, name="Follow-up customer", phone="00000 00000",
+        )
+        self.rfq = RFQ.objects.create(
+            owner=self.user, customer=self.customer, reference="FU-001", received_on="2026-11-22",
+        )
+        self.other_customer = Customer.objects.create(owner=self.other, name="Foreign customer")
+        self.other_rfq = RFQ.objects.create(
+            owner=self.other, customer=self.other_customer, received_on="2026-11-22",
+        )
+        self.client.force_login(self.user)
+
+    def test_followup_is_created_owned_and_shown_on_enquiry(self):
+        response = self.client.post(reverse("dashboard:followup_create", args=[self.rfq.pk]), {
+            "due_on": "2026-11-23", "note": "Call about delivery timing",
+        })
+        follow_up = FollowUp.objects.get()
+        self.assertRedirects(response, reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        self.assertEqual(follow_up.owner, self.user)
+        self.assertEqual(follow_up.rfq, self.rfq)
+        self.assertContains(self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk])), "Call about delivery timing")
+        self.assertContains(self.client.get(reverse("dashboard:followup_list")), "FU-001")
+
+    def test_followup_dates_are_required_and_empty_submission_saves_nothing(self):
+        response = self.client.post(reverse("dashboard:followup_create", args=[self.rfq.pk]), {
+            "due_on": "", "note": "No date",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(FollowUp.objects.exists())
+
+    def test_completion_requires_post_and_is_owner_scoped(self):
+        follow_up = FollowUp.objects.create(owner=self.user, rfq=self.rfq, due_on="2026-11-23", note="Call")
+        foreign_follow_up = FollowUp.objects.create(
+            owner=self.other, rfq=self.other_rfq, due_on="2026-11-23", note="Private reminder",
+        )
+        complete_url = reverse("dashboard:followup_complete", args=[follow_up.pk])
+        self.assertEqual(self.client.get(complete_url).status_code, 405)
+        self.assertEqual(
+            self.client.post(reverse("dashboard:followup_complete", args=[foreign_follow_up.pk])).status_code,
+            404,
+        )
+        response = self.client.post(complete_url)
+        self.assertRedirects(response, reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        follow_up.refresh_from_db()
+        self.assertIsNotNone(follow_up.completed_at)
+        self.assertNotContains(self.client.get(reverse("dashboard:followup_list")), "FU-001")
+
+    def test_pipeline_status_changes_only_through_valid_owner_post(self):
+        status_url = reverse("dashboard:rfq_update_status", args=[self.rfq.pk])
+        self.assertEqual(self.client.get(status_url).status_code, 405)
+        self.assertEqual(self.client.post(status_url, {"status": "not-a-status"}).status_code, 302)
+        self.rfq.refresh_from_db()
+        self.assertEqual(self.rfq.status, RFQ.Status.NEW)
+        self.client.post(status_url, {"status": RFQ.Status.IN_PROGRESS})
+        self.rfq.refresh_from_db()
+        self.assertEqual(self.rfq.status, RFQ.Status.IN_PROGRESS)
+        self.assertEqual(
+            self.client.post(reverse("dashboard:rfq_update_status", args=[self.other_rfq.pk]), {
+                "status": RFQ.Status.CLOSED,
+            }).status_code,
+            404,
+        )
+
+    def test_invalid_and_valid_whatsapp_numbers_are_safe_staff_triggered_links(self):
+        self.assertEqual(self.customer.whatsapp_chat_url, "https://wa.me/910000000000")
+        self.customer.phone = "not a phone"
+        self.assertEqual(self.customer.whatsapp_chat_url, "")
+        self.customer.phone = "+999 0000 00001"
+        self.assertEqual(self.customer.whatsapp_chat_url, "https://wa.me/999000000001")
+        self.customer.phone = "00000 00000"
+        detail = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        self.assertContains(detail, "Open WhatsApp chat (staff action)")
+        self.assertContains(detail, 'target="_blank" rel="noopener noreferrer"')
+
+    def test_followup_objects_are_filtered_against_all_related_owners(self):
+        hidden = FollowUp.objects.create(
+            owner=self.user, rfq=self.other_rfq, due_on="2026-11-23", note="Must stay hidden",
+        )
+        response = self.client.get(reverse("dashboard:followup_list"))
+        self.assertNotContains(response, "Must stay hidden")
+        self.assertEqual(
+            self.client.post(reverse("dashboard:followup_complete", args=[hidden.pk])).status_code,
+            404,
+        )
+
+
+class ProductCSVTests(TestCase):
+    headers = "name,grade,shape,dimensions,unit,weight_basis,weight_kg,notes\n"
+
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username="csv-owner", password="local-test-password")
+        self.other = get_user_model().objects.create_user(username="csv-other", password="local-test-password")
+        self.client.force_login(self.user)
+
+    def upload(self, content, name="products.csv"):
+        return self.client.post(reverse("dashboard:product_csv_import"), {
+            "file": SimpleUploadedFile(name, content.encode("utf-8"), content_type="text/csv"),
+        })
+
+    def test_owner_can_import_valid_rows_and_import_sets_owner_from_session(self):
+        content = self.headers + "Round bar,304,round_bar,25 mm diameter,kg,na,,Synthetic item\n"
+        response = self.upload(content)
+        self.assertRedirects(response, reverse("dashboard:product_list"))
+        product = Product.objects.get()
+        self.assertEqual(product.owner, self.user)
+        self.assertEqual(product.name, "Round bar")
+
+    def test_import_is_all_or_nothing_and_validates_quantities_and_units(self):
+        content = self.headers + (
+            "Valid sheet,,sheet,2 x 1 m x 3 mm,piece,na,,\n"
+            "Invalid row,,sheet,,bundle,na,,\n"
+        )
+        response = self.upload(content)
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Product.objects.exists())
+
+    def test_import_rejects_unknown_headers_and_duplicate_names(self):
+        bad_headers = self.upload("name,owner\nProduct,999\n")
+        self.assertEqual(bad_headers.status_code, 200)
+        self.assertFalse(Product.objects.exists())
+        Product.objects.create(owner=self.user, name="Existing", shape="sheet", unit="kg")
+        duplicate = self.upload(self.headers + "Existing,,sheet,,kg,na,,\n")
+        self.assertEqual(duplicate.status_code, 200)
+        self.assertEqual(Product.objects.filter(owner=self.user).count(), 1)
+
+    def test_import_rejects_oversized_files_and_too_many_rows(self):
+        oversized = SimpleUploadedFile("large.csv", b"x" * 1_000_001, content_type="text/csv")
+        response = self.client.post(reverse("dashboard:product_csv_import"), {"file": oversized})
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Product.objects.exists())
+
+        rows = "".join(f"Item {number},,sheet,,kg,na,,\n" for number in range(501))
+        response = self.upload(self.headers + rows)
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Product.objects.exists())
+
+    def test_export_is_owner_scoped_and_protects_spreadsheet_formula_cells(self):
+        Product.objects.create(owner=self.user, name='=HYPERLINK("https://example.invalid")', shape="sheet", unit="kg")
+        Product.objects.create(owner=self.other, name="Private steel", shape="sheet", unit="kg")
         response = self.client.get(reverse("dashboard:product_csv_export"))
         self.assertEqual(response.status_code, 200)
-        self.assertIn("SS 304 Round Bar", response.content.decode("utf-8"))
-        self.assertNotIn("Private Product", response.content.decode("utf-8"))
+        self.assertEqual(response.headers["Content-Disposition"], 'attachment; filename="steel-products.csv"')
+        content = response.content.decode("utf-8-sig")
+        self.assertIn("'=HYPERLINK", content)
+        self.assertNotIn("Private steel", content)
+        self.assertNotIn("phone", content.lower())
 
-    def test_csv_formula_like_product_names_are_escaped(self):
-        Product.objects.create(
-            owner=self.owner, name="=1+2",
-            shape=Product.Shape.SHEET, unit=Product.Unit.KG,
-        )
-        self.login_owner()
-        response = self.client.get(reverse("dashboard:product_csv_export"))
-        self.assertIn("'=1+2", response.content.decode("utf-8"))
-
-    def test_followup_is_scoped_to_owner(self):
-        followup = FollowUp.objects.create(
-            owner=self.owner, rfq=self.rfq,
-            due_on=timezone.localdate(), note="Manual callback",
-        )
-        self.client.force_login(self.other_user)
-        response = self.client.post(
-            reverse("dashboard:followup_complete", args=[followup.pk])
-        )
-        self.assertEqual(response.status_code, 404)
-        followup.refresh_from_db()
-        self.assertIsNone(followup.completed_at)
-
-    def test_followup_can_be_completed_by_owner(self):
-        followup = FollowUp.objects.create(
-            owner=self.owner, rfq=self.rfq,
-            due_on=timezone.localdate(), note="Manual callback",
-        )
-        self.login_owner()
-        response = self.client.post(
-            reverse("dashboard:followup_complete", args=[followup.pk])
-        )
-        self.assertEqual(response.status_code, 302)
-        followup.refresh_from_db()
-        self.assertIsNotNone(followup.completed_at)
+    def test_csv_routes_require_login(self):
+        self.client.logout()
+        self.assertEqual(self.client.get(reverse("dashboard:product_csv_export")).status_code, 302)
+        self.assertEqual(self.client.get(reverse("dashboard:product_csv_import")).status_code, 302)
