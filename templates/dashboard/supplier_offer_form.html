@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Add supplier offer · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Add supplier offer</h1>
+  <p>{{ rfq.reference|default:rfq }} · {{ line.product|default:line.description|default:"Requested item" }} · Requested {{ line.quantity }} {{ line.get_unit_display }}</p>
+  <p>Enter available quantity and the supplier's price per selected unit. Freight and packaging/incidental costs are totals for this offer. They are allocated across the quantity this offer can cover, up to the requested quantity.</p>
+  <form method="post">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="errors">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+      {% if field.errors %}<div class="errors">{{ field.errors }}</div>{% endif %}
+    {% endfor %}
+    <button type="submit">Save offer</button>
+  </form>
+  <p><a href="{% url 'dashboard:rfq_detail' rfq.pk %}">Back to comparison</a></p>
+</section>
+{% endblock %}

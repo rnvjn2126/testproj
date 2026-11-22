@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import inlineformset_factory
 
-from .models import Customer, Product, RFQ, RFQLine, Supplier
+from .models import Customer, Product, RFQ, RFQLine, Supplier, SupplierOffer
 
 
 class StyledModelForm(forms.ModelForm):
@@ -54,6 +54,39 @@ class RFQLineForm(StyledModelForm):
         cleaned = super().clean()
         if not any(cleaned.get(key) for key in ("product", "description", "grade", "dimensions")):
             raise forms.ValidationError("Choose a catalogue product or enter a description, grade, or dimensions.")
+        return cleaned
+
+
+class SupplierOfferForm(StyledModelForm):
+    class Meta:
+        model = SupplierOffer
+        fields = [
+            "supplier", "available_quantity", "unit", "unit_price", "freight_cost",
+            "packaging_cost", "delivery_days",
+        ]
+        widgets = {
+            "available_quantity": forms.NumberInput(attrs={"step": "0.001", "min": "0.001"}),
+            "unit_price": forms.NumberInput(attrs={"step": "0.0001", "min": "0.0001"}),
+            "freight_cost": forms.NumberInput(attrs={"step": "0.01", "min": "0"}),
+            "packaging_cost": forms.NumberInput(attrs={"step": "0.01", "min": "0"}),
+            "delivery_days": forms.NumberInput(attrs={"step": "1", "min": "0"}),
+        }
+
+    def __init__(self, *args, owner, rfq_line, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.owner = owner
+        self.rfq_line = rfq_line
+        self.fields["supplier"].queryset = Supplier.objects.filter(owner=owner)
+        self.instance.owner = owner
+        self.instance.rfq_line = rfq_line
+
+    def clean(self):
+        cleaned = super().clean()
+        unit = cleaned.get("unit")
+        if unit:
+            self.instance.unit = unit
+            if self.instance.unit_conversion_factor is None:
+                self.add_error("unit", "Choose a unit that can be converted to the requested item unit.")
         return cleaned
 
 

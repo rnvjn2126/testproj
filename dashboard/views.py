@@ -4,10 +4,11 @@ from django.urls import reverse
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db import transaction
+from django.db.models import Prefetch
 from django.views.decorators.http import require_http_methods
 
-from .forms import CustomerForm, ProductForm, RFQForm, RFQLineFormSet, SupplierForm
-from .models import Customer, Product, RFQ, Supplier
+from .forms import CustomerForm, ProductForm, RFQForm, RFQLineFormSet, SupplierForm, SupplierOfferForm
+from .models import Customer, Product, RFQ, RFQLine, Supplier, SupplierOffer
 
 
 @login_required
@@ -53,8 +54,50 @@ def rfq_create(request):
 
 @login_required
 def rfq_detail(request, pk):
-    rfq = get_object_or_404(RFQ.objects.filter(owner=request.user).select_related("customer").prefetch_related("lines", "lines__product"), pk=pk)
+    offers = SupplierOffer.objects.filter(
+        owner=request.user, supplier__owner=request.user, rfq_line__owner=request.user,
+    ).select_related("supplier", "rfq_line__product")
+    lines = RFQLine.objects.filter(owner=request.user).select_related("product").prefetch_related(
+        Prefetch("supplier_offers", queryset=offers)
+    )
+    rfq = get_object_or_404(
+        RFQ.objects.filter(owner=request.user).select_related("customer").prefetch_related(
+            Prefetch("lines", queryset=lines)
+        ),
+        pk=pk,
+    )
+    for line in rfq.lines.all():
+        line.comparison_offers = sorted(
+            line.supplier_offers.all(),
+            key=lambda offer: (
+                offer.landed_cost_per_requested_unit is None,
+                offer.landed_cost_per_requested_unit or 0,
+                offer.pk,
+            ),
+        )
     return render(request, "dashboard/rfq_detail.html", {"rfq": rfq})
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def supplier_offer_create(request, pk, line_pk):
+    rfq = get_object_or_404(RFQ.objects.filter(owner=request.user), pk=pk)
+    line = get_object_or_404(
+        RFQLine.objects.filter(owner=request.user, rfq=rfq).select_related("product"),
+        pk=line_pk,
+    )
+    form = SupplierOfferForm(
+        request.POST or None, owner=request.user, rfq_line=line,
+    )
+    if request.method == "POST" and form.is_valid():
+        with transaction.atomic():
+            offer = form.save(commit=False)
+            offer.owner = request.user
+            offer.rfq_line = line
+            offer.full_clean()
+            offer.save()
+        return redirect("dashboard:rfq_detail", pk=rfq.pk)
+    return render(request, "dashboard/supplier_offer_form.html", {"form": form, "rfq": rfq, "line": line})
 
 
 class OwnedListView(LoginRequiredMixin, ListView):

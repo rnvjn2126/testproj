@@ -8,6 +8,7 @@ urlpatterns = [
     path("rfqs/", views.rfq_list, name="rfq_list"),
     path("rfqs/new/", views.rfq_create, name="rfq_create"),
     path("rfqs/<int:pk>/", views.rfq_detail, name="rfq_detail"),
+    path("rfqs/<int:pk>/lines/<int:line_pk>/offers/new/", views.supplier_offer_create, name="supplier_offer_create"),
 ]
 for slug, label in (("customer", "customers"), ("supplier", "suppliers"), ("product", "products")):
     urlpatterns += [

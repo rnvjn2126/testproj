@@ -16,6 +16,9 @@
 | 2026-11-22 | Initial setup | Choose safe defaults listed above | Permit unattended work without pretending business rules are confirmed | Yes |
 | 2026-11-22 | Django foundation | Use Django's built-in session authentication; provision local accounts with `createsuperuser` or Django admin; no public sign-up | Keeps the local demo access-controlled without introducing account approval or recovery workflows | Yes |
 | 2026-11-22 | Catalogue milestone | Customers, suppliers and products are owned by the signed-in local user; products capture optional metric dimensions and distinguish actual from theoretical item weight without calculating or inferring weight | Establishes a clear ownership boundary and avoids unverified steel-density assumptions | Yes |
+| 2026-11-22 | Supplier landed-cost comparison | Record offers against one enquiry line with an entered unit rate, available quantity, delivery days, freight total and packaging/incidental total. Normalize kg and tonnes directly; allow piece conversion only from the linked catalogue product's recorded actual or theoretical kg per piece, saved with the offer as its conversion basis. Allocate freight and packaging across the smaller of requested and available quantities after conversion, and label partial coverage. | Makes comparisons transparent without inferring missing weights or assuming an offer covers the full order | Yes |
+| 2026-11-22 | Supplier landed-cost comparison | Treat supplier rates and entered freight/packaging as entered amounts, with no supplier GST calculation in this milestone | GST inclusion and any non-creditable procurement tax treatment need business confirmation | Yes |
+| 2026-11-22 | RFQ intake | Capture enquiry channel, received/required dates, customer, notes and one or more requested items; permit a catalogue product or free-text specification, with quantity required in an explicit catalogue metric unit | Supports varied incoming enquiry detail without inferring steel weights or adding supplier/quote workflows | Yes |
 
 ## Questions for the next morning review
 1. Should the first demo focus on stainless steel only or include MS/alloy products?
@@ -23,10 +26,9 @@
 3. What actual gross-margin floor and manager-approval hierarchy should be used?
 4. Which quotation terms and GST treatments apply to your business?
 5. Should each sales representative see their own accounts or all company leads?
+6. Do supplier offer prices include GST, and should any non-creditable GST enter landed procurement cost?
 
 Questions do not block unrelated safe implementation. Never fabricate an answer; mark the relevant workflow as a configurable pilot assumption.
 
 ## Blockers
 None at setup. Record any task failure with failing command, log, and recommended next action.
-
-| 2026-11-22 | RFQ intake | Capture enquiry channel, received/required dates, customer, notes and one or more requested items; permit a catalogue product or free-text specification, with quantity required in an explicit catalogue metric unit | Supports varied incoming enquiry detail without inferring steel weights or adding supplier/quote workflows | Yes |

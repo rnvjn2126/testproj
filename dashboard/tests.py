@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Customer, Product, RFQ, RFQLine, Supplier
+from .models import Customer, Product, RFQ, RFQLine, Supplier, SupplierOffer
 
 
 class FoundationTests(TestCase):
@@ -173,4 +174,160 @@ class RFQIntakeTests(TestCase):
     def test_signed_in_user_required_for_intake(self):
         self.client.logout()
         response = self.client.get(reverse("dashboard:rfq_create"))
+        self.assertEqual(response.status_code, 302)
+
+
+class SupplierOfferTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username="offer-owner", password="local-test-password")
+        self.other = get_user_model().objects.create_user(username="offer-other", password="local-test-password")
+        self.customer = Customer.objects.create(owner=self.user, name="Offer customer")
+        self.product = Product.objects.create(owner=self.user, name="Synthetic round bar", shape="round_bar", unit="kg")
+        self.supplier = Supplier.objects.create(owner=self.user, name="Supplier Alpha")
+        self.other_supplier = Supplier.objects.create(owner=self.other, name="Private Supplier")
+        self.rfq = RFQ.objects.create(owner=self.user, customer=self.customer, reference="OFF-001", received_on="2026-11-22")
+        self.line = RFQLine.objects.create(
+            owner=self.user, rfq=self.rfq, product=self.product, quantity="100", unit=Product.Unit.KG,
+        )
+        self.client.force_login(self.user)
+
+    def post_offer(self, **overrides):
+        data = {
+            "supplier": self.supplier.pk,
+            "available_quantity": "100",
+            "unit": Product.Unit.KG,
+            "unit_price": "90.0000",
+            "freight_cost": "500.00",
+            "packaging_cost": "100.00",
+            "delivery_days": "4",
+        }
+        data.update(overrides)
+        return self.client.post(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, self.line.pk]), data)
+
+    def make_offer(self, **overrides):
+        values = {
+            "owner": self.user,
+            "rfq_line": self.line,
+            "supplier": self.supplier,
+            "available_quantity": "100",
+            "unit": Product.Unit.KG,
+            "unit_price": "90.0000",
+            "freight_cost": "500.00",
+            "packaging_cost": "100.00",
+            "delivery_days": 4,
+        }
+        values.update(overrides)
+        offer = SupplierOffer(**values)
+        offer.full_clean()
+        offer.save()
+        return offer
+
+    def test_owner_can_add_offer_and_comparison_displays_landed_cost(self):
+        response = self.post_offer()
+        self.assertRedirects(response, reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        offer = SupplierOffer.objects.get()
+        self.assertEqual(offer.owner, self.user)
+        self.assertEqual(offer.rfq_line, self.line)
+        detail = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        self.assertContains(detail, "INR 96.0000")
+        self.assertContains(detail, "INR 9600.00")
+        self.assertContains(detail, "Freight (INR 500.00)")
+        self.assertContains(detail, "packaging/incidental cost (INR 100.00)")
+        self.assertContains(detail, "Covers 100.000")
+        self.assertContains(detail, "4 days")
+
+    def test_offers_are_sorted_by_normalized_landed_rate_and_tonne_is_converted(self):
+        expensive = self.make_offer()
+        cheaper = self.make_offer(
+            available_quantity="0.1", unit=Product.Unit.TONNE, unit_price="90000.0000",
+            freight_cost="300.00", packaging_cost="0.00", delivery_days=2,
+            supplier=Supplier.objects.create(owner=self.user, name="Supplier Beta"),
+        )
+        self.assertEqual(cheaper.unit_conversion_factor, 1000)
+        self.assertEqual(cheaper.landed_cost_per_requested_unit, 93)
+        response = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        self.assertEqual(response.context["rfq"].lines.all()[0].comparison_offers, [cheaper, expensive])
+        self.assertContains(response, "Converted metric tonne to kilogram (kg) using the metric weight ratio.")
+        self.assertContains(response, "0.100 Metric tonne")
+        self.assertContains(response, "100.000 Kilogram (kg) after conversion")
+
+    def test_partial_offer_cost_allocates_freight_over_covered_quantity(self):
+        offer = self.make_offer(available_quantity="50", freight_cost="100.00", packaging_cost="50.00")
+        self.assertEqual(offer.covered_quantity, 50)
+        self.assertFalse(offer.covers_full_quantity)
+        self.assertEqual(offer.landed_cost_per_requested_unit, 93)
+        self.assertEqual(offer.total_landed_cost, 4650)
+
+    def test_piece_conversion_uses_recorded_catalogue_weight(self):
+        self.product.weight_kg = "2.500"
+        self.product.weight_basis = Product.WeightBasis.THEORETICAL
+        self.product.save()
+        self.line.quantity = "25"
+        self.line.save()
+        offer = self.make_offer(
+            available_quantity="20", unit=Product.Unit.PIECE, unit_price="250.0000",
+            freight_cost="250.00", packaging_cost="0.00",
+        )
+        self.assertEqual(offer.unit_conversion_factor, 2.5)
+        self.assertEqual(offer.converted_available_quantity, 50)
+        self.assertEqual(offer.landed_cost_per_requested_unit, 110)
+        self.assertEqual(offer.total_landed_cost, 2750)
+        self.assertIn("theoretical weight of 2.500 kg per piece", offer.conversion_assumption)
+        self.product.weight_kg = "5.000"
+        self.product.save()
+        self.assertEqual(offer.landed_cost_per_requested_unit, 110)
+        self.assertIn("2.500 kg per piece", offer.conversion_assumption)
+
+    def test_offer_units_must_be_convertible_and_invalid_quantities_are_rejected(self):
+        self.line.unit = Product.Unit.METRE
+        self.line.save()
+        invalid_unit = self.post_offer(unit=Product.Unit.TONNE)
+        self.assertEqual(invalid_unit.status_code, 200)
+        self.assertFalse(SupplierOffer.objects.exists())
+        self.line.unit = Product.Unit.KG
+        self.line.save()
+        for changes in (
+            {"available_quantity": "0"}, {"available_quantity": "-2"},
+            {"unit_price": "0"}, {"freight_cost": "-1"}, {"delivery_days": "-1"},
+        ):
+            with self.subTest(changes=changes):
+                response = self.post_offer(**changes)
+                self.assertEqual(response.status_code, 200)
+                self.assertFalse(SupplierOffer.objects.exists())
+
+    def test_supplier_and_enquiry_ownership_boundaries_are_enforced(self):
+        foreign_supplier = self.post_offer(supplier=self.other_supplier.pk)
+        self.assertEqual(foreign_supplier.status_code, 200)
+        self.assertFalse(SupplierOffer.objects.exists())
+        invalid_offer = SupplierOffer(
+            owner=self.user, rfq_line=self.line, supplier=self.other_supplier,
+            available_quantity="100", unit=Product.Unit.KG, unit_price="90", delivery_days=4,
+        )
+        with self.assertRaises(ValidationError):
+            invalid_offer.full_clean()
+
+        # Even invalid rows written outside the application cannot expose a foreign supplier.
+        SupplierOffer.objects.create(
+            owner=self.user, rfq_line=self.line, supplier=self.other_supplier,
+            available_quantity="100", unit=Product.Unit.KG, unit_price="90", delivery_days=4,
+        )
+        detail = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
+        self.assertNotContains(detail, "Private Supplier")
+
+        other_customer = Customer.objects.create(owner=self.other, name="Other offer customer")
+        other_rfq = RFQ.objects.create(owner=self.other, customer=other_customer, received_on="2026-11-22")
+        other_line = RFQLine.objects.create(owner=self.other, rfq=other_rfq, quantity="100", unit=Product.Unit.KG, description="Other steel")
+        self.assertEqual(self.client.get(reverse("dashboard:rfq_detail", args=[other_rfq.pk])).status_code, 404)
+        self.assertEqual(
+            self.client.get(reverse("dashboard:supplier_offer_create", args=[other_rfq.pk, other_line.pk])).status_code,
+            404,
+        )
+        self.assertEqual(
+            self.client.get(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, other_line.pk])).status_code,
+            404,
+        )
+
+    def test_offer_entry_requires_login(self):
+        self.client.logout()
+        response = self.client.get(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, self.line.pk]))
         self.assertEqual(response.status_code, 302)
