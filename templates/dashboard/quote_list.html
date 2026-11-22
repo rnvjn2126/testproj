@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Quotations · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Quotation pipeline</h1>
+  {% for quote in quotes %}
+    <article class="row">
+      <strong><a href="{% url 'dashboard:quote_detail' quote.pk %}">{{ quote.number }} · Revision {{ quote.revision }}</a></strong>
+      <div>{{ quote.rfq.reference|default:quote.rfq }} · {{ quote.rfq.customer }}</div>
+      <div>{{ quote.get_status_display }} · Issued {{ quote.issue_date }} · Valid until {{ quote.valid_until }}</div>
+      {% if quote.valid_until < today and quote.status == "sent" %}<div class="errors">Validity date passed; mark expired when confirmed.</div>{% endif %}
+    </article>
+  {% empty %}<p>No quotations prepared yet.</p>{% endfor %}
+  <p><a href="{% url 'dashboard:rfq_list' %}">Back to enquiries</a></p>
+</section>
+{% endblock %}

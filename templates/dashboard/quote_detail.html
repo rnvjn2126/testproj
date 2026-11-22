@@ -1,10 +1,22 @@
 {% extends "base.html" %}
-{% block title %}Quotation {{ quote.pk }} · Steel Quotes{% endblock %}
+{% block title %}Quotation {{ quote.number }} R{{ quote.revision }} · Steel Quotes{% endblock %}
 {% block content %}
 <section class="card">
-  <h1>Quotation {{ quote.pk }}</h1>
+  <h1>Quotation {{ quote.number }} <small>Revision {{ quote.revision }}</small></h1>
   <p>{{ quote.rfq.reference|default:quote.rfq }} · {{ quote.rfq.customer }}</p>
+  <p>Issued {{ quote.issue_date }} · Valid until {{ quote.valid_until }} · Tax rate {{ quote.tax_rate_percent }}%</p>
+  {% if quote.revision_of %}<p>Revision of <a href="{% url 'dashboard:quote_detail' quote.revision_of.pk %}">{{ quote.revision_of.number }} R{{ quote.revision_of.revision }}</a></p>{% endif %}
+  {% if quote.revision_history.count > 1 %}
+    <p>Revision history: {% for revision in quote.revision_history %}<a href="{% url 'dashboard:quote_detail' revision.pk %}">R{{ revision.revision }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+  {% endif %}
   <p>Status: <strong>{{ quote.get_status_display }}</strong></p>
+  {% if can_update_status %}
+    <form class="inline-form" method="post" action="{% url 'dashboard:quote_update_status' quote.pk %}">
+      {% csrf_token %}
+      <label for="{{ status_form.status.id_for_label }}">{{ status_form.status.label }}</label>
+      {{ status_form.status }}<button type="submit">Update status</button>
+    </form>
+  {% endif %}
   {% if quote.status == "needs_review" %}
     <div class="errors">
       <p>This quotation is below the configured {{ quote.minimum_margin_percent }}% gross-margin floor. It is not approved for customer issue.</p>
@@ -67,8 +79,12 @@
       </tfoot>
     </table>
   </div>
-  <p>GST is not included in these internal pricing calculations. Customer-facing quotation documents are a later milestone.</p>
+  <p>Subtotal INR {{ quote.total_selling_price|floatformat:2 }} · GST / tax INR {{ quote.tax_amount|floatformat:2 }} · Total INR {{ quote.grand_total|floatformat:2 }}</p>
+  {% if quote.payment_terms %}<p><strong>Payment terms:</strong> {{ quote.payment_terms|linebreaksbr }}</p>{% endif %}
+  {% if quote.delivery_terms %}<p><strong>Delivery terms:</strong> {{ quote.delivery_terms|linebreaksbr }}</p>{% endif %}
+  {% if not quote.needs_review %}<p><a href="{% url 'dashboard:quote_pdf' quote.pk %}">Download customer quotation PDF</a></p>{% endif %}
+  <p><a href="{% url 'dashboard:quote_revision_create' quote.pk %}">Prepare a new quotation revision</a></p>
+  <p><a href="{% url 'dashboard:quote_list' %}">Back to quotations</a></p>
   <p><a href="{% url 'dashboard:rfq_detail' quote.rfq.pk %}">Back to enquiry</a></p>
 </section>
 {% endblock %}
-

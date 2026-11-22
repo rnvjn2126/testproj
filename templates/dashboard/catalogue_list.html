@@ -4,6 +4,7 @@
 <section class="card">
   <h1>{{ title }}</h1>
   <p><a href="{% url create_url %}">Add {{ singular }}</a></p>
+  {% if import_url %}<p><a href="{% url import_url %}">Import products from CSV</a> · <a href="{% url export_url %}">Export products to CSV</a></p>{% endif %}
   {% for record in records %}
     <article class="row"><strong>{{ record.name }}</strong>
       {% if record.company_name %}<div>{{ record.company_name }}</div>{% endif %}

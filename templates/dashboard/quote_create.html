@@ -2,7 +2,8 @@
 {% block title %}Prepare quotation · Steel Quotes{% endblock %}
 {% block content %}
 <section class="card">
-  <h1>Prepare quotation</h1>
+  <h1>{% if source_quote %}Prepare revision {{ source_quote.revision|add:1 }}{% else %}Prepare quotation{% endif %}</h1>
+  {% if source_quote %}<p>Revision of {{ source_quote.number }} R{{ source_quote.revision }}. Pricing guardrails stay fixed to the original quotation.</p>{% endif %}
   <p>{{ rfq.reference|default:rfq }} · {{ rfq.customer }}</p>
   <p>Target gross margin: {{ pricing_settings.target_margin_percent }}%. Selling price before discount = landed cost / (1 - target margin). Discounts apply to that price, up to {{ pricing_settings.maximum_discount_percent }}%.</p>
   <p>Quotes below the {{ pricing_settings.minimum_margin_percent }}% minimum margin, including any negative-margin quote, are held for explicit staff review. Supplier cost and margin are internal pricing details.</p>
@@ -36,10 +37,21 @@
           {% if row.discount_field.errors %}<div class="errors">{{ row.discount_field.errors }}</div>{% endif %}
         </section>
       {% endfor %}
+      <section class="row">
+        <h2>Quotation details</h2>
+        {% for field in form %}
+          {% if field.name == "issue_date" or field.name == "valid_until" or field.name == "tax_rate_percent" or field.name == "payment_terms" or field.name == "delivery_terms" %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+            {% if field.errors %}<div class="errors">{{ field.errors }}</div>{% endif %}
+          {% endif %}
+        {% endfor %}
+        <small>Tax rate is a separate sales-quote setting. Confirm the applicable treatment before issue.</small>
+      </section>
       {% if can_create %}<button type="submit">Calculate quotation</button>{% endif %}
     </form>
   {% endif %}
   <p><a href="{% url 'dashboard:rfq_detail' rfq.pk %}">Back to enquiry</a> · <a href="{% url 'dashboard:quote_pricing_settings' %}">Edit pricing settings</a></p>
 </section>
 {% endblock %}
-

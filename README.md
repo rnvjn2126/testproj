@@ -20,6 +20,12 @@ Open <http://127.0.0.1:8000/>. Create a local account in a second terminal with:
 
 The SQLite database is created locally as `db.sqlite3`. Do not use this development configuration for deployment.
 
+## Follow-ups and catalogue CSV
+
+Use **Follow-ups** to review open reminders. Each enquiry can have dated reminders, and a staff member marks them complete manually. WhatsApp opens only from the explicit link on an enquiry and never sends a message automatically.
+
+The **Products** page supports importing and exporting the product catalogue. CSV uses the headers `name, grade, shape, dimensions, unit, weight_basis, weight_kg, notes`; imports are validated as a whole before saving and exports include only the signed-in user's products. Customer contacts and supplier rates are not included.
+
 ## Development checks
 
 ```powershell

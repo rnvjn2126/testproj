@@ -3,9 +3,32 @@
 {% block content %}
 <section class="card">
   <h1>{{ rfq.reference|default:rfq }}</h1>
+  {% if rfq.customer.whatsapp_chat_url %}
+    <p><a href="{{ rfq.customer.whatsapp_chat_url }}" target="_blank" rel="noopener noreferrer">Open WhatsApp chat (staff action)</a></p>
+  {% endif %}
+  <form class="inline-form" method="post" action="{% url 'dashboard:rfq_update_status' rfq.pk %}">
+    {% csrf_token %}<label for="{{ status_form.status.id_for_label }}">{{ status_form.status.label }}</label>
+    {{ status_form.status }}<button type="submit">Update status</button>
+  </form>
   <p>{{ rfq.customer }} · {{ rfq.get_source_display }} · Received {{ rfq.received_on }} · {{ rfq.get_status_display }}</p>
   {% if rfq.required_by %}<p>Required by {{ rfq.required_by }}</p>{% endif %}
   {% if rfq.notes %}<p>{{ rfq.notes|linebreaksbr }}</p>{% endif %}
+
+  <h2>Follow-ups</h2>
+  <p><a href="{% url 'dashboard:followup_create' rfq.pk %}">Schedule a follow-up</a></p>
+  {% for follow_up in rfq.follow_ups.all %}
+    <div class="row">
+      <strong>Due {{ follow_up.due_on }}</strong>
+      {% if not follow_up.completed_at and follow_up.due_on < today %}<span class="errors"> · Overdue</span>{% endif %}
+      {% if follow_up.completed_at %}<span> · Completed {{ follow_up.completed_at|date:"Y-m-d H:i" }}</span>{% endif %}
+      {% if follow_up.note %}<p>{{ follow_up.note|linebreaksbr }}</p>{% endif %}
+      {% if not follow_up.completed_at %}
+        <form method="post" action="{% url 'dashboard:followup_complete' follow_up.pk %}">
+          {% csrf_token %}<button type="submit">Mark complete</button>
+        </form>
+      {% endif %}
+    </div>
+  {% empty %}<p>No follow-ups scheduled.</p>{% endfor %}
 
   <h2>Requested items and supplier comparison</h2>
   {% for line in rfq.lines.all %}
@@ -65,4 +88,3 @@
   <p><a href="{% url 'dashboard:rfq_list' %}">Back to enquiries</a></p>
 </section>
 {% endblock %}
-

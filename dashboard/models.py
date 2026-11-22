@@ -1,13 +1,20 @@
 from decimal import Decimal, ROUND_HALF_UP
+from datetime import timedelta
 
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.db.models import Q
+from django.utils import timezone
 
 
 def _decimal(value):
     """Normalize persisted or in-memory numeric values before domain math."""
     return value if isinstance(value, Decimal) else Decimal(str(value))
+
+
+def default_quote_expiry():
+    return timezone.localdate() + timedelta(days=7)
 
 
 class OwnedRecord(models.Model):
@@ -33,6 +40,27 @@ class Customer(OwnedRecord):
 
     def __str__(self):
         return self.name
+
+    @property
+    def whatsapp_chat_url(self):
+        """Return a safe WhatsApp destination for an explicitly staff-clicked link."""
+        import re
+
+        raw = self.phone.strip()
+        digits = re.sub(r"\D", "", raw)
+        if raw.startswith("+"):
+            if not 8 <= len(digits) <= 15:
+                return ""
+        elif len(digits) == 10:
+            # The local demo assumes unprefixed ten-digit numbers are Indian.
+            digits = f"91{digits}"
+        elif len(digits) == 11 and digits.startswith("0"):
+            digits = f"91{digits[1:]}"
+        elif len(digits) == 12 and digits.startswith("91"):
+            pass
+        else:
+            return ""
+        return f"https://wa.me/{digits}"
 
 
 class Supplier(OwnedRecord):
@@ -146,6 +174,29 @@ class RFQLine(OwnedRecord):
             raise ValidationError({"product": "Choose a product owned by your account."})
         if self.rfq and self.owner_id and self.rfq.owner_id != self.owner_id:
             raise ValidationError({"rfq": "The enquiry must belong to your account."})
+
+
+class FollowUp(OwnedRecord):
+    """A dated, manually actioned reminder attached to an enquiry."""
+
+    rfq = models.ForeignKey(RFQ, on_delete=models.CASCADE, related_name="follow_ups")
+    due_on = models.DateField()
+    note = models.CharField(max_length=500, blank=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["due_on", "id"]
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+
+        if self.rfq_id and self.owner_id:
+            if self.rfq.owner_id != self.owner_id or self.rfq.customer.owner_id != self.owner_id:
+                raise ValidationError({"rfq": "Choose an enquiry owned by your account."})
+
+    @property
+    def is_complete(self):
+        return self.completed_at is not None
 
 
 class SupplierOffer(OwnedRecord):
@@ -349,12 +400,31 @@ class Quote(OwnedRecord):
         READY = "ready", "Ready"
         NEEDS_REVIEW = "needs_review", "Needs manager review"
         APPROVED = "approved", "Approved after review"
+        SENT = "sent", "Sent to customer"
+        ACCEPTED = "accepted", "Accepted"
+        LOST = "lost", "Lost"
+        EXPIRED = "expired", "Expired"
 
     rfq = models.ForeignKey(RFQ, on_delete=models.PROTECT, related_name="quotes")
+    number = models.CharField(max_length=32, blank=True, editable=False)
+    revision = models.PositiveSmallIntegerField(default=1)
+    revision_of = models.ForeignKey(
+        "self", on_delete=models.PROTECT, null=True, blank=True, related_name="revisions",
+    )
+    issue_date = models.DateField(default=timezone.localdate)
+    valid_until = models.DateField(default=default_quote_expiry)
+    tax_rate_percent = models.DecimalField(
+        max_digits=5, decimal_places=2, default=Decimal("0.00"),
+        validators=[MinValueValidator(Decimal("0.00")), MaxValueValidator(Decimal("100.00"))],
+    )
+    payment_terms = models.TextField(blank=True)
+    delivery_terms = models.TextField(blank=True)
     target_margin_percent = models.DecimalField(max_digits=5, decimal_places=2)
     minimum_margin_percent = models.DecimalField(max_digits=5, decimal_places=2)
     maximum_discount_percent = models.DecimalField(max_digits=5, decimal_places=2)
     status = models.CharField(max_length=16, choices=Status.choices, default=Status.READY)
+    sent_at = models.DateTimeField(null=True, blank=True)
+    closed_at = models.DateTimeField(null=True, blank=True)
     approved_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.PROTECT,
         related_name="approved_steel_quotes",
@@ -363,6 +433,12 @@ class Quote(OwnedRecord):
 
     class Meta:
         ordering = ["-created_at", "-id"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["owner", "number", "revision"], condition=~Q(number=""),
+                name="unique_quote_revision_number_per_owner",
+            ),
+        ]
 
     def clean(self):
         from django.core.exceptions import ValidationError
@@ -372,6 +448,16 @@ class Quote(OwnedRecord):
             errors["rfq"] = "Choose an enquiry owned by your account."
         elif self.rfq_id and self.owner_id and self.rfq.customer.owner_id != self.owner_id:
             errors["rfq"] = "The enquiry's customer must belong to your account."
+        if self.issue_date and self.valid_until and self.valid_until < self.issue_date:
+            errors["valid_until"] = "The expiry date cannot be before the issue date."
+        if self.revision < 1:
+            errors["revision"] = "A quotation revision starts at 1."
+        if self.revision_of_id and self.owner_id:
+            previous = self.revision_of
+            if previous.owner_id != self.owner_id or previous.rfq_id != self.rfq_id:
+                errors["revision_of"] = "A revision must belong to the same account and enquiry."
+            if self.revision != previous.revision + 1 or self.number != previous.number:
+                errors["revision"] = "A revision must keep the quotation number and increment by one."
         for field in ("target_margin_percent", "minimum_margin_percent", "maximum_discount_percent"):
             value = getattr(self, field)
             if value is not None and (value < 0 or value >= 100):
@@ -380,6 +466,10 @@ class Quote(OwnedRecord):
             errors["approved_by"] = "The reviewer must belong to this account."
         if self.status == self.Status.APPROVED and (not self.approved_by_id or not self.approved_at):
             errors["status"] = "A reviewed quotation must record its reviewer and review time."
+        if self.status in (self.Status.SENT, self.Status.ACCEPTED, self.Status.LOST) and not self.sent_at:
+            errors["sent_at"] = "Record when the quotation was marked as sent."
+        if self.status in (self.Status.ACCEPTED, self.Status.LOST) and not self.closed_at:
+            errors["closed_at"] = "Record when the quotation outcome was updated."
         if errors:
             raise ValidationError(errors)
 
@@ -403,6 +493,16 @@ class Quote(OwnedRecord):
         return ((selling_price - self.total_landed_cost) / selling_price * Decimal("100")).quantize(
             Decimal("0.01"), rounding=ROUND_HALF_UP,
         )
+
+    @property
+    def tax_amount(self):
+        return (self.total_selling_price * self.tax_rate_percent / Decimal("100")).quantize(
+            Decimal("0.01"), rounding=ROUND_HALF_UP,
+        )
+
+    @property
+    def grand_total(self):
+        return self.total_selling_price + self.tax_amount
 
 
 class QuoteLine(OwnedRecord):
@@ -471,4 +571,3 @@ class QuoteLine(OwnedRecord):
     def needs_review(self):
         margin = self.gross_margin_percent
         return margin is None or margin < self.quote.minimum_margin_percent
-

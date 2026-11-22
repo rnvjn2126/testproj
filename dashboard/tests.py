@@ -1,513 +1,188 @@
-from decimal import Decimal
+YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éí×¼Ñ:-jZ.¶›­–)Ş³Vg&öÒFV6–ÖÂ–×÷'BFV6–ÖÀ ¦g&öÒF¦ævòæ6öçG&–"æWF‚–×÷'BvWE÷W6W%öÖöFVÀ¦g&öÒF¦ævòæ6÷&Ræf–ÆW2çWÆöFVFf–ÆR–×÷'B6–×ÆUWÆöFVDf–ÆP¦g&öÒF¦ævòæ6÷&RæW†6WF–öç2–×÷'BfÆ–FF–öäW'&÷ ¦g&öÒF¦ævòçFW7B–×÷'BFW7D66P¦g&öÒF¦ævòçW&Ç2–×÷'B&WfW'6P ¦g&öÒæÖöFVÇ2–×÷'B€¢7W7FöÖW"ÂföÆÆ÷uWÂ&öGV7BÂV÷FRÂV÷FTÆ–æRÂV÷FU&–6–æu6WGF–æw2Â$eÀ¢$eÆ–æRÂ7WÆ–W"Â7WÆ–W$öffW"À¢  ¦6Æ72f÷VæFF–öåFW7G2…FW7D66R“ ¢FVbFW7Eö†öÖU÷&WV—&W5öÆöv–â‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C¦†öÖR"’¢6VÆbæ76W'E&VF—&V7G2‡&W7öç6RÂb'·&WfW'6R‚vÆöv–âr—ÓöæW‡C×·&WfW'6R‚vF6†&ö&C¦†öÖRr—Ò" ¢FVbFW7EöÆöv–åö÷Vç5öF6†&ö&B‡6VÆb“ ¢vWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&FVÖò"Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&Æöv–â"’Â°¢'W6W&æÖR#¢&FVÖò"Â'77v÷&B#¢&Æö6Â×FW7B×77v÷&B"À¢Ò¢6VÆbæ76W'E&VF—&V7G2‡&W7öç6RÂ&WfW'6R‚&F6†&ö&C¦†öÖR"’¢6VÆbæ76W'D6öçF–ç2‡6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C¦†öÖR"’’Â%7FVVÂV÷FF–öâv÷&·76R" ¢FVbFW7EöÆöv–å÷vUö—5öf–Æ&ÆR‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&Æöv–â"’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ#¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ%6–vâ–â"  ¦6Æ726FÆöwVUFW7G2…FW7D66R“ ¢FVb6WEW‡6VÆb“ ¢6VÆbçW6W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&÷væW""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ÷F†W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&÷F†W""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ6Æ–VçBæf÷&6UöÆöv–â‡6VÆbçW6W" ¢FVbFW7Eö÷væW%ö6åö7&VFUöV6…ö6FÆöwVU÷&V6÷&B‡6VÆb“ ¢7V&Ö—76–öç2Ò°¢‚&F6†&ö&C¦7W7FöÖW%ö7&VFR"Â²&æÖR#¢%7–çF†WF–27W7FöÖW"'ÒÂ7W7FöÖW"’À¢‚&F6†&ö&C§7WÆ–W%ö7&VFR"Â²&æÖR#¢%7–çF†WF–27WÆ–W"'ÒÂ7WÆ–W"’À¢‚&F6†&ö&C§&öGV7Eö7&VFR"Â²&æÖR#¢%&÷VæB&""Â&w&FR#¢#3B"Â'6†R#¢'&÷VæEö&""Â&F–ÖVç6–öç2#¢##RÖÒF–ÖWFW""Â'Væ—B#¢&¶r"Â'vV–v‡Eö&6—2#¢&æ"Â'vV–v‡Eö¶r#¢"'ÒÂ&öGV7B’À¢Ğ¢f÷"&÷WFRÂFFÂÖöFVÂ–â7V&Ö—76–öç3 ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‡&÷WFR’ÂFF¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢&V6÷&BÒÖöFVÂæö&¦V7G2ævWB‚¢6VÆbæ76W'DWVÂ‡&V6÷&Bæ÷væW"Â6VÆbçW6W" ¢FVbFW7Eö7&VFUöf÷&×5ö–væ÷&U÷7V&Ö—GFVEö÷væW"‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C¦7W7FöÖW%ö7&VFR"’Â°¢&æÖR#¢$÷væVB'’6W76–öâ"Â&÷væW"#¢6VÆbæ÷F†W"ç²À¢Ò¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢6VÆbæ76W'DWVÂ„7W7FöÖW"æö&¦V7G2ævWB†æÖSÒ$÷væVB'’6W76–öâ"’æ÷væW"Â6VÆbçW6W" ¢FVbFW7Eö6FÆöwVUöÆ—7G5ö&U÷66÷VE÷Fõ÷6–væVEö–åö÷væW"‡6VÆb“ ¢7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$×’7W7FöÖW""¢7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ$÷F†W"7W7FöÖW""¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C¦7W7FöÖW%öÆ—7B"’¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ$×’7W7FöÖW""¢6VÆbæ76W'Dæ÷D6öçF–ç2‡&W7öç6RÂ$÷F†W"7W7FöÖW"" ¢FVbFW7Eö÷F†W%÷W6W'5÷&V6÷&G5ö6ææ÷Eö&U÷f–WvVEöVF—FVEö÷%öFVÆWFVB‡6VÆb“ ¢&V6÷&G2Ò°¢„7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFR7W7FöÖW""’Â&7W7FöÖW""’À¢…7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFR7WÆ–W""’Â'7WÆ–W""’À¢…&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFR&öGV7B"Â6†SÒ'6†VWB"ÂVæ—CÒ&¶r"’Â'&öGV7B"’À¢Ğ¢f÷"&V6÷&BÂ¶–æB–â&V6÷&G3 ¢f÷"7F–öâ–â‚'WFFR"Â&FVÆWFR"“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R†b&F6†&ö&C§¶¶–æGÕ÷¶7F–öçÒ"Â&w3Õ·&V6÷&BçµÒ’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂCB¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R†b&F6†&ö&C§¶¶–æGÕöFVÆWFR"Â&w3Õ·&V6÷&BçµÒ’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂCB¢6VÆbæ76W'EG'VR‡G—R‡&V6÷&B’æö&¦V7G2æf–ÇFW"‡³×&V6÷&Bç²’æW†—7G2‚’ ¢FVbFW7Eö÷væW%ö6åöVF—EöæEöFVÆWFUö6FÆöwVU÷&V6÷&G2‡6VÆb“ ¢&V6÷&G2Ò°¢„7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$öÆB7W7FöÖW""’Â&7W7FöÖW""Â²&æÖR#¢$æWr7W7FöÖW"'Ò’À¢…7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$öÆB7WÆ–W""’Â'7WÆ–W""Â²&æÖR#¢$æWr7WÆ–W"'Ò’À¢…&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$öÆB&öGV7B"Â6†SÒ'6†VWB"ÂVæ—CÒ&¶r"’Â'&öGV7B"Â°¢&æÖR#¢$æWr&öGV7B"Â'6†R#¢'ÆFR"Â'Væ—B#¢'FöææR"Â'vV–v‡Eö&6—2#¢&æ"À¢Ò’À¢Ğ¢f÷"&V6÷&BÂ¶–æBÂFF–â&V6÷&G3 ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R†b&F6†&ö&C§¶¶–æGÕ÷WFFR"Â&w3Õ·&V6÷&BçµÒ’ÂFF¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢&V6÷&Bç&Vg&W6…ög&öÕöF"‚¢6VÆbæ76W'DWVÂ‡&V6÷&BææÖRÂFF²&æÖR%Ò¢6VÆbæ76W'DWVÂ‡&V6÷&Bæ÷væW"Â6VÆbçW6W"¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R†b&F6†&ö&C§¶¶–æGÕöFVÆWFR"Â&w3Õ·&V6÷&BçµÒ’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢6VÆbæ76W'DfÇ6R‡G—R‡&V6÷&B’æö&¦V7G2æf–ÇFW"‡³×&V6÷&Bç²’æW†—7G2‚’ ¢FVbFW7E÷&öGV7E÷vV–v‡Eö—5÷fÆ–FFVEöæE÷vV–v‡Eö&6—5ö—5öW‡Æ–6—B‡6VÆb“ ¢–çfÆ–BÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&öGV7Eö7&VFR"’Â°¢&æÖR#¢$–çfÆ–B&""Â'6†R#¢'&÷VæEö&""Â'Væ—B#¢'–V6R"Â'vV–v‡Eö&6—2#¢&æ"Â'vV–v‡Eö¶r#¢#"ãR"À¢Ò¢6VÆbæ76W'DWVÂ†–çfÆ–Bç7FGW5ö6öFRÂ#¢6VÆbæ76W'DfÇ6R…&öGV7Bæö&¦V7G2æf–ÇFW"†æÖSÒ$–çfÆ–B&""’æW†—7G2‚’¢fÆ–BÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&öGV7Eö7&VFR"’Â°¢&æÖR#¢%vV–v‡FVB&""Â'6†R#¢'&÷VæEö&""Â'Væ—B#¢'–V6R"Â'vV–v‡Eö&6—2#¢'F†V÷&WF–6Â"Â'vV–v‡Eö¶r#¢#"ãR"À¢Ò¢6VÆbæ76W'DWVÂ‡fÆ–Bç7FGW5ö6öFRÂ3"¢6VÆbæ76W'DWVÂ‡7G"…&öGV7Bæö&¦V7G2ævWB†æÖSÒ%vV–v‡FVB&""’çvV–v‡Eö¶r’Â#"ãS" ¢FVbFW7E÷&öGV7E÷&V¦V7G5÷Væ¶æ÷vå÷Væ—G5öæEöæöå÷÷6—F—fU÷vV–v‡B‡6VÆb“ ¢f÷"Væ—BÂvV–v‡B–â‚‚&'VæFÆR"Â""’Â‚&¶r"Â#"’Â‚'–V6R"Â"Ó""’“ ¢v—F‚6VÆbç7V%FW7B‡Væ—C×Væ—BÂvV–v‡C×vV–v‡B“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&öGV7Eö7&VFR"’Â°¢&æÖR#¢b$–çfÆ–B·Væ—GÒ·vV–v‡GÒ"Â'6†R#¢'&÷VæEö&""Â'Væ—B#¢Væ—BÀ¢'vV–v‡Eö&6—2#¢&7GVÂ"Â'vV–v‡Eö¶r#¢vV–v‡BÀ¢Ò¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ#  ¦6Æ72$e–çF¶UFW7G2…FW7D66R“ ¢FVb6WEW‡6VÆb“ ¢6VÆbçW6W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ'&gÖ÷væW""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ÷F†W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ'&gÖ÷F†W""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ7W7FöÖW"Ò7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ%7–çF†WF–27W7FöÖW""¢6VÆbç&öGV7BÒ&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ#3B&÷VæB&""Â6†SÒ'&÷VæEö&""ÂVæ—CÒ&¶r"¢6VÆbæf÷&V–våö7W7FöÖW"Ò7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ$÷F†W"7W7FöÖW""¢6VÆbæf÷&V–vå÷&öGV7BÒ&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFRÆFR"Â6†SÒ'ÆFR"ÂVæ—CÒ&¶r"¢6VÆbæ6Æ–VçBæf÷&6UöÆöv–â‡6VÆbçW6W" ¢FVb–ÆöB‡6VÆbÂ¢¦÷fW'&–FW2“ ¢FFÒ°¢&7W7FöÖW"#¢6VÆbæ7W7FöÖW"ç²Â'&VfW&Væ6R#¢$TåÓ"Â'6÷W&6R#¢'v†G6"À¢'&V6V—fVEööâ#¢###bÓÓ#""Â'&WV—&VEö'’#¢""Â&æ÷FW2#¢%7–çF†WF–2VçV—'’"À¢&Æ–æW2ÕDõDÅôdõ$Õ2#¢#""Â&Æ–æW2Ô”ä•D”Åôdõ$Õ2#¢#"Â&Æ–æW2ÔÔ”åôåTÕôdõ$Õ2#¢#"Â&Æ–æW2ÔÔ…ôåTÕôdõ$Õ2#¢#"À¢&Æ–æW2Ó×&öGV7B#¢6VÆbç&öGV7Bç²Â&Æ–æW2ÓÖFW67&—F–öâ#¢""Â&Æ–æW2ÓÖw&FR#¢#3B"À¢&Æ–æW2ÓÖF–ÖVç6–öç2#¢##RÖÒF–ÖWFW""Â&Æ–æW2Ó×VçF—G’#¢##RãS"Â&Æ–æW2Ó×Væ—B#¢&¶r"Â&Æ–æW2ÓÔDTÄUDR#¢""À¢&Æ–æW2Ó×&öGV7B#¢""Â&Æ–æW2ÓÖFW67&—F–öâ#¢%6†VWB"Â&Æ–æW2ÓÖw&FR#¢""Â&Æ–æW2ÓÖF–ÖVç6–öç2#¢#"‚Ò‚2ÖÒ"À¢&Æ–æW2Ó×VçF—G’#¢#""Â&Æ–æW2Ó×Væ—B#¢'–V6R"Â&Æ–æW2ÓÔDTÄUDR#¢""À¢Ğ¢FFçWFFR†÷fW'&–FW2¢&WGW&âFF ¢FVbFW7Eö÷væW%ö6åö7&VFUöVçV—'•÷v—F…ö×VÇF—ÆUöÖWG&–5öÆ–æW2‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’Â6VÆbç–ÆöB‚’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢&gÒ$eæö&¦V7G2ævWB‚¢6VÆbæ76W'E&VF—&V7G2‡&W7öç6RÂ&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ·&gçµÒ’¢6VÆbæ76W'DWVÂ‡&gæ÷væW"Â6VÆbçW6W"¢6VÆbæ76W'DWVÂ‡&gæ7W7FöÖW"Â6VÆbæ7W7FöÖW"¢6VÆbæ76W'DWVÂ‡&gæÆ–æW2æ6÷VçB‚’Â"¢6VÆbæ76W'EG'VR†ÆÂ†Æ–æRæ÷væW"ÓÒ6VÆbçW6W"f÷"Æ–æR–â&gæÆ–æW2æÆÂ‚’’¢6VÆbæ76W'DWVÂ‡7G"‡&gæÆ–æW2ævWB‡&öGV7C×6VÆbç&öGV7B’çVçF—G’’Â##RãS" ¢FVbFW7Eö66÷VçEö&÷VæF&–W5öW†6ÇVFUöf÷&V–våö7W7FöÖW%÷&öGV7EöæE÷&g‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ%7–çF†WF–27W7FöÖW""¢6VÆbæ76W'Dæ÷D6öçF–ç2‡&W7öç6RÂ$÷F†W"7W7FöÖW""¢f÷&V–vå÷&gÒ$eæö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"Â7W7FöÖW#×6VÆbæf÷&V–våö7W7FöÖW"Â&V6V—fVEööãÒ###bÓÓ#"¢6VÆbæ76W'DWVÂ‡6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ¶f÷&V–vå÷&gçµÒ’’ç7FGW5ö6öFRÂCB¢6VÆbæ76W'Dæ÷D6öçF–ç2‡6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&göÆ—7B"’’Â7G"†f÷&V–vå÷&g’ ¢FVbFW7Eöf÷&V–våö7W7FöÖW%öæE÷&öGV7Eö6ææ÷Eö&U÷7V&Ö—GFVB‡6VÆb“ ¢&Eö7W7FöÖW"Ò6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’Â6VÆbç–ÆöB†7W7FöÖW#×6VÆbæf÷&V–våö7W7FöÖW"ç²’¢6VÆbæ76W'DWVÂ†&Eö7W7FöÖW"ç7FGW5ö6öFRÂ#¢6VÆbæ76W'DfÇ6R…$eæö&¦V7G2æW†—7G2‚’¢&E÷&öGV7BÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’Â6VÆbç–ÆöB‚¢§²&Æ–æW2Ó×&öGV7B#¢6VÆbæf÷&V–vå÷&öGV7Bç·Ò’¢6VÆbæ76W'DWVÂ†&E÷&öGV7Bç7FGW5ö6öFRÂ#¢6VÆbæ76W'DfÇ6R…$eæö&¦V7G2æW†—7G2‚’ ¢FVbFW7Eö–çfÆ–E÷VçF—G•÷Væ—EöæEöÖ—76–æuö—FVÕöFWF–Ç5ö&U÷&V¦V7FVB‡6VÆb“ ¢f÷"6†ævW2–â€¢²&Æ–æW2Ó×VçF—G’#¢#'ÒÂ²&Æ–æW2Ó×VçF—G’#¢"Ó"'ÒÂ²&Æ–æW2Ó×Væ—B#¢&'VæFÆR'ÒÀ¢²&Æ–æW2Ó×&öGV7B#¢""Â&Æ–æW2ÓÖw&FR#¢""Â&Æ–æW2ÓÖF–ÖVç6–öç2#¢""Â&Æ–æW2ÓÖFW67&—F–öâ#¢"'ÒÀ¢“ ¢v—F‚6VÆbç7V%FW7B†6†ævW3Ö6†ævW2“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’Â6VÆbç–ÆöB‚¢¦6†ævW2’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ#¢6VÆbæ76W'DfÇ6R…$eæö&¦V7G2æW†—7G2‚’ ¢FVbFW7E÷6–væVEö–å÷W6W%÷&WV—&VEöf÷%ö–çF¶R‡6VÆb“ ¢6VÆbæ6Æ–VçBæÆöv÷WB‚¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"  ¦6Æ727WÆ–W$öffW%FW7G2…FW7D66R“ ¢FVb6WEW‡6VÆb“ ¢6VÆbçW6W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&öffW"Ö÷væW""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ÷F†W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&öffW"Ö÷F†W""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ7W7FöÖW"Ò7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$öffW"7W7FöÖW""¢6VÆbç&öGV7BÒ&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ%7–çF†WF–2&÷VæB&""Â6†SÒ'&÷VæEö&""ÂVæ—CÒ&¶r"¢6VÆbç7WÆ–W"Ò7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ%7WÆ–W"Ç†"¢6VÆbæ÷F†W%÷7WÆ–W"Ò7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFR7WÆ–W""¢6VÆbç&gÒ$eæö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"Â7W7FöÖW#×6VÆbæ7W7FöÖW"Â&VfW&Væ6SÒ$ôdbÓ"Â&V6V—fVEööãÒ###bÓÓ#""¢6VÆbæÆ–æRÒ$eÆ–æRæö&¦V7G2æ7&VFR€¢÷væW#×6VÆbçW6W"Â&g×6VÆbç&gÂ&öGV7C×6VÆbç&öGV7BÂVçF—G“Ò#"ÂVæ—CÕ&öGV7BåVæ—Bä´rÀ¢¢6VÆbæ6Æ–VçBæf÷&6UöÆöv–â‡6VÆbçW6W" ¢FVb÷7EööffW"‡6VÆbÂ¢¦÷fW'&–FW2“ ¢FFÒ°¢'7WÆ–W"#¢6VÆbç7WÆ–W"ç²À¢&f–Æ&ÆU÷VçF—G’#¢#"À¢'Væ—B#¢&öGV7BåVæ—Bä´rÀ¢'Væ—E÷&–6R#¢#“ã"À¢&g&V–v‡Eö6÷7B#¢#Sã"À¢'6¶v–æuö6÷7B#¢#ã"À¢&FVÆ—fW'•öF—2#¢#B"À¢Ğ¢FFçWFFR†÷fW'&–FW2¢&WGW&â6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§7WÆ–W%ööffW%ö7&VFR"Â&w3Õ·6VÆbç&gç²Â6VÆbæÆ–æRçµÒ’ÂFF ¢FVbÖ¶UööffW"‡6VÆbÂ¢¦÷fW'&–FW2“ ¢fÇVW2Ò°¢&÷væW"#¢6VÆbçW6W"À¢'&göÆ–æR#¢6VÆbæÆ–æRÀ¢'7WÆ–W"#¢6VÆbç7WÆ–W"À¢&f–Æ&ÆU÷VçF—G’#¢#"À¢'Væ—B#¢&öGV7BåVæ—Bä´rÀ¢'Væ—E÷&–6R#¢#“ã"À¢&g&V–v‡Eö6÷7B#¢#Sã"À¢'6¶v–æuö6÷7B#¢#ã"À¢&FVÆ—fW'•öF—2#¢BÀ¢Ğ¢fÇVW2çWFFR†÷fW'&–FW2¢öffW"Ò7WÆ–W$öffW"‚¢§fÇVW2¢öffW"ægVÆÅö6ÆVâ‚¢öffW"ç6fR‚¢&WGW&âöffW  ¢FVbFW7Eö÷væW%ö6åöFEööffW%öæEö6ö×&—6öåöF—7Æ—5öÆæFVEö6÷7B‡6VÆb“ ¢&W7öç6RÒ6VÆbç÷7EööffW"‚¢6VÆbæ76W'E&VF—&V7G2‡&W7öç6RÂ&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ·6VÆbç&gçµÒ’¢öffW"Ò7WÆ–W$öffW"æö&¦V7G2ævWB‚¢6VÆbæ76W'DWVÂ†öffW"æ÷væW"Â6VÆbçW6W"¢6VÆbæ76W'DWVÂ†öffW"ç&göÆ–æRÂ6VÆbæÆ–æR¢FWF–ÂÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ·6VÆbç&gçµÒ’¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ$”å"“bã"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ$”å"“cã"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ$g&V–v‡B„”å"Sã’"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ'6¶v–ærö–æ6–FVçFÂ6÷7B„”å"ã’"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ$6÷fW'2ã"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ#BF—2" ¢FVbFW7EööffW'5ö&U÷6÷'FVEö'•öæ÷&ÖÆ—¦VEöÆæFVE÷&FUöæE÷FöææUö—5ö6öçfW'FVB‡6VÆb“ ¢W‡Vç6—fRÒ6VÆbæÖ¶UööffW"‚¢6†VW"Ò6VÆbæÖ¶UööffW"€¢f–Æ&ÆU÷VçF—G“Ò#ã"ÂVæ—CÕ&öGV7BåVæ—BåDôääRÂVæ—E÷&–6SÒ#“ã"À¢g&V–v‡Eö6÷7CÒ#3ã"Â6¶v–æuö6÷7CÒ#ã"ÂFVÆ—fW'•öF—3Ó"À¢7WÆ–W#Õ7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ%7WÆ–W"&WF"’À¢¢6VÆbæ76W'DWVÂ†6†VW"çVæ—Eö6öçfW'6–öåöf7F÷"Â¢6VÆbæ76W'DWVÂ†6†VW"æÆæFVEö6÷7E÷W%÷&WVW7FVE÷Væ—BÂ“2¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ·6VÆbç&gçµÒ’¢6VÆbæ76W'DWVÂ‡&W7öç6Ræ6öçFW‡E²'&g%ÒæÆ–æW2æÆÂ‚•³Òæ6ö×&—6öåööffW'2Â¶6†VW"ÂW‡Vç6—fUÒ¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ$6öçfW'FVBÖWG&–2FöææRFò¶–Æöw&Ò†¶r’W6–ærF†RÖWG&–2vV–v‡B&F–òâ"¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ#ãÖWG&–2FöææR"¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ#ã¶–Æöw&Ò†¶r’gFW"6öçfW'6–öâ" ¢FVbFW7E÷'F–ÅööffW%ö6÷7EöÆÆö6FW5ög&V–v‡Eö÷fW%ö6÷fW&VE÷VçF—G’‡6VÆb“ ¢öffW"Ò6VÆbæÖ¶UööffW"†f–Æ&ÆU÷VçF—G“Ò#S"Âg&V–v‡Eö6÷7CÒ#ã"Â6¶v–æuö6÷7CÒ#Sã"¢6VÆbæ76W'DWVÂ†öffW"æ6÷fW&VE÷VçF—G’ÂS¢6VÆbæ76W'DfÇ6R†öffW"æ6÷fW'5ögVÆÅ÷VçF—G’¢6VÆbæ76W'DWVÂ†öffW"æÆæFVEö6÷7E÷W%÷&WVW7FVE÷Væ—BÂ“2¢6VÆbæ76W'DWVÂ†öffW"çF÷FÅöÆæFVEö6÷7BÂCcS ¢FVbFW7E÷–V6Uö6öçfW'6–öå÷W6W5÷&V6÷&FVEö6FÆöwVU÷vV–v‡B‡6VÆb“ ¢6VÆbç&öGV7BçvV–v‡Eö¶rÒ#"ãS ¢6VÆbç&öGV7BçvV–v‡Eö&6—2Ò&öGV7BåvV–v‡D&6—2åD„Tõ$UD”4À¢6VÆbç&öGV7Bç6fR‚¢6VÆbæÆ–æRçVçF—G’Ò##R ¢6VÆbæÆ–æRç6fR‚¢:óKh‘éì¶»§q«^wİ[™Ø˜\ˆ‹[š]T›ÙXİ•[š]’ÑÊBˆÙ[‹œİ\Y\ˆHİ\Y\‹›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹˜[YOH”\[[™Hİ\Y\ˆŠBˆÙ[‹œ™œHH‘”K›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹İ\İÛY\\Ù[‹˜İ\İÛY\‹™Y™\™[˜ÙOH”TKLH‹™XÙZ]™YÛÛHŒŒ‹LLKLŒˆŠBˆÙ[‹›[™HH‘”S[™K›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹™œO\Ù[‹œ™œK›ÙXİ\Ù[‹œ›ÙXİ]X[]OHŒL‹[š]T›ÙXİ•[š]’ÑÊBˆÙ[‹›Ù™™\ˆHİ\Y\“Ù™™\‹›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹™œWÛ[™O\Ù[‹›[™Kİ\Y\\Ù[‹œİ\Y\‹]˜Z[X›WÜ]X[]OHŒL‹ˆ[š]T›ÙXİ•[š]’ÑË[š]ÜšXÙOHL‹[]™\WÙ^\ÏL‹ˆ
+BˆÙ[‹˜ÛY[™›Ü˜ÙWÛÙÚ[ŠÙ[‹\Ù\ŠB‚ˆYˆÜ™X]WÜ][İJÙ[‹˜[Yİ[[S›Û™JN‚ˆ^[ØYHÂˆˆ›Ù™™\—ŞÜÙ[‹›[™KœßHˆÙ[‹›Ù™™\‹œËˆˆ™\ØÛİ[ŞÜÙ[‹›[™KœßHˆŒŒ‹ˆ˜[Yİ[[ˆ˜[Yİ[[ÜˆŒŒNKLL‹LÌH‹ˆBˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
+™]™\œÙJ™\Ú›Ø\™œ][İWØÜ™X]H‹\™ÜÏVÜÙ[‹œ™œKœ×JK^[ØY
+BˆÙ[‹˜\ÜÙ\\]X[
+™\ÜÛœÙKœİ]\×ØÛÙKÌŠBˆ™]\›ˆ][İK›Øš™XİË™Ù]
 
-from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
-from django.test import TestCase
-from django.urls import reverse
+B‚ˆYˆ\İÜ][İWÜ\[[™WÛÛ›WØ[İÜ×İ˜[YÛİÛ™\—İ˜[œÚ][ÛœÊÙ[ŠN‚ˆ][İHHÙ[‹˜Ü™X]WÜ][İJ
+Bˆ\]Wİ\›H™]™\œÙJ™\Ú›Ø\™œ][İWİ\]WÜİ]\È‹\™ÜÏVÜ][İKœ×JBˆ[˜[YHÙ[‹˜ÛY[œÜİ
+\]Wİ\›Èœİ]\Èˆ][İK”İ]\ËPĞÑTQJBˆÙ[‹˜\ÜÙ\\]X[
+[˜[Yœİ]\×ØÛÙK
+Bˆ][İKœ™Yœ™\ÚÙœ›ÛWÙŠ
+BˆÙ[‹˜\ÜÙ\\]X[
+][İKœİ]\Ë][İK”İ]\Ë”‘PQJBˆÙ[HÙ[‹˜ÛY[œÜİ
+\]Wİ\›Èœİ]\Èˆ][İK”İ]\Ë”ÑS•JBˆÙ[‹˜\ÜÙ\™Y\™XİÊÙ[™]™\œÙJ™\Ú›Ø\™œ][İWÙ]Z[‹\™ÜÏVÜ][İKœ×JJBˆ][İKœ™Yœ™\ÚÙœ›ÛWÙŠ
+BˆÙ[‹˜\ÜÙ\\]X[
+][İKœİ]\Ë][İK”İ]\Ë”ÑS•
+BˆÙ[‹˜\ÜÙ\\Ó›İ›Û™J][İKœÙ[Ø]
+BˆÛÜÙYHÙ[‹˜ÛY[œÜİ
+\]Wİ\›Èœİ]\Èˆ][İK”İ]\ËPĞÑTQJBˆÙ[‹˜\ÜÙ\™Y\™XİÊÛÜÙY™]™\œÙJ™\Ú›Ø\™œ][İWÙ]Z[‹\™ÜÏVÜ][İKœ×JJBˆ][İKœ™Yœ™\ÚÙœ›ÛWÙŠ
+BˆÙ[‹˜\ÜÙ\\]X[
+][İKœİ]\Ë][İK”İ]\ËPĞÑTQ
+BˆÙ[‹˜\ÜÙ\\Ó›İ›Û™J][İK˜ÛÜÙYØ]
+BˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜ÛY[™Ù]
+\]Wİ\›
+Kœİ]\×ØÛÙKJB‚ˆYˆ\İÜ][İWÙØİ[Y[İ\›\×İ^Ø[™Ü™]š\Ú[Ûœ×Ø\™WÜÛ˜\ÚİY
+Ù[ŠN‚ˆÜ™X]Wİ\›H™]™\œÙJ™\Ú›Ø\™œ][İWØÜ™X]H‹\™ÜÏVÜÙ[‹œ™œKœ×JBˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
+Ü™X]Wİ\›Âˆˆ›Ù™™\—ŞÜÙ[‹›[™KœßHˆÙ[‹›Ù™™\‹œËˆˆ™\ØÛİ[ŞÜÙ[‹›[™KœßHˆŒŒ‹ˆš\ÜİYWÙ]HˆŒŒ‹LLKLŒˆ‹ˆ˜[Yİ[[ˆŒŒ‹LLKLÌ‹ˆ^Ü˜]WÜ\˜Ù[ˆŒNŒ‹ˆœ^[Y[İ\›\ÈˆŒÌ^\Èœ›ÛH[›ÚXÙH‹ˆ™[]™\Wİ\›\Èˆ‘[]™\HÈ^Y\‰ÜÈØ\™Zİ\ÙH‹ˆJBˆÙ[‹˜\ÜÙ\\]X[
+™\ÜÛœÙKœİ]\×ØÛÙKÌŠBˆÜšYÚ[˜[H][İK›Øš™XİË™Ù]
 
-from .models import (
-    Customer, Product, Quote, QuoteLine, QuotePricingSettings, RFQ, RFQLine,
-    Supplier, SupplierOffer,
-)
+BˆÙ[‹˜\ÜÙ\™YÙ^
+ÜšYÚ[˜[›[X™\‹ˆ—”ULŒ‹WÍŸIŠBˆÙ[‹˜\ÜÙ\\]X[
+ÜšYÚ[˜[œ™]š\Ú[Û‹JBˆÙ[‹˜\ÜÙ\\]X[
+ÜšYÚ[˜[^Ø[[İ[XÚ[X[
+ŒNŒHŠJBˆÙ[‹˜\ÜÙ\\]X[
+ÜšYÚ[˜[™Ü˜[™İİ[XÚ[X[
+ŒLŒ‹ˆŠJBˆÙ[‹˜\ÜÙ\\]X[
+ÜšYÚ[˜[œ^[Y[İ\›\ËŒÌ^\Èœ›ÛH[›ÚXÙHŠB‚ˆ™]š\Ú[Û—İ\›H™]™\œÙJ™\Ú›Ø\™œ][İWÜ™]š\Ú[Û—ØÜ™X]H‹\™ÜÏVÛÜšYÚ[˜[œ×JBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊÙ[‹˜ÛY[™Ù]
+™]š\Ú[Û—İ\›
+K”™\\™H™]š\Ú[ÛˆˆŠBˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
+™]š\Ú[Û—İ\›Âˆˆ›Ù™™\—ŞÜÙ[‹›[™KœßHˆÙ[‹›Ù™™\‹œËˆˆ™\ØÛİ[ŞÜÙ[‹›[™KœßHˆŒKŒ‹ˆš\ÜİYWÙ]HˆŒŒ‹LLKLŒÈ‹ˆ˜[Yİ[[ˆŒŒ‹LL‹LH‹ˆ^Ü˜]WÜ\˜Ù[ˆKŒ‹ˆœ^[Y[İ\›\ÈˆY˜[˜ÙH^[Y[‹ˆ™[]™\Wİ\›\Èˆ‘^ÛÜšÜÈ‹ˆJBˆÙ[‹˜\ÜÙ\\]X[
+™\ÜÛœÙKœİ]\×ØÛÙKÌŠBˆ™]š\Ú[ÛˆH][İK›Øš™XİË™Ù]
+™]š\Ú[Û—ÛÙ[ÜšYÚ[˜[
+BˆÙ[‹˜\ÜÙ\\]X[
+™]š\Ú[Û‹›[X™\‹ÜšYÚ[˜[›[X™\ŠBˆÙ[‹˜\ÜÙ\\]X[
+™]š\Ú[Û‹œ™]š\Ú[Û‹ŠBˆÙ[‹˜\ÜÙ\\]X[
+™]š\Ú[Û‹^Ü˜]WÜ\˜Ù[XÚ[X[
+KŒŠJBˆÙ[‹˜\ÜÙ\\]X[
+™]š\Ú[Û‹\™Ù]ÛX\™Ú[—Ü\˜Ù[ÜšYÚ[˜[\™Ù]ÛX\™Ú[—Ü\˜Ù[
+BˆÙ[‹˜\ÜÙ\\]X[
+™]š\Ú[Û‹›[™\Ë™Ù]
 
+Kœİ\Y\—ÛÙ™™\‹ÜšYÚ[˜[›[™\Ë™Ù]
 
-class FoundationTests(TestCase):
-    def test_home_requires_login(self):
-        response = self.client.get(reverse("dashboard:home"))
-        self.assertRedirects(response, f"{reverse('login')}?next={reverse('dashboard:home')}")
+Kœİ\Y\—ÛÙ™™\ŠB‚ˆYˆ\İØİ\İÛY\—Ü—Ú\×İ\›\×Ø[™ÜØ[\×İİ[×İÚ]İ]Ü›Øİ\™[Y[Ù]JÙ[ŠN‚ˆ][İHHÙ[‹˜Ü™X]WÜ][İJ
+Bˆ][İKœ^[Y[İ\›\ÈHØÜš\”^HÚ][ˆÌ^\ÏÜØÜš\ˆ‚ˆ][İK^Ü˜]WÜ\˜Ù[HXÚ[X[
+ŒNŒŠBˆ][İKœØ]™J\]WÙšY[ÏVÈœ^[Y[İ\›\È‹^Ü˜]WÜ\˜Ù[‹\]YØ]—JB‚ˆ™\ÜÛœÙHHÙ[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ][İWÜˆ‹\™ÜÏVÜ][İKœ×JJBˆÙ[‹˜\ÜÙ\\]X[
+™\ÜÛœÙKœİ]\×ØÛÙKŒ
+BˆÙ[‹˜\ÜÙ\\]X[
+™\ÜÛœÙVÈÛÛ[U\H—K˜\XØ][Û‹ÜˆŠBˆÙ[‹˜\ÜÙ\YJ™\ÜÛœÙK˜ÛÛ[œİ\İÚ]
+ˆ‰T‹HŠJBˆÙ[‹˜\ÜÙ\[Šˆ”\[[™Hİ\İÛY\ˆ‹™\ÜÛœÙK˜ÛÛ[
+BˆÙ[‹˜\ÜÙ\[Šˆ”^HÚ][ˆÌ^\È‹™\ÜÛœÙK˜ÛÛ[
+BˆÙ[‹˜\ÜÙ\›İ[ŠˆØÜš\ˆ‹™\ÜÛœÙK˜ÛÛ[
+BˆÙ[‹˜\ÜÙ\›İ[Šˆ”\[[™Hİ\Y\ˆ‹™\ÜÛœÙK˜ÛÛ[
+BˆÙ[‹˜\ÜÙ\›İ[ŠˆLŒ‹™\ÜÛœÙK˜ÛÛ[
+BˆÙ[‹˜\ÜÙ\›İ[Šˆ‘Ü›ÜÜÈX\™Ú[ˆ‹™\ÜÛœÙK˜ÛÛ[
+B‚ˆYˆ\İÜ][İWÛ\İØ[™Ü—Ü™Z™XİÙ›Ü™ZYÛ—ØXØÛİ[Ü™XÛÜ™ÊÙ[ŠN‚ˆ][İHHÙ[‹˜Ü™X]WÜ][İJ
+Bˆ›Ü™ZYÛ—Øİ\İÛY\ˆHİ\İÛY\‹›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹˜[YOH”š]˜]H\[[™Hİ\İÛY\ˆŠBˆ›Ü™ZYÛ—Ü™œHH‘”K›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹İ\İÛY\Y›Ü™ZYÛ—Øİ\İÛY\‹™XÙZ]™YÛÛHŒŒ‹LLKLŒˆŠBˆ›Ü™ZYÛ—Ü][İHH][İK›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹›İ\‹™œOY›Ü™ZYÛ—Ü™œK[X™\H”’UUKLH‹\ÜİYWÙ]OHŒŒ‹LLKLŒˆ‹ˆ˜[Yİ[[HŒŒNKLL‹LÌH‹\™Ù]ÛX\™Ú[—Ü\˜Ù[HŒLˆ‹Z[š[][WÛX\™Ú[—Ü\˜Ù[H‹ˆX^[][WÙ\ØÛİ[Ü\˜Ù[HH‹ˆ
+Bˆ\[[™HHÙ[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ][İWÛ\İŠJBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊ\[[™K][İK›[X™\ŠBˆÙ[‹˜\ÜÙ\›İÛÛZ[œÊ\[[™K›Ü™ZYÛ—Ü][İK›[X™\ŠBˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ][İWÜˆ‹\™ÜÏVÙ›Ü™ZYÛ—Ü][İKœ×JJKœİ]\×ØÛÙK
+BˆˆHÙ[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ][İWÜˆ‹\™ÜÏVÜ][İKœ×JJBˆÙ[‹˜\ÜÙ\\]X[
+‹œİ]\×ØÛÙKŒ
+BˆÙ[‹˜\ÜÙ\\]X[
+–ÈÛÛ[U\H—K˜\XØ][Û‹ÜˆŠBˆÙ[‹˜\ÜÙ\›İ[Šˆ”\[[™Hİ\Y\ˆ‹‹˜ÛÛ[
+B‚ˆ›Ü™ZYÛ—Üİ\Y\ˆHİ\Y\‹›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹˜[YOH‘›Ü™ZYÛˆİ\Y\ˆŠBˆ›Ü™ZYÛ—Û[™HHİ\Y\“Ù™™\‹›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹›İ\‹™œWÛ[™O\Ù[‹›[™Kİ\Y\Y›Ü™ZYÛ—Üİ\Y\‹]˜Z[X›WÜ]X[]OHŒL‹ˆ[š]T›ÙXİ•[š]’ÑË[š]ÜšXÙOHŒH‹[]™\WÙ^\ÏLKˆ
+BˆØ]™YÛ[™HH][İK›[™\Ë™Ù]
 
-    def test_login_opens_dashboard(self):
-        get_user_model().objects.create_user(username="demo", password="local-test-password")
-        response = self.client.post(reverse("login"), {
-            "username": "demo", "password": "local-test-password",
-        })
-        self.assertRedirects(response, reverse("dashboard:home"))
-        self.assertContains(self.client.get(reverse("dashboard:home")), "Steel quotation workspace")
+Bˆ][İS[™K›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹][İO\][İK™œWÛ[™O\Ù[‹›[™Kİ\Y\—ÛÙ™™\Y›Ü™ZYÛ—Û[™Kˆ]X[]OHŒL‹[š]T›ÙXİ•[š]’ÑË[™YØÛÜİÜ\—İ[š]HŒH‹\ØÛİ[Ü\˜Ù[HŒ‹ˆÙ[[™×ÜšXÙWÜ\—İ[š]HŒˆ‹ˆ
+BˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ][İWÜˆ‹\™ÜÏVÜ][İKœ×JJKœİ]\×ØÛÙKÊBˆÙ[‹˜\ÜÙ\YJ][İS[™K›Øš™XİË™š[\ŠÏ\Ø]™YÛ[™KœÊK™^\İÊ
+JB‚‚˜Û\ÜÈ›ÛİÕ\[™\[[™U\İÊ\İØ\ÙJN‚ˆYˆÙ]\
+Ù[ŠN‚ˆÙ[‹\Ù\ˆHÙ]İ\Ù\—Û[Ù[
 
-    def test_login_page_is_available(self):
-        response = self.client.get(reverse("login"))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Sign in")
+K›Øš™XİË˜Ü™X]Wİ\Ù\Š\Ù\›˜[YOH™›Ûİİ\[İÛ™\ˆ‹\ÜİÛÜ™H›ØØ[]\İ\\ÜİÛÜ™ŠBˆÙ[‹›İ\ˆHÙ]İ\Ù\—Û[Ù[
 
+K›Øš™XİË˜Ü™X]Wİ\Ù\Š\Ù\›˜[YOH™›Ûİİ\[İ\ˆ‹\ÜİÛÜ™H›ØØ[]\İ\\ÜİÛÜ™ŠBˆÙ[‹˜İ\İÛY\ˆHİ\İÛY\‹›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹˜[YOH‘›ÛİË]\İ\İÛY\ˆ‹Û™OHŒ‹ˆ
+BˆÙ[‹œ™œHH‘”K›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹İ\İÛY\\Ù[‹˜İ\İÛY\‹™Y™\™[˜ÙOH‘•KLH‹™XÙZ]™YÛÛHŒŒ‹LLKLŒˆ‹ˆ
+BˆÙ[‹›İ\—Øİ\İÛY\ˆHİ\İÛY\‹›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹˜[YOH‘›Ü™ZYÛˆİ\İÛY\ˆŠBˆÙ[‹›İ\—Ü™œHH‘”K›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹›İ\‹İ\İÛY\\Ù[‹›İ\—Øİ\İÛY\‹™XÙZ]™YÛÛHŒŒ‹LLKLŒˆ‹ˆ
+BˆÙ[‹˜ÛY[™›Ü˜ÙWÛÙÚ[ŠÙ[‹\Ù\ŠB‚ˆYˆ\İÙ›Ûİİ\Ú\×ØÜ™X]YÛİÛ™YØ[™ÜÚİÛ—ÛÛ—Ù[œ]Z\JÙ[ŠN‚ˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
+™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÜ™X]H‹\™ÜÏVÜÙ[‹œ™œKœ×JKÂˆ™YWÛÛˆˆŒŒ‹LLKLŒÈ‹››İHˆØ[X›İ][]™\H[Z[™È‹ˆJBˆ›Ûİ×İ\H›ÛİÕ\›Øš™XİË™Ù]
 
-class CatalogueTests(TestCase):
-    def setUp(self):
-        self.user = get_user_model().objects.create_user(username="owner", password="local-test-password")
-        self.other = get_user_model().objects.create_user(username="other", password="local-test-password")
-        self.client.force_login(self.user)
+BˆÙ[‹˜\ÜÙ\™Y\™XİÊ™\ÜÛœÙK™]™\œÙJ™\Ú›Ø\™œ™œWÙ]Z[‹\™ÜÏVÜÙ[‹œ™œKœ×JJBˆÙ[‹˜\ÜÙ\\]X[
+›Ûİ×İ\›İÛ™\‹Ù[‹\Ù\ŠBˆÙ[‹˜\ÜÙ\\]X[
+›Ûİ×İ\œ™œKÙ[‹œ™œJBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊÙ[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ™œWÙ]Z[‹\™ÜÏVÜÙ[‹œ™œKœ×JJKØ[X›İ][]™\H[Z[™ÈŠBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊÙ[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™™›Ûİİ\Û\İŠJK‘•KLHŠB‚ˆYˆ\İÙ›Ûİİ\Ù]\×Ø\™WÜ™\]Z\™YØ[™Ù[\WÜİX›Z\ÜÚ[Û—ÜØ]™\×Û›İ[™ÊÙ[ŠN‚ˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
+™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÜ™X]H‹\™ÜÏVÜÙ[‹œ™œKœ×JKÂˆ™YWÛÛˆˆˆ‹››İHˆ“›È]H‹ˆJBˆÙ[‹˜\ÜÙ\\]X[
+™\ÜÛœÙKœİ]\×ØÛÙKŒ
+BˆÙ[‹˜\ÜÙ\˜[ÙJ›ÛİÕ\›Øš™XİË™^\İÊ
+JB‚ˆYˆ\İØÛÛ\][Û—Ü™\]Z\™\×ÜÜİØ[™Ú\×ÛİÛ™\—ÜØÛÜY
+Ù[ŠN‚ˆ›Ûİ×İ\H›ÛİÕ\›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹™œO\Ù[‹œ™œKYWÛÛHŒŒ‹LLKLŒÈ‹›İOHØ[ŠBˆ›Ü™ZYÛ—Ù›Ûİ×İ\H›ÛİÕ\›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹›İ\‹™œO\Ù[‹›İ\—Ü™œKYWÛÛHŒŒ‹LLKLŒÈ‹›İOH”š]˜]H™[Z[™\ˆ‹ˆ
+BˆÛÛ\]Wİ\›H™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÛÛ\]H‹\™ÜÏVÙ›Ûİ×İ\œ×JBˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜ÛY[™Ù]
+ÛÛ\]Wİ\›
+Kœİ]\×ØÛÙKJBˆÙ[‹˜\ÜÙ\\]X[
+ˆÙ[‹˜ÛY[œÜİ
+™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÛÛ\]H‹\™ÜÏVÙ›Ü™ZYÛ—Ù›Ûİ×İ\œ×JJKœİ]\×ØÛÙKˆˆ
+Bˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
+ÛÛ\]Wİ\›
+BˆÙ[‹˜\ÜÙ\™Y\™XİÊ™\ÜÛœÙK™]™\œÙJ™\Ú›Ø\™œ™œWÙ]Z[‹\™ÜÏVÜÙ[‹œ™œKœ×JJBˆ›Ûİ×İ\œ™Yœ™\ÚÙœ›ÛWÙŠ
+BˆÙ[‹˜\ÜÙ\\Ó›İ›Û™J›Ûİ×İ\˜ÛÛ\]YØ]
+BˆÙ[‹˜\ÜÙ\›İÛÛZ[œÊÙ[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™™›Ûİİ\Û\İŠJK‘•KLHŠB‚ˆYˆ\İÜ\[[™WÜİ]\×ØÚ[™Ù\×ÛÛ›Wİ›İYÚİ˜[YÛİÛ™\—ÜÜİ
+Ù[ŠN‚ˆİ]\×İ\›H™]™\œÙJ™\Ú›Ø\™œ™œWİ\]WÜİ]\È‹\™ÜÏVÜÙ[‹œ™œKœ×JBˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜ÛY[™Ù]
+İ]\×İ\›
+Kœİ]\×ØÛÙKJBˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜ÛY[œÜİ
+İ]\×İ\›Èœİ]\Èˆ››İXK\İ]\ÈŸJKœİ]\×ØÛÙKÌŠBˆÙ[‹œ™œKœ™Yœ™\ÚÙœ›ÛWÙŠ
+BˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹œ™œKœİ]\Ë‘”K”İ]\Ë“‘UÊBˆÙ[‹˜ÛY[œÜİ
+İ]\×İ\›Èœİ]\Èˆ‘”K”İ]\Ë’S—Ô“ÑÔ‘TÔßJBˆÙ[‹œ™œKœ™Yœ™\ÚÙœ›ÛWÙŠ
+BˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹œ™œKœİ]\Ë‘”K”İ]\Ë’S—Ô“ÑÔ‘TÔÊBˆÙ[‹˜\ÜÙ\\]X[
+ˆÙ[‹˜ÛY[œÜİ
+™]™\œÙJ™\Ú›Ø\™œ™œWİ\]WÜİ]\È‹\™ÜÏVÜÙ[‹›İ\—Ü™œKœ×JKÂˆœİ]\Èˆ‘”K”İ]\ËÓÔÑQˆJKœİ]\×ØÛÙKˆˆ
+B‚ˆYˆ\İÚ[˜[YØ[™İ˜[YİÚ]Ø\Û[X™\œ×Ø\™WÜØY™WÜİY™—İšYÙÙ\™YÛ[šÜÊÙ[ŠN‚ˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜İ\İÛY\‹Ú]Ø\ØÚ]İ\›šÎ‹ËİØK›YKÎLLŠBˆÙ[‹˜İ\İÛY\‹œÛ™HH››İHÛ™H‚ˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜İ\İÛY\‹Ú]Ø\ØÚ]İ\›ˆŠBˆÙ[‹˜İ\İÛY\‹œÛ™HHŠÎNNHH‚ˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜İ\İÛY\‹Ú]Ø\ØÚ]İ\›šÎ‹ËİØK›YKÎNNLHŠBˆÙ[‹˜İ\İÛY\‹œÛ™HHŒ‚ˆ]Z[HÙ[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ™œWÙ]Z[‹\™ÜÏVÜÙ[‹œ™œKœ×JJBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊ]Z[“Ü[ˆÚ]Ğ\Ú]
+İY™ˆXİ[ÛŠHŠBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊ]Z[	İ\™Ù]H—Ø›[šÈˆ™[H››ÛÜ[™\ˆ›Ü™Y™\œ™\ˆ‰ÊB‚ˆYˆ\İÙ›Ûİİ\ÛØš™Xİ×Ø\™WÙš[\™YØYØZ[œİØ[Ü™[]YÛİÛ™\œÊÙ[ŠN‚ˆY[ˆH›ÛİÕ\›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹™œO\Ù[‹›İ\—Ü™œKYWÛÛHŒŒ‹LLKLŒÈ‹›İOH“]\İİ^HY[ˆ‹ˆ
+Bˆ™\ÜÛœÙHHÙ[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™™›Ûİİ\Û\İŠJBˆÙ[‹˜\ÜÙ\›İÛÛZ[œÊ™\ÜÛœÙK“]\İİ^HY[ˆŠBˆÙ[‹˜\ÜÙ\\]X[
+ˆÙ[‹˜ÛY[œÜİ
+™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÛÛ\]H‹\™ÜÏVÚY[‹œ×JJKœİ]\×ØÛÙKˆˆ
+B‚‚˜Û\ÜÈ›ÙXİÔÕ•\İÊ\İØ\ÙJN‚ˆXY\œÈH›˜[YKÜ˜YKÚ\K[Y[œÚ[ÛœË[š]ÙZYÚØ˜\Ú\ËÙZYÚÚÙË›İ\×ˆ‚‚ˆYˆÙ]\
+Ù[ŠN‚ˆÙ[‹\Ù\ˆHÙ]İ\Ù\—Û[Ù[
 
-    def test_owner_can_create_each_catalogue_record(self):
-        submissions = [
-            ("dashboard:customer_create", {"name": "Synthetic Customer"}, Customer),
-            ("dashboard:supplier_create", {"name": "Synthetic Supplier"}, Supplier),
-            ("dashboard:product_create", {"name": "Round bar", "grade": "304", "shape": "round_bar", "dimensions": "25 mm diameter", "unit": "kg", "weight_basis": "na", "weight_kg": ""}, Product),
-        ]
-        for route, data, model in submissions:
-            response = self.client.post(reverse(route), data)
-            self.assertEqual(response.status_code, 302)
-            record = model.objects.get()
-            self.assertEqual(record.owner, self.user)
+K›Øš™XİË˜Ü™X]Wİ\Ù\Š\Ù\›˜[YOH˜Üİ‹[İÛ™\ˆ‹\ÜİÛÜ™H›ØØ[]\İ\\ÜİÛÜ™ŠBˆÙ[‹›İ\ˆHÙ]İ\Ù\—Û[Ù[
 
-    def test_create_forms_ignore_submitted_owner(self):
-        response = self.client.post(reverse("dashboard:customer_create"), {
-            "name": "Owned by session", "owner": self.other.pk,
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(Customer.objects.get(name="Owned by session").owner, self.user)
+K›Øš™XİË˜Ü™X]Wİ\Ù\Š\Ù\›˜[YOH˜Üİ‹[İ\ˆ‹\ÜİÛÜ™H›ØØ[]\İ\\ÜİÛÜ™ŠBˆÙ[‹˜ÛY[™›Ü˜ÙWÛÙÚ[ŠÙ[‹\Ù\ŠB‚ˆYˆ\ØY
+Ù[‹ÛÛ[˜[YOHœ›ÙXİË˜ÜİˆŠN‚ˆ™]\›ˆÙ[‹˜ÛY[œÜİ
+™]™\œÙJ™\Ú›Ø\™œ›ÙXİØÜİ—Ú[\ÜŠKÂˆ™š[HˆÚ[\U\ØYYš[J˜[YKÛÛ[™[˜ÛÙJ]‹NŠKÛÛ[İ\OH^ØÜİˆŠKˆJB‚ˆYˆ\İÛİÛ™\—ØØ[—Ú[\Üİ˜[YÜ›İÜ×Ø[™Ú[\ÜÜÙ]×ÛİÛ™\—Ùœ›ÛWÜÙ\ÜÚ[ÛŠÙ[ŠN‚ˆÛÛ[HÙ[‹šXY\œÈ
+È”›İ[™˜\‹Ì›İ[™Ø˜\‹H[HX[Y]\‹ÙË˜KŞ[]XÈ][Wˆ‚ˆ™\ÜÛœÙHHÙ[‹\ØY
+ÛÛ[
+BˆÙ[‹˜\ÜÙ\™Y\™XİÊ™\ÜÛœÙK™]™\œÙJ™\Ú›Ø\™œ›ÙXİÛ\İŠJBˆ›ÙXİH›ÙXİ›Øš™XİË™Ù]
 
-    def test_catalogue_lists_are_scoped_to_signed_in_owner(self):
-        Customer.objects.create(owner=self.user, name="My Customer")
-        Customer.objects.create(owner=self.other, name="Other Customer")
-        response = self.client.get(reverse("dashboard:customer_list"))
-        self.assertContains(response, "My Customer")
-        self.assertNotContains(response, "Other Customer")
+BˆÙ[‹˜\ÜÙ\\]X[
+›ÙXİ›İÛ™\‹Ù[‹\Ù\ŠBˆÙ[‹˜\ÜÙ\\]X[
+›ÙXİ›˜[YK”›İ[™˜\ˆŠB‚ˆYˆ\İÚ[\ÜÚ\×Ø[ÛÜ—Û›İ[™×Ø[™İ˜[Y]\×Ü]X[]Y\×Ø[™İ[š]ÊÙ[ŠN‚ˆÛÛ[HÙ[‹šXY\œÈ
+È
+ˆ•˜[YÚY]ÚY]ˆHHÈ[KYXÙK˜Kˆ‚ˆ’[˜[Y›İËÚY][™K˜Kˆ‚ˆ
+Bˆ™\ÜÛœÙHHÙ[‹\ØY
+ÛÛ[
+BˆÙ[‹˜\ÜÙ\\]X[
+™\ÜÛœÙKœİ]\×ØÛÙKŒ
+BˆÙ[‹˜\ÜÙ\˜[ÙJ›ÙXİ›Øš™XİË™^\İÊ
+JB‚ˆYˆ\İÚ[\ÜÜ™Z™Xİ×İ[šÛ›İÛ—ÚXY\œ×Ø[™Ù\XØ]WÛ˜[Y\ÊÙ[ŠN‚ˆ˜YÚXY\œÈHÙ[‹\ØY
+›˜[YKİÛ™\—”›ÙXİNNWˆŠBˆÙ[‹˜\ÜÙ\\]X[
+˜YÚXY\œËœİ]\×ØÛÙKŒ
+BˆÙ[‹˜\ÜÙ\˜[ÙJ›ÙXİ›Øš™XİË™^\İÊ
+JBˆ›ÙXİ›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹˜[YOH‘^\İ[™È‹Ú\OHœÚY]‹[š]HšÙÈŠBˆ\XØ]HHÙ[‹\ØY
+Ù[‹šXY\œÈ
+È‘^\İ[™ËÚY]ÙË˜KˆŠBˆÙ[‹˜\ÜÙ\\]X[
+\XØ]Kœİ]\×ØÛÙKŒ
+BˆÙ[‹˜\ÜÙ\\]X[
+›ÙXİ›Øš™XİË™š[\ŠİÛ™\\Ù[‹\Ù\ŠK˜Ûİ[
 
-    def test_other_users_records_cannot_be_viewed_edited_or_deleted(self):
-        records = [
-            (Customer.objects.create(owner=self.other, name="Private Customer"), "customer"),
-            (Supplier.objects.create(owner=self.other, name="Private Supplier"), "supplier"),
-            (Product.objects.create(owner=self.other, name="Private Product", shape="sheet", unit="kg"), "product"),
-        ]
-        for record, kind in records:
-            for action in ("update", "delete"):
-                response = self.client.get(reverse(f"dashboard:{kind}_{action}", args=[record.pk]))
-                self.assertEqual(response.status_code, 404)
-            response = self.client.post(reverse(f"dashboard:{kind}_delete", args=[record.pk]))
-            self.assertEqual(response.status_code, 404)
-            self.assertTrue(type(record).objects.filter(pk=record.pk).exists())
+KJB‚ˆYˆ\İÙ^ÜÚ\×ÛİÛ™\—ÜØÛÜYØ[™Ü›İXİ×ÜÜ™XYÚY]Ù›Ü›][WØÙ[ÊÙ[ŠN‚ˆ›ÙXİ›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹˜[YOIÏRTT“S’ÊšÎ‹ËÙ^[\Kš[˜[YŠIËÚ\OHœÚY]‹[š]HšÙÈŠBˆ›ÙXİ›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹˜[YOH”š]˜]HİY[‹Ú\OHœÚY]‹[š]HšÙÈŠBˆ™\ÜÛœÙHHÙ[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ›ÙXİØÜİ—Ù^ÜŠJBˆÙ[‹˜\ÜÙ\\]X[
+™\ÜÛœÙKœİ]\×ØÛÙKŒ
+BˆÙ[‹˜\ÜÙ\\]X[
+™\ÜÛœÙKšXY\œÖÈÛÛ[Q\ÜÜÚ][Ûˆ—K	Ø]XÚY[Èš[[˜[YOHœİY[\›ÙXİË˜Üİˆ‰ÊBˆÛÛ[H™\ÜÛœÙK˜ÛÛ[™XÛÙJ]‹N\ÚYÈŠBˆÙ[‹˜\ÜÙ\[Š‰ÏRTT“S’È‹ÛÛ[
+BˆÙ[‹˜\ÜÙ\›İ[Š”š]˜]HİY[‹ÛÛ[
+BˆÙ[‹˜\ÜÙ\›İ[ŠœÛ™H‹ÛÛ[›İÙ\Š
+JB‚ˆYˆ\İØÜİ—Ü›İ]\×Ü™\]Z\™WÛÙÚ[ŠÙ[ŠN‚ˆÙ[‹˜ÛY[›ÙÛİ]
 
-    def test_owner_can_edit_and_delete_catalogue_records(self):
-        records = [
-            (Customer.objects.create(owner=self.user, name="Old customer"), "customer", {"name": "New customer"}),
-            (Supplier.objects.create(owner=self.user, name="Old supplier"), "supplier", {"name": "New supplier"}),
-            (Product.objects.create(owner=self.user, name="Old product", shape="sheet", unit="kg"), "product", {
-                "name": "New product", "shape": "plate", "unit": "tonne", "weight_basis": "na",
-            }),
-        ]
-        for record, kind, data in records:
-            response = self.client.post(reverse(f"dashboard:{kind}_update", args=[record.pk]), data)
-            self.assertEqual(response.status_code, 302)
-            record.refresh_from_db()
-            self.assertEqual(record.name, data["name"])
-            self.assertEqual(record.owner, self.user)
-            response = self.client.post(reverse(f"dashboard:{kind}_delete", args=[record.pk]))
-            self.assertEqual(response.status_code, 302)
-            self.assertFalse(type(record).objects.filter(pk=record.pk).exists())
-
-    def test_product_weight_is_validated_and_weight_basis_is_explicit(self):
-        invalid = self.client.post(reverse("dashboard:product_create"), {
-            "name": "Invalid bar", "shape": "round_bar", "unit": "piece", "weight_basis": "na", "weight_kg": "12.5",
-        })
-        self.assertEqual(invalid.status_code, 200)
-        self.assertFalse(Product.objects.filter(name="Invalid bar").exists())
-        valid = self.client.post(reverse("dashboard:product_create"), {
-            "name": "Weighted bar", "shape": "round_bar", "unit": "piece", "weight_basis": "theoretical", "weight_kg": "12.5",
-        })
-        self.assertEqual(valid.status_code, 302)
-        self.assertEqual(str(Product.objects.get(name="Weighted bar").weight_kg), "12.500")
-
-    def test_product_rejects_unknown_units_and_non_positive_weight(self):
-        for unit, weight in (("bundle", ""), ("kg", "0"), ("piece", "-2")):
-            with self.subTest(unit=unit, weight=weight):
-                response = self.client.post(reverse("dashboard:product_create"), {
-                    "name": f"Invalid {unit} {weight}", "shape": "round_bar", "unit": unit,
-                    "weight_basis": "actual", "weight_kg": weight,
-                })
-                self.assertEqual(response.status_code, 200)
-
-
-class RFQIntakeTests(TestCase):
-    def setUp(self):
-        self.user = get_user_model().objects.create_user(username="rfq-owner", password="local-test-password")
-        self.other = get_user_model().objects.create_user(username="rfq-other", password="local-test-password")
-        self.customer = Customer.objects.create(owner=self.user, name="Synthetic customer")
-        self.product = Product.objects.create(owner=self.user, name="304 round bar", shape="round_bar", unit="kg")
-        self.foreign_customer = Customer.objects.create(owner=self.other, name="Other customer")
-        self.foreign_product = Product.objects.create(owner=self.other, name="Private plate", shape="plate", unit="kg")
-        self.client.force_login(self.user)
-
-    def payload(self, **overrides):
-        data = {
-            "customer": self.customer.pk, "reference": "ENQ-001", "source": "whatsapp",
-            "received_on": "2026-11-22", "required_by": "", "notes": "Synthetic enquiry",
-            "lines-TOTAL_FORMS": "2", "lines-INITIAL_FORMS": "0", "lines-MIN_NUM_FORMS": "1", "lines-MAX_NUM_FORMS": "1000",
-            "lines-0-product": self.product.pk, "lines-0-description": "", "lines-0-grade": "304",
-            "lines-0-dimensions": "25 mm diameter", "lines-0-quantity": "125.500", "lines-0-unit": "kg", "lines-0-DELETE": "",
-            "lines-1-product": "", "lines-1-description": "Sheet", "lines-1-grade": "", "lines-1-dimensions": "2 x 1 m x 3 mm",
-            "lines-1-quantity": "12", "lines-1-unit": "piece", "lines-1-DELETE": "",
-        }
-        data.update(overrides)
-        return data
-
-    def test_owner_can_create_enquiry_with_multiple_metric_lines(self):
-        response = self.client.post(reverse("dashboard:rfq_create"), self.payload())
-        self.assertEqual(response.status_code, 302)
-        rfq = RFQ.objects.get()
-        self.assertRedirects(response, reverse("dashboard:rfq_detail", args=[rfq.pk]))
-        self.assertEqual(rfq.owner, self.user)
-        self.assertEqual(rfq.customer, self.customer)
-        self.assertEqual(rfq.lines.count(), 2)
-        self.assertTrue(all(line.owner == self.user for line in rfq.lines.all()))
-        self.assertEqual(str(rfq.lines.get(product=self.product).quantity), "125.500")
-
-    def test_account_boundaries_exclude_foreign_customer_product_and_rfq(self):
-        response = self.client.get(reverse("dashboard:rfq_create"))
-        self.assertContains(response, "Synthetic customer")
-        self.assertNotContains(response, "Other customer")
-        foreign_rfq = RFQ.objects.create(owner=self.other, customer=self.foreign_customer, received_on="2026-11-21")
-        self.assertEqual(self.client.get(reverse("dashboard:rfq_detail", args=[foreign_rfq.pk])).status_code, 404)
-        self.assertNotContains(self.client.get(reverse("dashboard:rfq_list")), str(foreign_rfq))
-
-    def test_foreign_customer_and_product_cannot_be_submitted(self):
-        bad_customer = self.client.post(reverse("dashboard:rfq_create"), self.payload(customer=self.foreign_customer.pk))
-        self.assertEqual(bad_customer.status_code, 200)
-        self.assertFalse(RFQ.objects.exists())
-        bad_product = self.client.post(reverse("dashboard:rfq_create"), self.payload(**{"lines-0-product": self.foreign_product.pk}))
-        self.assertEqual(bad_product.status_code, 200)
-        self.assertFalse(RFQ.objects.exists())
-
-    def test_invalid_quantity_unit_and_missing_item_details_are_rejected(self):
-        for changes in (
-            {"lines-0-quantity": "0"}, {"lines-0-quantity": "-2"}, {"lines-0-unit": "bundle"},
-            {"lines-0-product": "", "lines-0-grade": "", "lines-0-dimensions": "", "lines-0-description": ""},
-        ):
-            with self.subTest(changes=changes):
-                response = self.client.post(reverse("dashboard:rfq_create"), self.payload(**changes))
-                self.assertEqual(response.status_code, 200)
-                self.assertFalse(RFQ.objects.exists())
-
-    def test_signed_in_user_required_for_intake(self):
-        self.client.logout()
-        response = self.client.get(reverse("dashboard:rfq_create"))
-        self.assertEqual(response.status_code, 302)
-
-
-class SupplierOfferTests(TestCase):
-    def setUp(self):
-        self.user = get_user_model().objects.create_user(username="offer-owner", password="local-test-password")
-        self.other = get_user_model().objects.create_user(username="offer-other", password="local-test-password")
-        self.customer = Customer.objects.create(owner=self.user, name="Offer customer")
-        self.product = Product.objects.create(owner=self.user, name="Synthetic round bar", shape="round_bar", unit="kg")
-        self.supplier = Supplier.objects.create(owner=self.user, name="Supplier Alpha")
-        self.other_supplier = Supplier.objects.create(owner=self.other, name="Private Supplier")
-        self.rfq = RFQ.objects.create(owner=self.user, customer=self.customer, reference="OFF-001", received_on="2026-11-22")
-        self.line = RFQLine.objects.create(
-            owner=self.user, rfq=self.rfq, product=self.product, quantity="100", unit=Product.Unit.KG,
-        )
-        self.client.force_login(self.user)
-
-    def post_offer(self, **overrides):
-        data = {
-            "supplier": self.supplier.pk,
-            "available_quantity": "100",
-            "unit": Product.Unit.KG,
-            "unit_price": "90.0000",
-            "freight_cost": "500.00",
-            "packaging_cost": "100.00",
-            "delivery_days": "4",
-        }
-        data.update(overrides)
-        return self.client.post(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, self.line.pk]), data)
-
-    def make_offer(self, **overrides):
-        values = {
-            "owner": self.user,
-            "rfq_line": self.line,
-            "supplier": self.supplier,
-            "available_quantity": "100",
-            "unit": Product.Unit.KG,
-            "unit_price": "90.0000",
-            "freight_cost": "500.00",
-            "packaging_cost": "100.00",
-            "delivery_days": 4,
-        }
-        values.update(overrides)
-        offer = SupplierOffer(**values)
-        offer.full_clean()
-        offer.save()
-        return offer
-
-    def test_owner_can_add_offer_and_comparison_displays_landed_cost(self):
-        response = self.post_offer()
-        self.assertRedirects(response, reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
-        offer = SupplierOffer.objects.get()
-        self.assertEqual(offer.owner, self.user)
-        self.assertEqual(offer.rfq_line, self.line)
-        detail = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
-        self.assertContains(detail, "INR 96.0000")
-        self.assertContains(detail, "INR 9600.00")
-        self.assertContains(detail, "Freight (INR 500.00)")
-        self.assertContains(detail, "packaging/incidental cost (INR 100.00)")
-        self.assertContains(detail, "Covers 100.000")
-        self.assertContains(detail, "4 days")
-
-    def test_offers_are_sorted_by_normalized_landed_rate_and_tonne_is_converted(self):
-        expensive = self.make_offer()
-        cheaper = self.make_offer(
-            available_quantity="0.1", unit=Product.Unit.TONNE, unit_price="90000.0000",
-            freight_cost="300.00", packaging_cost="0.00", delivery_days=2,
-            supplier=Supplier.objects.create(owner=self.user, name="Supplier Beta"),
-        )
-        self.assertEqual(cheaper.unit_conversion_factor, 1000)
-        self.assertEqual(cheaper.landed_cost_per_requested_unit, 93)
-        response = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
-        self.assertEqual(response.context["rfq"].lines.all()[0].comparison_offers, [cheaper, expensive])
-        self.assertContains(response, "Converted metric tonne to kilogram (kg) using the metric weight ratio.")
-        self.assertContains(response, "0.100 Metric tonne")
-        self.assertContains(response, "100.000 Kilogram (kg) after conversion")
-
-    def test_partial_offer_cost_allocates_freight_over_covered_quantity(self):
-        offer = self.make_offer(available_quantity="50", freight_cost="100.00", packaging_cost="50.00")
-        self.assertEqual(offer.covered_quantity, 50)
-        self.assertFalse(offer.covers_full_quantity)
-        self.assertEqual(offer.landed_cost_per_requested_unit, 93)
-        self.assertEqual(offer.total_landed_cost, 4650)
-
-    def test_piece_conversion_uses_recorded_catalogue_weight(self):
-        self.product.weight_kg = "2.500"
-        self.product.weight_basis = Product.WeightBasis.THEORETICAL
-        self.product.save()
-        self.line.quantity = "25"
-        self.line.save()
-        offer = self.make_offer(
-            available_quantity="20", unit=Product.Unit.PIECE, unit_price="250.0000",
-            freight_cost="250.00", packaging_cost="0.00",
-        )
-        self.assertEqual(offer.unit_conversion_factor, 2.5)
-        self.assertEqual(offer.converted_available_quantity, 50)
-        self.assertEqual(offer.landed_cost_per_requested_unit, 110)
-        self.assertEqual(offer.total_landed_cost, 2750)
-        self.assertIn("theoretical weight of 2.500 kg per piece", offer.conversion_assumption)
-        self.product.weight_kg = "5.000"
-        self.product.save()
-        self.assertEqual(offer.landed_cost_per_requested_unit, 110)
-        self.assertIn("2.500 kg per piece", offer.conversion_assumption)
-
-    def test_offer_units_must_be_convertible_and_invalid_quantities_are_rejected(self):
-        self.line.unit = Product.Unit.METRE
-        self.line.save()
-        invalid_unit = self.post_offer(unit=Product.Unit.TONNE)
-        self.assertEqual(invalid_unit.status_code, 200)
-        self.assertFalse(SupplierOffer.objects.exists())
-        self.line.unit = Product.Unit.KG
-        self.line.save()
-        for changes in (
-            {"available_quantity": "0"}, {"available_quantity": "-2"},
-            {"unit_price": "0"}, {"freight_cost": "-1"}, {"delivery_days": "-1"},
-        ):
-            with self.subTest(changes=changes):
-                response = self.post_offer(**changes)
-                self.assertEqual(response.status_code, 200)
-                self.assertFalse(SupplierOffer.objects.exists())
-
-    def test_supplier_and_enquiry_ownership_boundaries_are_enforced(self):
-        foreign_supplier = self.post_offer(supplier=self.other_supplier.pk)
-        self.assertEqual(foreign_supplier.status_code, 200)
-        self.assertFalse(SupplierOffer.objects.exists())
-        invalid_offer = SupplierOffer(
-            owner=self.user, rfq_line=self.line, supplier=self.other_supplier,
-            available_quantity="100", unit=Product.Unit.KG, unit_price="90", delivery_days=4,
-        )
-        with self.assertRaises(ValidationError):
-            invalid_offer.full_clean()
-
-        # Even invalid rows written outside the application cannot expose a foreign supplier.
-        SupplierOffer.objects.create(
-            owner=self.user, rfq_line=self.line, supplier=self.other_supplier,
-            available_quantity="100", unit=Product.Unit.KG, unit_price="90", delivery_days=4,
-        )
-        detail = self.client.get(reverse("dashboard:rfq_detail", args=[self.rfq.pk]))
-        self.assertNotContains(detail, "Private Supplier")
-
-        other_customer = Customer.objects.create(owner=self.other, name="Other offer customer")
-        other_rfq = RFQ.objects.create(owner=self.other, customer=other_customer, received_on="2026-11-22")
-        other_line = RFQLine.objects.create(owner=self.other, rfq=other_rfq, quantity="100", unit=Product.Unit.KG, description="Other steel")
-        self.assertEqual(self.client.get(reverse("dashboard:rfq_detail", args=[other_rfq.pk])).status_code, 404)
-        self.assertEqual(
-            self.client.get(reverse("dashboard:supplier_offer_create", args=[other_rfq.pk, other_line.pk])).status_code,
-            404,
-        )
-        self.assertEqual(
-            self.client.get(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, other_line.pk])).status_code,
-            404,
-        )
-
-    def test_offer_entry_requires_login(self):
-        self.client.logout()
-        response = self.client.get(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, self.line.pk]))
-        self.assertEqual(response.status_code, 302)
-
-
-class QuotePricingTests(TestCase):
-    def setUp(self):
-        self.user = get_user_model().objects.create_user(username="quote-owner", password="local-test-password")
-        self.other = get_user_model().objects.create_user(username="quote-other", password="local-test-password")
-        self.customer = Customer.objects.create(owner=self.user, name="Quotation customer")
-        self.product = Product.objects.create(owner=self.user, name="Quote bar", shape="round_bar", unit=Product.Unit.KG)
-        self.supplier = Supplier.objects.create(owner=self.user, name="Quote supplier")
-        self.rfq = RFQ.objects.create(owner=self.user, customer=self.customer, reference="Q-001", received_on="2026-11-22")
-        self.line = RFQLine.objects.create(
-            owner=self.user, rfq=self.rfq, product=self.product, quantity="100", unit=Product.Unit.KG,
-        )
-        self.offer = SupplierOffer.objects.create(
-            owner=self.user, rfq_line=self.line, supplier=self.supplier, available_quantity="100",
-            unit=Product.Unit.KG, unit_price="90.0000", freight_cost="500.00",
-            packaging_cost="100.00", delivery_days=4,
-        )
-        self.client.force_login(self.user)
-
-    def post_quote(self, discount="0.00"):
-        return self.client.post(reverse("dashboard:quote_create", args=[self.rfq.pk]), {
-            f"offer_{self.line.pk}": self.offer.pk,
-            f"discount_{self.line.pk}": discount,
-        })
-
-    def test_default_target_margin_calculates_a_transparent_quote(self):
-        response = self.post_quote()
-        quote = Quote.objects.get()
-        self.assertRedirects(response, reverse("dashboard:quote_detail", args=[quote.pk]))
-        self.assertEqual(quote.status, Quote.Status.READY)
-        line = quote.lines.get()
-        self.assertEqual(line.landed_cost_per_unit, 96)
-        self.assertEqual(line.target_price_per_unit, Decimal("109.0909"))
-        self.assertEqual(line.selling_price_per_unit, Decimal("109.0909"))
-        self.assertEqual(line.total_landed_cost, Decimal("9600.00"))
-        self.assertEqual(line.total_selling_price, Decimal("10909.09"))
-        self.assertEqual(line.gross_margin_percent, Decimal("12.00"))
-        detail = self.client.get(reverse("dashboard:quote_detail", args=[quote.pk]))
-        self.assertContains(detail, "INR 96.0000")
-        self.assertContains(detail, "INR 109.0909")
-        self.assertContains(detail, "12.00%")
-        self.assertContains(detail, "Margin = (selling price - landed cost) / selling price")
-
-    def test_discount_above_account_guardrail_is_rejected(self):
-        settings = QuotePricingSettings.objects.create(
-            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
-            maximum_discount_percent="4.00",
-        )
-        response = self.post_quote(discount="4.01")
-        self.assertEqual(response.status_code, 200)
-        self.assertFalse(Quote.objects.exists())
-        settings.refresh_from_db()
-        self.assertEqual(settings.maximum_discount_percent, Decimal("4.00"))
-
-    def test_below_floor_quote_is_held_for_staff_review_and_settings_are_snapshotted(self):
-        settings = QuotePricingSettings.objects.create(
-            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
-            maximum_discount_percent="10.00",
-        )
-        response = self.post_quote(discount="5.00")
-        quote = Quote.objects.get()
-        line = quote.lines.get()
-        self.assertRedirects(response, reverse("dashboard:quote_detail", args=[quote.pk]))
-        self.assertEqual(quote.status, Quote.Status.NEEDS_REVIEW)
-        self.assertEqual(line.gross_margin_percent, Decimal("7.37"))
-        self.assertTrue(line.needs_review)
-        self.assertContains(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])), "not approved for customer issue")
-
-        settings.target_margin_percent = Decimal("20.00")
-        settings.save()
-        quote.refresh_from_db()
-        self.assertEqual(quote.target_margin_percent, Decimal("12.00"))
-        self.assertEqual(quote.maximum_discount_percent, Decimal("10.00"))
-
-    def test_negative_margin_never_auto_approves(self):
-        QuotePricingSettings.objects.create(
-            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="0.00",
-            maximum_discount_percent="30.00",
-        )
-        response = self.post_quote(discount="25.00")
-        quote = Quote.objects.get()
-        line = quote.lines.get()
-        self.assertEqual(response.status_code, 302)
-        self.assertLess(line.gross_margin_percent, Decimal("0.00"))
-        self.assertEqual(quote.status, Quote.Status.NEEDS_REVIEW)
-        self.assertIsNone(quote.approved_by)
-        self.assertContains(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])), "Negative margin")
-
-    def test_partial_offer_cannot_be_used_for_full_quantity_quotation(self):
-        self.offer.available_quantity = Decimal("50.000")
-        self.offer.save()
-        response = self.client.get(reverse("dashboard:quote_create", args=[self.rfq.pk]))
-        self.assertContains(response, "Add a supplier offer that covers the full requested quantity")
-        self.assertNotContains(response, "INR 96.0000 per Kilogram")
-        submitted = self.post_quote()
-        self.assertEqual(submitted.status_code, 200)
-        self.assertFalse(Quote.objects.exists())
-
-    def test_every_requested_line_needs_a_full_coverage_offer(self):
-        another_line = RFQLine.objects.create(
-            owner=self.user, rfq=self.rfq, description="Sheet", quantity="4", unit=Product.Unit.PIECE,
-        )
-        response = self.client.get(reverse("dashboard:quote_create", args=[self.rfq.pk]))
-        self.assertContains(response, "Sheet: no full-quantity offer yet")
-        self.assertEqual(response.status_code, 200)
-        self.assertFalse(Quote.objects.exists())
-        self.assertTrue(RFQLine.objects.filter(pk=another_line.pk).exists())
-
-    def test_staff_action_is_required_and_records_reviewer(self):
-        QuotePricingSettings.objects.create(
-            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
-            maximum_discount_percent="10.00",
-        )
-        quote = self.post_quote(discount="5.00")
-        quote = Quote.objects.get()
-        approve_url = reverse("dashboard:quote_approve", args=[quote.pk])
-        forbidden = self.client.post(approve_url)
-        self.assertEqual(forbidden.status_code, 403)
-        quote.refresh_from_db()
-        self.assertEqual(quote.status, Quote.Status.NEEDS_REVIEW)
-        self.user.is_staff = True
-        self.user.save(update_fields=["is_staff"])
-        approved = self.client.post(approve_url)
-        self.assertRedirects(approved, reverse("dashboard:quote_detail", args=[quote.pk]))
-        quote.refresh_from_db()
-        self.assertEqual(quote.status, Quote.Status.APPROVED)
-        self.assertEqual(quote.approved_by, self.user)
-        self.assertIsNotNone(quote.approved_at)
-
-    def test_quote_pages_and_approval_are_scoped_to_owner(self):
-        self.post_quote()
-        quote = Quote.objects.get()
-        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])).status_code, 200)
-        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk + 100])).status_code, 404)
-
-        other_customer = Customer.objects.create(owner=self.other, name="Other quote customer")
-        foreign_rfq = RFQ.objects.create(owner=self.other, customer=other_customer, received_on="2026-11-22")
-        self.assertEqual(self.client.get(reverse("dashboard:quote_create", args=[foreign_rfq.pk])).status_code, 404)
-        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])).status_code, 200)
-        quote.owner = self.other
-        quote.save()
-        self.user.is_staff = True
-        self.user.save(update_fields=["is_staff"])
-        self.assertEqual(self.client.post(reverse("dashboard:quote_approve", args=[quote.pk])).status_code, 404)
-
-    def test_pricing_settings_are_account_scoped_and_reject_percentages_at_100(self):
-        foreign_settings = QuotePricingSettings.objects.create(owner=self.other, target_margin_percent="20.00")
-        response = self.client.get(reverse("dashboard:quote_pricing_settings"))
-        self.assertContains(response, "12.00")
-        self.assertNotContains(response, "20.00")
-        invalid = self.client.post(reverse("dashboard:quote_pricing_settings"), {
-            "target_margin_percent": "100", "minimum_margin_percent": "8", "maximum_discount_percent": "5",
-        })
-        self.assertEqual(invalid.status_code, 200)
-        settings = QuotePricingSettings.objects.get(owner=self.user)
-        self.assertEqual(settings.target_margin_percent, Decimal("12.00"))
-        self.assertEqual(QuotePricingSettings.objects.get(pk=foreign_settings.pk).owner, self.other)
-
-    def test_quote_pricing_requires_login_and_approval_requires_post(self):
-        settings = QuotePricingSettings.objects.create(
-            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
-            maximum_discount_percent="10.00",
-        )
-        self.post_quote(discount="5.00")
-        quote = Quote.objects.get()
-        self.client.logout()
-        self.assertEqual(self.client.get(reverse("dashboard:quote_create", args=[self.rfq.pk])).status_code, 302)
-        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])).status_code, 302)
-        self.assertEqual(self.client.post(reverse("dashboard:quote_pricing_settings"), {}).status_code, 302)
-        self.client.force_login(self.user)
-        self.user.is_staff = True
-        self.user.save(update_fields=["is_staff"])
-        self.assertEqual(self.client.get(reverse("dashboard:quote_approve", args=[quote.pk])).status_code, 405)
-
+BˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ›ÙXİØÜİ—Ù^ÜŠJKœİ]\×ØÛÙKÌŠBˆÙ[‹˜\ÜÙ\\]X[
+Ù[‹˜ÛY[™Ù]
+™]™\œÙJ™\Ú›Ø\™œ›ÙXİØÜİ—Ú[\ÜŠJKœİ]\×ØÛÙKÌŠB
