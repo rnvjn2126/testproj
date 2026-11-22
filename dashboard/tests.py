@@ -1,188 +1,272 @@
-YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éí×¼Ñ:-jZ.¶›­–)Ş³Vg&öÒFV6–ÖÂ–×÷'BFV6–ÖÀ ¦g&öÒF¦ævòæ6öçG&–"æWF‚–×÷'BvWE÷W6W%öÖöFVÀ¦g&öÒF¦ævòæ6÷&Ræf–ÆW2çWÆöFVFf–ÆR–×÷'B6–×ÆUWÆöFVDf–ÆP¦g&öÒF¦ævòæ6÷&RæW†6WF–öç2–×÷'BfÆ–FF–öäW'&÷ ¦g&öÒF¦ævòçFW7B–×÷'BFW7D66P¦g&öÒF¦ævòçW&Ç2–×÷'B&WfW'6P ¦g&öÒæÖöFVÇ2–×÷'B€¢7W7FöÖW"ÂföÆÆ÷uWÂ&öGV7BÂV÷FRÂV÷FTÆ–æRÂV÷FU&–6–æu6WGF–æw2Â$eÀ¢$eÆ–æRÂ7WÆ–W"Â7WÆ–W$öffW"À¢  ¦6Æ72f÷VæFF–öåFW7G2…FW7D66R“ ¢FVbFW7Eö†öÖU÷&WV—&W5öÆöv–â‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C¦†öÖR"’¢6VÆbæ76W'E&VF—&V7G2‡&W7öç6RÂb'·&WfW'6R‚vÆöv–âr—ÓöæW‡C×·&WfW'6R‚vF6†&ö&C¦†öÖRr—Ò" ¢FVbFW7EöÆöv–åö÷Vç5öF6†&ö&B‡6VÆb“ ¢vWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&FVÖò"Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&Æöv–â"’Â°¢'W6W&æÖR#¢&FVÖò"Â'77v÷&B#¢&Æö6Â×FW7B×77v÷&B"À¢Ò¢6VÆbæ76W'E&VF—&V7G2‡&W7öç6RÂ&WfW'6R‚&F6†&ö&C¦†öÖR"’¢6VÆbæ76W'D6öçF–ç2‡6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C¦†öÖR"’’Â%7FVVÂV÷FF–öâv÷&·76R" ¢FVbFW7EöÆöv–å÷vUö—5öf–Æ&ÆR‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&Æöv–â"’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ#¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ%6–vâ–â"  ¦6Æ726FÆöwVUFW7G2…FW7D66R“ ¢FVb6WEW‡6VÆb“ ¢6VÆbçW6W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&÷væW""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ÷F†W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&÷F†W""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ6Æ–VçBæf÷&6UöÆöv–â‡6VÆbçW6W" ¢FVbFW7Eö÷væW%ö6åö7&VFUöV6…ö6FÆöwVU÷&V6÷&B‡6VÆb“ ¢7V&Ö—76–öç2Ò°¢‚&F6†&ö&C¦7W7FöÖW%ö7&VFR"Â²&æÖR#¢%7–çF†WF–27W7FöÖW"'ÒÂ7W7FöÖW"’À¢‚&F6†&ö&C§7WÆ–W%ö7&VFR"Â²&æÖR#¢%7–çF†WF–27WÆ–W"'ÒÂ7WÆ–W"’À¢‚&F6†&ö&C§&öGV7Eö7&VFR"Â²&æÖR#¢%&÷VæB&""Â&w&FR#¢#3B"Â'6†R#¢'&÷VæEö&""Â&F–ÖVç6–öç2#¢##RÖÒF–ÖWFW""Â'Væ—B#¢&¶r"Â'vV–v‡Eö&6—2#¢&æ"Â'vV–v‡Eö¶r#¢"'ÒÂ&öGV7B’À¢Ğ¢f÷"&÷WFRÂFFÂÖöFVÂ–â7V&Ö—76–öç3 ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‡&÷WFR’ÂFF¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢&V6÷&BÒÖöFVÂæö&¦V7G2ævWB‚¢6VÆbæ76W'DWVÂ‡&V6÷&Bæ÷væW"Â6VÆbçW6W" ¢FVbFW7Eö7&VFUöf÷&×5ö–væ÷&U÷7V&Ö—GFVEö÷væW"‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C¦7W7FöÖW%ö7&VFR"’Â°¢&æÖR#¢$÷væVB'’6W76–öâ"Â&÷væW"#¢6VÆbæ÷F†W"ç²À¢Ò¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢6VÆbæ76W'DWVÂ„7W7FöÖW"æö&¦V7G2ævWB†æÖSÒ$÷væVB'’6W76–öâ"’æ÷væW"Â6VÆbçW6W" ¢FVbFW7Eö6FÆöwVUöÆ—7G5ö&U÷66÷VE÷Fõ÷6–væVEö–åö÷væW"‡6VÆb“ ¢7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$×’7W7FöÖW""¢7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ$÷F†W"7W7FöÖW""¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C¦7W7FöÖW%öÆ—7B"’¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ$×’7W7FöÖW""¢6VÆbæ76W'Dæ÷D6öçF–ç2‡&W7öç6RÂ$÷F†W"7W7FöÖW"" ¢FVbFW7Eö÷F†W%÷W6W'5÷&V6÷&G5ö6ææ÷Eö&U÷f–WvVEöVF—FVEö÷%öFVÆWFVB‡6VÆb“ ¢&V6÷&G2Ò°¢„7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFR7W7FöÖW""’Â&7W7FöÖW""’À¢…7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFR7WÆ–W""’Â'7WÆ–W""’À¢…&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFR&öGV7B"Â6†SÒ'6†VWB"ÂVæ—CÒ&¶r"’Â'&öGV7B"’À¢Ğ¢f÷"&V6÷&BÂ¶–æB–â&V6÷&G3 ¢f÷"7F–öâ–â‚'WFFR"Â&FVÆWFR"“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R†b&F6†&ö&C§¶¶–æGÕ÷¶7F–öçÒ"Â&w3Õ·&V6÷&BçµÒ’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂCB¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R†b&F6†&ö&C§¶¶–æGÕöFVÆWFR"Â&w3Õ·&V6÷&BçµÒ’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂCB¢6VÆbæ76W'EG'VR‡G—R‡&V6÷&B’æö&¦V7G2æf–ÇFW"‡³×&V6÷&Bç²’æW†—7G2‚’ ¢FVbFW7Eö÷væW%ö6åöVF—EöæEöFVÆWFUö6FÆöwVU÷&V6÷&G2‡6VÆb“ ¢&V6÷&G2Ò°¢„7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$öÆB7W7FöÖW""’Â&7W7FöÖW""Â²&æÖR#¢$æWr7W7FöÖW"'Ò’À¢…7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$öÆB7WÆ–W""’Â'7WÆ–W""Â²&æÖR#¢$æWr7WÆ–W"'Ò’À¢…&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$öÆB&öGV7B"Â6†SÒ'6†VWB"ÂVæ—CÒ&¶r"’Â'&öGV7B"Â°¢&æÖR#¢$æWr&öGV7B"Â'6†R#¢'ÆFR"Â'Væ—B#¢'FöææR"Â'vV–v‡Eö&6—2#¢&æ"À¢Ò’À¢Ğ¢f÷"&V6÷&BÂ¶–æBÂFF–â&V6÷&G3 ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R†b&F6†&ö&C§¶¶–æGÕ÷WFFR"Â&w3Õ·&V6÷&BçµÒ’ÂFF¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢&V6÷&Bç&Vg&W6…ög&öÕöF"‚¢6VÆbæ76W'DWVÂ‡&V6÷&BææÖRÂFF²&æÖR%Ò¢6VÆbæ76W'DWVÂ‡&V6÷&Bæ÷væW"Â6VÆbçW6W"¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R†b&F6†&ö&C§¶¶–æGÕöFVÆWFR"Â&w3Õ·&V6÷&BçµÒ’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢6VÆbæ76W'DfÇ6R‡G—R‡&V6÷&B’æö&¦V7G2æf–ÇFW"‡³×&V6÷&Bç²’æW†—7G2‚’ ¢FVbFW7E÷&öGV7E÷vV–v‡Eö—5÷fÆ–FFVEöæE÷vV–v‡Eö&6—5ö—5öW‡Æ–6—B‡6VÆb“ ¢–çfÆ–BÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&öGV7Eö7&VFR"’Â°¢&æÖR#¢$–çfÆ–B&""Â'6†R#¢'&÷VæEö&""Â'Væ—B#¢'–V6R"Â'vV–v‡Eö&6—2#¢&æ"Â'vV–v‡Eö¶r#¢#"ãR"À¢Ò¢6VÆbæ76W'DWVÂ†–çfÆ–Bç7FGW5ö6öFRÂ#¢6VÆbæ76W'DfÇ6R…&öGV7Bæö&¦V7G2æf–ÇFW"†æÖSÒ$–çfÆ–B&""’æW†—7G2‚’¢fÆ–BÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&öGV7Eö7&VFR"’Â°¢&æÖR#¢%vV–v‡FVB&""Â'6†R#¢'&÷VæEö&""Â'Væ—B#¢'–V6R"Â'vV–v‡Eö&6—2#¢'F†V÷&WF–6Â"Â'vV–v‡Eö¶r#¢#"ãR"À¢Ò¢6VÆbæ76W'DWVÂ‡fÆ–Bç7FGW5ö6öFRÂ3"¢6VÆbæ76W'DWVÂ‡7G"…&öGV7Bæö&¦V7G2ævWB†æÖSÒ%vV–v‡FVB&""’çvV–v‡Eö¶r’Â#"ãS" ¢FVbFW7E÷&öGV7E÷&V¦V7G5÷Væ¶æ÷vå÷Væ—G5öæEöæöå÷÷6—F—fU÷vV–v‡B‡6VÆb“ ¢f÷"Væ—BÂvV–v‡B–â‚‚&'VæFÆR"Â""’Â‚&¶r"Â#"’Â‚'–V6R"Â"Ó""’“ ¢v—F‚6VÆbç7V%FW7B‡Væ—C×Væ—BÂvV–v‡C×vV–v‡B“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&öGV7Eö7&VFR"’Â°¢&æÖR#¢b$–çfÆ–B·Væ—GÒ·vV–v‡GÒ"Â'6†R#¢'&÷VæEö&""Â'Væ—B#¢Væ—BÀ¢'vV–v‡Eö&6—2#¢&7GVÂ"Â'vV–v‡Eö¶r#¢vV–v‡BÀ¢Ò¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ#  ¦6Æ72$e–çF¶UFW7G2…FW7D66R“ ¢FVb6WEW‡6VÆb“ ¢6VÆbçW6W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ'&gÖ÷væW""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ÷F†W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ'&gÖ÷F†W""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ7W7FöÖW"Ò7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ%7–çF†WF–27W7FöÖW""¢6VÆbç&öGV7BÒ&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ#3B&÷VæB&""Â6†SÒ'&÷VæEö&""ÂVæ—CÒ&¶r"¢6VÆbæf÷&V–våö7W7FöÖW"Ò7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ$÷F†W"7W7FöÖW""¢6VÆbæf÷&V–vå÷&öGV7BÒ&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFRÆFR"Â6†SÒ'ÆFR"ÂVæ—CÒ&¶r"¢6VÆbæ6Æ–VçBæf÷&6UöÆöv–â‡6VÆbçW6W" ¢FVb–ÆöB‡6VÆbÂ¢¦÷fW'&–FW2“ ¢FFÒ°¢&7W7FöÖW"#¢6VÆbæ7W7FöÖW"ç²Â'&VfW&Væ6R#¢$TåÓ"Â'6÷W&6R#¢'v†G6"À¢'&V6V—fVEööâ#¢###bÓÓ#""Â'&WV—&VEö'’#¢""Â&æ÷FW2#¢%7–çF†WF–2VçV—'’"À¢&Æ–æW2ÕDõDÅôdõ$Õ2#¢#""Â&Æ–æW2Ô”ä•D”Åôdõ$Õ2#¢#"Â&Æ–æW2ÔÔ”åôåTÕôdõ$Õ2#¢#"Â&Æ–æW2ÔÔ…ôåTÕôdõ$Õ2#¢#"À¢&Æ–æW2Ó×&öGV7B#¢6VÆbç&öGV7Bç²Â&Æ–æW2ÓÖFW67&—F–öâ#¢""Â&Æ–æW2ÓÖw&FR#¢#3B"À¢&Æ–æW2ÓÖF–ÖVç6–öç2#¢##RÖÒF–ÖWFW""Â&Æ–æW2Ó×VçF—G’#¢##RãS"Â&Æ–æW2Ó×Væ—B#¢&¶r"Â&Æ–æW2ÓÔDTÄUDR#¢""À¢&Æ–æW2Ó×&öGV7B#¢""Â&Æ–æW2ÓÖFW67&—F–öâ#¢%6†VWB"Â&Æ–æW2ÓÖw&FR#¢""Â&Æ–æW2ÓÖF–ÖVç6–öç2#¢#"‚Ò‚2ÖÒ"À¢&Æ–æW2Ó×VçF—G’#¢#""Â&Æ–æW2Ó×Væ—B#¢'–V6R"Â&Æ–æW2ÓÔDTÄUDR#¢""À¢Ğ¢FFçWFFR†÷fW'&–FW2¢&WGW&âFF ¢FVbFW7Eö÷væW%ö6åö7&VFUöVçV—'•÷v—F…ö×VÇF—ÆUöÖWG&–5öÆ–æW2‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’Â6VÆbç–ÆöB‚’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"¢&gÒ$eæö&¦V7G2ævWB‚¢6VÆbæ76W'E&VF—&V7G2‡&W7öç6RÂ&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ·&gçµÒ’¢6VÆbæ76W'DWVÂ‡&gæ÷væW"Â6VÆbçW6W"¢6VÆbæ76W'DWVÂ‡&gæ7W7FöÖW"Â6VÆbæ7W7FöÖW"¢6VÆbæ76W'DWVÂ‡&gæÆ–æW2æ6÷VçB‚’Â"¢6VÆbæ76W'EG'VR†ÆÂ†Æ–æRæ÷væW"ÓÒ6VÆbçW6W"f÷"Æ–æR–â&gæÆ–æW2æÆÂ‚’’¢6VÆbæ76W'DWVÂ‡7G"‡&gæÆ–æW2ævWB‡&öGV7C×6VÆbç&öGV7B’çVçF—G’’Â##RãS" ¢FVbFW7Eö66÷VçEö&÷VæF&–W5öW†6ÇVFUöf÷&V–våö7W7FöÖW%÷&öGV7EöæE÷&g‡6VÆb“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ%7–çF†WF–27W7FöÖW""¢6VÆbæ76W'Dæ÷D6öçF–ç2‡&W7öç6RÂ$÷F†W"7W7FöÖW""¢f÷&V–vå÷&gÒ$eæö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"Â7W7FöÖW#×6VÆbæf÷&V–våö7W7FöÖW"Â&V6V—fVEööãÒ###bÓÓ#"¢6VÆbæ76W'DWVÂ‡6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ¶f÷&V–vå÷&gçµÒ’’ç7FGW5ö6öFRÂCB¢6VÆbæ76W'Dæ÷D6öçF–ç2‡6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&göÆ—7B"’’Â7G"†f÷&V–vå÷&g’ ¢FVbFW7Eöf÷&V–våö7W7FöÖW%öæE÷&öGV7Eö6ææ÷Eö&U÷7V&Ö—GFVB‡6VÆb“ ¢&Eö7W7FöÖW"Ò6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’Â6VÆbç–ÆöB†7W7FöÖW#×6VÆbæf÷&V–våö7W7FöÖW"ç²’¢6VÆbæ76W'DWVÂ†&Eö7W7FöÖW"ç7FGW5ö6öFRÂ#¢6VÆbæ76W'DfÇ6R…$eæö&¦V7G2æW†—7G2‚’¢&E÷&öGV7BÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’Â6VÆbç–ÆöB‚¢§²&Æ–æW2Ó×&öGV7B#¢6VÆbæf÷&V–vå÷&öGV7Bç·Ò’¢6VÆbæ76W'DWVÂ†&E÷&öGV7Bç7FGW5ö6öFRÂ#¢6VÆbæ76W'DfÇ6R…$eæö&¦V7G2æW†—7G2‚’ ¢FVbFW7Eö–çfÆ–E÷VçF—G•÷Væ—EöæEöÖ—76–æuö—FVÕöFWF–Ç5ö&U÷&V¦V7FVB‡6VÆb“ ¢f÷"6†ævW2–â€¢²&Æ–æW2Ó×VçF—G’#¢#'ÒÂ²&Æ–æW2Ó×VçF—G’#¢"Ó"'ÒÂ²&Æ–æW2Ó×Væ—B#¢&'VæFÆR'ÒÀ¢²&Æ–æW2Ó×&öGV7B#¢""Â&Æ–æW2ÓÖw&FR#¢""Â&Æ–æW2ÓÖF–ÖVç6–öç2#¢""Â&Æ–æW2ÓÖFW67&—F–öâ#¢"'ÒÀ¢“ ¢v—F‚6VÆbç7V%FW7B†6†ævW3Ö6†ævW2“ ¢&W7öç6RÒ6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’Â6VÆbç–ÆöB‚¢¦6†ævW2’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ#¢6VÆbæ76W'DfÇ6R…$eæö&¦V7G2æW†—7G2‚’ ¢FVbFW7E÷6–væVEö–å÷W6W%÷&WV—&VEöf÷%ö–çF¶R‡6VÆb“ ¢6VÆbæ6Æ–VçBæÆöv÷WB‚¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&gö7&VFR"’¢6VÆbæ76W'DWVÂ‡&W7öç6Rç7FGW5ö6öFRÂ3"  ¦6Æ727WÆ–W$öffW%FW7G2…FW7D66R“ ¢FVb6WEW‡6VÆb“ ¢6VÆbçW6W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&öffW"Ö÷væW""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ÷F†W"ÒvWE÷W6W%öÖöFVÂ‚’æö&¦V7G2æ7&VFU÷W6W"‡W6W&æÖSÒ&öffW"Ö÷F†W""Â77v÷&CÒ&Æö6Â×FW7B×77v÷&B"¢6VÆbæ7W7FöÖW"Ò7W7FöÖW"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ$öffW"7W7FöÖW""¢6VÆbç&öGV7BÒ&öGV7Bæö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ%7–çF†WF–2&÷VæB&""Â6†SÒ'&÷VæEö&""ÂVæ—CÒ&¶r"¢6VÆbç7WÆ–W"Ò7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ%7WÆ–W"Ç†"¢6VÆbæ÷F†W%÷7WÆ–W"Ò7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbæ÷F†W"ÂæÖSÒ%&—fFR7WÆ–W""¢6VÆbç&gÒ$eæö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"Â7W7FöÖW#×6VÆbæ7W7FöÖW"Â&VfW&Væ6SÒ$ôdbÓ"Â&V6V—fVEööãÒ###bÓÓ#""¢6VÆbæÆ–æRÒ$eÆ–æRæö&¦V7G2æ7&VFR€¢÷væW#×6VÆbçW6W"Â&g×6VÆbç&gÂ&öGV7C×6VÆbç&öGV7BÂVçF—G“Ò#"ÂVæ—CÕ&öGV7BåVæ—Bä´rÀ¢¢6VÆbæ6Æ–VçBæf÷&6UöÆöv–â‡6VÆbçW6W" ¢FVb÷7EööffW"‡6VÆbÂ¢¦÷fW'&–FW2“ ¢FFÒ°¢'7WÆ–W"#¢6VÆbç7WÆ–W"ç²À¢&f–Æ&ÆU÷VçF—G’#¢#"À¢'Væ—B#¢&öGV7BåVæ—Bä´rÀ¢'Væ—E÷&–6R#¢#“ã"À¢&g&V–v‡Eö6÷7B#¢#Sã"À¢'6¶v–æuö6÷7B#¢#ã"À¢&FVÆ—fW'•öF—2#¢#B"À¢Ğ¢FFçWFFR†÷fW'&–FW2¢&WGW&â6VÆbæ6Æ–VçBç÷7B‡&WfW'6R‚&F6†&ö&C§7WÆ–W%ööffW%ö7&VFR"Â&w3Õ·6VÆbç&gç²Â6VÆbæÆ–æRçµÒ’ÂFF ¢FVbÖ¶UööffW"‡6VÆbÂ¢¦÷fW'&–FW2“ ¢fÇVW2Ò°¢&÷væW"#¢6VÆbçW6W"À¢'&göÆ–æR#¢6VÆbæÆ–æRÀ¢'7WÆ–W"#¢6VÆbç7WÆ–W"À¢&f–Æ&ÆU÷VçF—G’#¢#"À¢'Væ—B#¢&öGV7BåVæ—Bä´rÀ¢'Væ—E÷&–6R#¢#“ã"À¢&g&V–v‡Eö6÷7B#¢#Sã"À¢'6¶v–æuö6÷7B#¢#ã"À¢&FVÆ—fW'•öF—2#¢BÀ¢Ğ¢fÇVW2çWFFR†÷fW'&–FW2¢öffW"Ò7WÆ–W$öffW"‚¢§fÇVW2¢öffW"ægVÆÅö6ÆVâ‚¢öffW"ç6fR‚¢&WGW&âöffW  ¢FVbFW7Eö÷væW%ö6åöFEööffW%öæEö6ö×&—6öåöF—7Æ—5öÆæFVEö6÷7B‡6VÆb“ ¢&W7öç6RÒ6VÆbç÷7EööffW"‚¢6VÆbæ76W'E&VF—&V7G2‡&W7öç6RÂ&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ·6VÆbç&gçµÒ’¢öffW"Ò7WÆ–W$öffW"æö&¦V7G2ævWB‚¢6VÆbæ76W'DWVÂ†öffW"æ÷væW"Â6VÆbçW6W"¢6VÆbæ76W'DWVÂ†öffW"ç&göÆ–æRÂ6VÆbæÆ–æR¢FWF–ÂÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ·6VÆbç&gçµÒ’¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ$”å"“bã"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ$”å"“cã"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ$g&V–v‡B„”å"Sã’"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ'6¶v–ærö–æ6–FVçFÂ6÷7B„”å"ã’"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ$6÷fW'2ã"¢6VÆbæ76W'D6öçF–ç2†FWF–ÂÂ#BF—2" ¢FVbFW7EööffW'5ö&U÷6÷'FVEö'•öæ÷&ÖÆ—¦VEöÆæFVE÷&FUöæE÷FöææUö—5ö6öçfW'FVB‡6VÆb“ ¢W‡Vç6—fRÒ6VÆbæÖ¶UööffW"‚¢6†VW"Ò6VÆbæÖ¶UööffW"€¢f–Æ&ÆU÷VçF—G“Ò#ã"ÂVæ—CÕ&öGV7BåVæ—BåDôääRÂVæ—E÷&–6SÒ#“ã"À¢g&V–v‡Eö6÷7CÒ#3ã"Â6¶v–æuö6÷7CÒ#ã"ÂFVÆ—fW'•öF—3Ó"À¢7WÆ–W#Õ7WÆ–W"æö&¦V7G2æ7&VFR†÷væW#×6VÆbçW6W"ÂæÖSÒ%7WÆ–W"&WF"’À¢¢6VÆbæ76W'DWVÂ†6†VW"çVæ—Eö6öçfW'6–öåöf7F÷"Â¢6VÆbæ76W'DWVÂ†6†VW"æÆæFVEö6÷7E÷W%÷&WVW7FVE÷Væ—BÂ“2¢&W7öç6RÒ6VÆbæ6Æ–VçBævWB‡&WfW'6R‚&F6†&ö&C§&göFWF–Â"Â&w3Õ·6VÆbç&gçµÒ’¢6VÆbæ76W'DWVÂ‡&W7öç6Ræ6öçFW‡E²'&g%ÒæÆ–æW2æÆÂ‚•³Òæ6ö×&—6öåööffW'2Â¶6†VW"ÂW‡Vç6—fUÒ¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ$6öçfW'FVBÖWG&–2FöææRFò¶–Æöw&Ò†¶r’W6–ærF†RÖWG&–2vV–v‡B&F–òâ"¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ#ãÖWG&–2FöææR"¢6VÆbæ76W'D6öçF–ç2‡&W7öç6RÂ#ã¶–Æöw&Ò†¶r’gFW"6öçfW'6–öâ" ¢FVbFW7E÷'F–ÅööffW%ö6÷7EöÆÆö6FW5ög&V–v‡Eö÷fW%ö6÷fW&VE÷VçF—G’‡6VÆb“ ¢öffW"Ò6VÆbæÖ¶UööffW"†f–Æ&ÆU÷VçF—G“Ò#S"Âg&V–v‡Eö6÷7CÒ#ã"Â6¶v–æuö6÷7CÒ#Sã"¢6VÆbæ76W'DWVÂ†öffW"æ6÷fW&VE÷VçF—G’ÂS¢6VÆbæ76W'DfÇ6R†öffW"æ6÷fW'5ögVÆÅ÷VçF—G’¢6VÆbæ76W'DWVÂ†öffW"æÆæFVEö6÷7E÷W%÷&WVW7FVE÷Væ—BÂ“2¢6VÆbæ76W'DWVÂ†öffW"çF÷FÅöÆæFVEö6÷7BÂCcS ¢FVbFW7E÷–V6Uö6öçfW'6–öå÷W6W5÷&V6÷&FVEö6FÆöwVU÷vV–v‡B‡6VÆb“ ¢6VÆbç&öGV7BçvV–v‡Eö¶rÒ#"ãS ¢6VÆbç&öGV7BçvV–v‡Eö&6—2Ò&öGV7BåvV–v‡D&6—2åD„Tõ$UD”4À¢6VÆbç&öGV7Bç6fR‚¢6VÆbæÆ–æRçVçF—G’Ò##R ¢6VÆbæÆ–æRç6fR‚¢:óKh‘éì¶»§q«^wİ[™Ø˜\ˆ‹[š]T›ÙXİ•[š]’ÑÊBˆÙ[‹œİ\Y\ˆHİ\Y\‹›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹˜[YOH”\[[™Hİ\Y\ˆŠBˆÙ[‹œ™œHH‘”K›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹İ\İÛY\\Ù[‹˜İ\İÛY\‹™Y™\™[˜ÙOH”TKLH‹™XÙZ]™YÛÛHŒŒ‹LLKLŒˆŠBˆÙ[‹›[™HH‘”S[™K›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹™œO\Ù[‹œ™œK›ÙXİ\Ù[‹œ›ÙXİ]X[]OHŒL‹[š]T›ÙXİ•[š]’ÑÊBˆÙ[‹›Ù™™\ˆHİ\Y\“Ù™™\‹›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹™œWÛ[™O\Ù[‹›[™Kİ\Y\\Ù[‹œİ\Y\‹]˜Z[X›WÜ]X[]OHŒL‹ˆ[š]T›ÙXİ•[š]’ÑË[š]ÜšXÙOHL‹[]™\WÙ^\ÏL‹ˆ
-BˆÙ[‹˜ÛY[™›Ü˜ÙWÛÙÚ[ŠÙ[‹\Ù\ŠB‚ˆYˆÜ™X]WÜ][İJÙ[‹˜[Yİ[[S›Û™JN‚ˆ^[ØYHÂˆˆ›Ù™™\—ŞÜÙ[‹›[™KœßHˆÙ[‹›Ù™™\‹œËˆˆ™\ØÛİ[ŞÜÙ[‹›[™KœßHˆŒŒ‹ˆ˜[Yİ[[ˆ˜[Yİ[[ÜˆŒŒNKLL‹LÌH‹ˆBˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
-™]™\œÙJ™\Ú›Ø\™œ][İWØÜ™X]H‹\™ÜÏVÜÙ[‹œ™œKœ×JK^[ØY
-BˆÙ[‹˜\ÜÙ\\]X[
-™\ÜÛœÙKœİ]\×ØÛÙKÌŠBˆ™]\›ˆ][İK›Øš™XİË™Ù]
+"""Integration and domain tests for the local steel quotation MVP.
 
-B‚ˆYˆ\İÜ][İWÜ\[[™WÛÛ›WØ[İÜ×İ˜[YÛİÛ™\—İ˜[œÚ][ÛœÊÙ[ŠN‚ˆ][İHHÙ[‹˜Ü™X]WÜ][İJ
-Bˆ\]Wİ\›H™]™\œÙJ™\Ú›Ø\™œ][İWİ\]WÜİ]\È‹\™ÜÏVÜ][İKœ×JBˆ[˜[YHÙ[‹˜ÛY[œÜİ
-\]Wİ\›Èœİ]\Èˆ][İK”İ]\ËPĞÑTQJBˆÙ[‹˜\ÜÙ\\]X[
-[˜[Yœİ]\×ØÛÙK
-Bˆ][İKœ™Yœ™\ÚÙœ›ÛWÙŠ
-BˆÙ[‹˜\ÜÙ\\]X[
-][İKœİ]\Ë][İK”İ]\Ë”‘PQJBˆÙ[HÙ[‹˜ÛY[œÜİ
-\]Wİ\›Èœİ]\Èˆ][İK”İ]\Ë”ÑS•JBˆÙ[‹˜\ÜÙ\™Y\™XİÊÙ[™]™\œÙJ™\Ú›Ø\™œ][İWÙ]Z[‹\™ÜÏVÜ][İKœ×JJBˆ][İKœ™Yœ™\ÚÙœ›ÛWÙŠ
-BˆÙ[‹˜\ÜÙ\\]X[
-][İKœİ]\Ë][İK”İ]\Ë”ÑS•
-BˆÙ[‹˜\ÜÙ\\Ó›İ›Û™J][İKœÙ[Ø]
-BˆÛÜÙYHÙ[‹˜ÛY[œÜİ
-\]Wİ\›Èœİ]\Èˆ][İK”İ]\ËPĞÑTQJBˆÙ[‹˜\ÜÙ\™Y\™XİÊÛÜÙY™]™\œÙJ™\Ú›Ø\™œ][İWÙ]Z[‹\™ÜÏVÜ][İKœ×JJBˆ][İKœ™Yœ™\ÚÙœ›ÛWÙŠ
-BˆÙ[‹˜\ÜÙ\\]X[
-][İKœİ]\Ë][İK”İ]\ËPĞÑTQ
-BˆÙ[‹˜\ÜÙ\\Ó›İ›Û™J][İK˜ÛÜÙYØ]
-BˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜ÛY[™Ù]
-\]Wİ\›
-Kœİ]\×ØÛÙKJB‚ˆYˆ\İÜ][İWÙØİ[Y[İ\›\×İ^Ø[™Ü™]š\Ú[Ûœ×Ø\™WÜÛ˜\ÚİY
-Ù[ŠN‚ˆÜ™X]Wİ\›H™]™\œÙJ™\Ú›Ø\™œ][İWØÜ™X]H‹\™ÜÏVÜÙ[‹œ™œKœ×JBˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
-Ü™X]Wİ\›Âˆˆ›Ù™™\—ŞÜÙ[‹›[™KœßHˆÙ[‹›Ù™™\‹œËˆˆ™\ØÛİ[ŞÜÙ[‹›[™KœßHˆŒŒ‹ˆš\ÜİYWÙ]HˆŒŒ‹LLKLŒˆ‹ˆ˜[Yİ[[ˆŒŒ‹LLKLÌ‹ˆ^Ü˜]WÜ\˜Ù[ˆŒNŒ‹ˆœ^[Y[İ\›\ÈˆŒÌ^\Èœ›ÛH[›ÚXÙH‹ˆ™[]™\Wİ\›\Èˆ‘[]™\HÈ^Y\‰ÜÈØ\™Zİ\ÙH‹ˆJBˆÙ[‹˜\ÜÙ\\]X[
-™\ÜÛœÙKœİ]\×ØÛÙKÌŠBˆÜšYÚ[˜[H][İK›Øš™XİË™Ù]
+All customers, suppliers, rates, and phone details in these tests are synthetic.
+"""
+from datetime import timedelta
+from decimal import Decimal
 
-BˆÙ[‹˜\ÜÙ\™YÙ^
-ÜšYÚ[˜[›[X™\‹ˆ—”ULŒ‹WÍŸIŠBˆÙ[‹˜\ÜÙ\\]X[
-ÜšYÚ[˜[œ™]š\Ú[Û‹JBˆÙ[‹˜\ÜÙ\\]X[
-ÜšYÚ[˜[^Ø[[İ[XÚ[X[
-ŒNŒHŠJBˆÙ[‹˜\ÜÙ\\]X[
-ÜšYÚ[˜[™Ü˜[™İİ[XÚ[X[
-ŒLŒ‹ˆŠJBˆÙ[‹˜\ÜÙ\\]X[
-ÜšYÚ[˜[œ^[Y[İ\›\ËŒÌ^\Èœ›ÛH[›ÚXÙHŠB‚ˆ™]š\Ú[Û—İ\›H™]™\œÙJ™\Ú›Ø\™œ][İWÜ™]š\Ú[Û—ØÜ™X]H‹\™ÜÏVÛÜšYÚ[˜[œ×JBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊÙ[‹˜ÛY[™Ù]
-™]š\Ú[Û—İ\›
-K”™\\™H™]š\Ú[ÛˆˆŠBˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
-™]š\Ú[Û—İ\›Âˆˆ›Ù™™\—ŞÜÙ[‹›[™KœßHˆÙ[‹›Ù™™\‹œËˆˆ™\ØÛİ[ŞÜÙ[‹›[™KœßHˆŒKŒ‹ˆš\ÜİYWÙ]HˆŒŒ‹LLKLŒÈ‹ˆ˜[Yİ[[ˆŒŒ‹LL‹LH‹ˆ^Ü˜]WÜ\˜Ù[ˆKŒ‹ˆœ^[Y[İ\›\ÈˆY˜[˜ÙH^[Y[‹ˆ™[]™\Wİ\›\Èˆ‘^ÛÜšÜÈ‹ˆJBˆÙ[‹˜\ÜÙ\\]X[
-™\ÜÛœÙKœİ]\×ØÛÙKÌŠBˆ™]š\Ú[ÛˆH][İK›Øš™XİË™Ù]
-™]š\Ú[Û—ÛÙ[ÜšYÚ[˜[
-BˆÙ[‹˜\ÜÙ\\]X[
-™]š\Ú[Û‹›[X™\‹ÜšYÚ[˜[›[X™\ŠBˆÙ[‹˜\ÜÙ\\]X[
-™]š\Ú[Û‹œ™]š\Ú[Û‹ŠBˆÙ[‹˜\ÜÙ\\]X[
-™]š\Ú[Û‹^Ü˜]WÜ\˜Ù[XÚ[X[
-KŒŠJBˆÙ[‹˜\ÜÙ\\]X[
-™]š\Ú[Û‹\™Ù]ÛX\™Ú[—Ü\˜Ù[ÜšYÚ[˜[\™Ù]ÛX\™Ú[—Ü\˜Ù[
-BˆÙ[‹˜\ÜÙ\\]X[
-™]š\Ú[Û‹›[™\Ë™Ù]
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.test import TestCase
+from django.urls import reverse
+from django.utils import timezone
 
-Kœİ\Y\—ÛÙ™™\‹ÜšYÚ[˜[›[™\Ë™Ù]
+from .forms import QuoteCreateForm
+from .models import (
+    Customer,
+    FollowUp,
+    Product,
+    Quote,
+    QuoteLine,
+    QuotePricingSettings,
+    RFQ,
+    RFQLine,
+    Supplier,
+    SupplierOffer,
+)
 
-Kœİ\Y\—ÛÙ™™\ŠB‚ˆYˆ\İØİ\İÛY\—Ü—Ú\×İ\›\×Ø[™ÜØ[\×İİ[×İÚ]İ]Ü›Øİ\™[Y[Ù]JÙ[ŠN‚ˆ][İHHÙ[‹˜Ü™X]WÜ][İJ
-Bˆ][İKœ^[Y[İ\›\ÈHØÜš\”^HÚ][ˆÌ^\ÏÜØÜš\ˆ‚ˆ][İK^Ü˜]WÜ\˜Ù[HXÚ[X[
-ŒNŒŠBˆ][İKœØ]™J\]WÙšY[ÏVÈœ^[Y[İ\›\È‹^Ü˜]WÜ\˜Ù[‹\]YØ]—JB‚ˆ™\ÜÛœÙHHÙ[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ][İWÜˆ‹\™ÜÏVÜ][İKœ×JJBˆÙ[‹˜\ÜÙ\\]X[
-™\ÜÛœÙKœİ]\×ØÛÙKŒ
-BˆÙ[‹˜\ÜÙ\\]X[
-™\ÜÛœÙVÈÛÛ[U\H—K˜\XØ][Û‹ÜˆŠBˆÙ[‹˜\ÜÙ\YJ™\ÜÛœÙK˜ÛÛ[œİ\İÚ]
-ˆ‰T‹HŠJBˆÙ[‹˜\ÜÙ\[Šˆ”\[[™Hİ\İÛY\ˆ‹™\ÜÛœÙK˜ÛÛ[
-BˆÙ[‹˜\ÜÙ\[Šˆ”^HÚ][ˆÌ^\È‹™\ÜÛœÙK˜ÛÛ[
-BˆÙ[‹˜\ÜÙ\›İ[ŠˆØÜš\ˆ‹™\ÜÛœÙK˜ÛÛ[
-BˆÙ[‹˜\ÜÙ\›İ[Šˆ”\[[™Hİ\Y\ˆ‹™\ÜÛœÙK˜ÛÛ[
-BˆÙ[‹˜\ÜÙ\›İ[ŠˆLŒ‹™\ÜÛœÙK˜ÛÛ[
-BˆÙ[‹˜\ÜÙ\›İ[Šˆ‘Ü›ÜÜÈX\™Ú[ˆ‹™\ÜÛœÙK˜ÛÛ[
-B‚ˆYˆ\İÜ][İWÛ\İØ[™Ü—Ü™Z™XİÙ›Ü™ZYÛ—ØXØÛİ[Ü™XÛÜ™ÊÙ[ŠN‚ˆ][İHHÙ[‹˜Ü™X]WÜ][İJ
-Bˆ›Ü™ZYÛ—Øİ\İÛY\ˆHİ\İÛY\‹›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹˜[YOH”š]˜]H\[[™Hİ\İÛY\ˆŠBˆ›Ü™ZYÛ—Ü™œHH‘”K›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹İ\İÛY\Y›Ü™ZYÛ—Øİ\İÛY\‹™XÙZ]™YÛÛHŒŒ‹LLKLŒˆŠBˆ›Ü™ZYÛ—Ü][İHH][İK›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹›İ\‹™œOY›Ü™ZYÛ—Ü™œK[X™\H”’UUKLH‹\ÜİYWÙ]OHŒŒ‹LLKLŒˆ‹ˆ˜[Yİ[[HŒŒNKLL‹LÌH‹\™Ù]ÛX\™Ú[—Ü\˜Ù[HŒLˆ‹Z[š[][WÛX\™Ú[—Ü\˜Ù[H‹ˆX^[][WÙ\ØÛİ[Ü\˜Ù[HH‹ˆ
-Bˆ\[[™HHÙ[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ][İWÛ\İŠJBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊ\[[™K][İK›[X™\ŠBˆÙ[‹˜\ÜÙ\›İÛÛZ[œÊ\[[™K›Ü™ZYÛ—Ü][İK›[X™\ŠBˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ][İWÜˆ‹\™ÜÏVÙ›Ü™ZYÛ—Ü][İKœ×JJKœİ]\×ØÛÙK
-BˆˆHÙ[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ][İWÜˆ‹\™ÜÏVÜ][İKœ×JJBˆÙ[‹˜\ÜÙ\\]X[
-‹œİ]\×ØÛÙKŒ
-BˆÙ[‹˜\ÜÙ\\]X[
-–ÈÛÛ[U\H—K˜\XØ][Û‹ÜˆŠBˆÙ[‹˜\ÜÙ\›İ[Šˆ”\[[™Hİ\Y\ˆ‹‹˜ÛÛ[
-B‚ˆ›Ü™ZYÛ—Üİ\Y\ˆHİ\Y\‹›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹˜[YOH‘›Ü™ZYÛˆİ\Y\ˆŠBˆ›Ü™ZYÛ—Û[™HHİ\Y\“Ù™™\‹›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹›İ\‹™œWÛ[™O\Ù[‹›[™Kİ\Y\Y›Ü™ZYÛ—Üİ\Y\‹]˜Z[X›WÜ]X[]OHŒL‹ˆ[š]T›ÙXİ•[š]’ÑË[š]ÜšXÙOHŒH‹[]™\WÙ^\ÏLKˆ
-BˆØ]™YÛ[™HH][İK›[™\Ë™Ù]
 
-Bˆ][İS[™K›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹][İO\][İK™œWÛ[™O\Ù[‹›[™Kİ\Y\—ÛÙ™™\Y›Ü™ZYÛ—Û[™Kˆ]X[]OHŒL‹[š]T›ÙXİ•[š]’ÑË[™YØÛÜİÜ\—İ[š]HŒH‹\ØÛİ[Ü\˜Ù[HŒ‹ˆÙ[[™×ÜšXÙWÜ\—İ[š]HŒˆ‹ˆ
-BˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ][İWÜˆ‹\™ÜÏVÜ][İKœ×JJKœİ]\×ØÛÙKÊBˆÙ[‹˜\ÜÙ\YJ][İS[™K›Øš™XİË™š[\ŠÏ\Ø]™YÛ[™KœÊK™^\İÊ
-JB‚‚˜Û\ÜÈ›ÛİÕ\[™\[[™U\İÊ\İØ\ÙJN‚ˆYˆÙ]\
-Ù[ŠN‚ˆÙ[‹\Ù\ˆHÙ]İ\Ù\—Û[Ù[
+class SteelWorkflowTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        users = get_user_model()
+        cls.owner = users.objects.create_user(
+            username="trader1", password="TestPass!12345",
+        )
+        cls.other_user = users.objects.create_user(
+            username="trader2", password="TestPass!12345",
+        )
+        cls.customer = Customer.objects.create(
+            owner=cls.owner, name="Demo Buyer", company_name="Sample Industries",
+        )
+        cls.other_customer = Customer.objects.create(
+            owner=cls.other_user, name="Other Buyer",
+        )
+        cls.supplier = Supplier.objects.create(
+            owner=cls.owner, name="Demo Steel Supply",
+        )
+        cls.other_supplier = Supplier.objects.create(
+            owner=cls.other_user, name="Other Supplier",
+        )
+        cls.product = Product.objects.create(
+            owner=cls.owner,
+            name="SS 304 Round Bar",
+            grade="SS 304",
+            shape=Product.Shape.ROUND_BAR,
+            unit=Product.Unit.KG,
+        )
+        cls.other_product = Product.objects.create(
+            owner=cls.other_user, name="Private Product",
+            shape=Product.Shape.SHEET, unit=Product.Unit.KG,
+        )
+        today = timezone.localdate()
+        cls.rfq = RFQ.objects.create(
+            owner=cls.owner, customer=cls.customer,
+            reference="RFQ-DEMO-1", received_on=today,
+        )
+        cls.other_rfq = RFQ.objects.create(
+            owner=cls.other_user, customer=cls.other_customer,
+            reference="RFQ-PRIVATE", received_on=today,
+        )
+        cls.line = RFQLine.objects.create(
+            owner=cls.owner, rfq=cls.rfq, product=cls.product,
+            quantity=Decimal("1000.000"), unit=Product.Unit.KG,
+        )
+        cls.offer = SupplierOffer.objects.create(
+            owner=cls.owner, rfq_line=cls.line, supplier=cls.supplier,
+            available_quantity=Decimal("1.000"), unit=Product.Unit.TONNE,
+            unit_price=Decimal("188000.0000"),
+            freight_cost=Decimal("3000.00"),
+            packaging_cost=Decimal("2000.00"), delivery_days=7,
+        )
+        cls.quote = Quote.objects.create(
+            owner=cls.owner, rfq=cls.rfq, number="QT-DEMO-001",
+            revision=1, issue_date=today, valid_until=today + timedelta(days=7),
+            target_margin_percent=Decimal("12.00"),
+            minimum_margin_percent=Decimal("8.00"),
+            maximum_discount_percent=Decimal("5.00"),
+            tax_rate_percent=Decimal("18.00"),
+            status=Quote.Status.READY,
+        )
+        cls.quote_line = QuoteLine.objects.create(
+            owner=cls.owner, quote=cls.quote,
+            rfq_line=cls.line, supplier_offer=cls.offer,
+            quantity=Decimal("1000.000"), unit=Product.Unit.KG,
+            landed_cost_per_unit=Decimal("193.0000"),
+            selling_price_per_unit=Decimal("225.0000"),
+            discount_percent=Decimal("0.00"),
+        )
 
-K›Øš™XİË˜Ü™X]Wİ\Ù\Š\Ù\›˜[YOH™›Ûİİ\[İÛ™\ˆ‹\ÜİÛÜ™H›ØØ[]\İ\\ÜİÛÜ™ŠBˆÙ[‹›İ\ˆHÙ]İ\Ù\—Û[Ù[
+    def login_owner(self):
+        self.client.force_login(self.owner)
 
-K›Øš™XİË˜Ü™X]Wİ\Ù\Š\Ù\›˜[YOH™›Ûİİ\[İ\ˆ‹\ÜİÛÜ™H›ØØ[]\İ\\ÜİÛÜ™ŠBˆÙ[‹˜İ\İÛY\ˆHİ\İÛY\‹›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹˜[YOH‘›ÛİË]\İ\İÛY\ˆ‹Û™OHŒ‹ˆ
-BˆÙ[‹œ™œHH‘”K›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹İ\İÛY\\Ù[‹˜İ\İÛY\‹™Y™\™[˜ÙOH‘•KLH‹™XÙZ]™YÛÛHŒŒ‹LLKLŒˆ‹ˆ
-BˆÙ[‹›İ\—Øİ\İÛY\ˆHİ\İÛY\‹›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹˜[YOH‘›Ü™ZYÛˆİ\İÛY\ˆŠBˆÙ[‹›İ\—Ü™œHH‘”K›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹›İ\‹İ\İÛY\\Ù[‹›İ\—Øİ\İÛY\‹™XÙZ]™YÛÛHŒŒ‹LLKLŒˆ‹ˆ
-BˆÙ[‹˜ÛY[™›Ü˜ÙWÛÙÚ[ŠÙ[‹\Ù\ŠB‚ˆYˆ\İÙ›Ûİİ\Ú\×ØÜ™X]YÛİÛ™YØ[™ÜÚİÛ—ÛÛ—Ù[œ]Z\JÙ[ŠN‚ˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
-™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÜ™X]H‹\™ÜÏVÜÙ[‹œ™œKœ×JKÂˆ™YWÛÛˆˆŒŒ‹LLKLŒÈ‹››İHˆØ[X›İ][]™\H[Z[™È‹ˆJBˆ›Ûİ×İ\H›ÛİÕ\›Øš™XİË™Ù]
+    def test_anonymous_user_is_redirected_to_login(self):
+        response = self.client.get(reverse("dashboard:rfq_list"))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("login", response.url)
 
-BˆÙ[‹˜\ÜÙ\™Y\™XİÊ™\ÜÛœÙK™]™\œÙJ™\Ú›Ø\™œ™œWÙ]Z[‹\™ÜÏVÜÙ[‹œ™œKœ×JJBˆÙ[‹˜\ÜÙ\\]X[
-›Ûİ×İ\›İÛ™\‹Ù[‹\Ù\ŠBˆÙ[‹˜\ÜÙ\\]X[
-›Ûİ×İ\œ™œKÙ[‹œ™œJBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊÙ[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ™œWÙ]Z[‹\™ÜÏVÜÙ[‹œ™œKœ×JJKØ[X›İ][]™\H[Z[™ÈŠBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊÙ[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™™›Ûİİ\Û\İŠJK‘•KLHŠB‚ˆYˆ\İÙ›Ûİİ\Ù]\×Ø\™WÜ™\]Z\™YØ[™Ù[\WÜİX›Z\ÜÚ[Û—ÜØ]™\×Û›İ[™ÊÙ[ŠN‚ˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
-™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÜ™X]H‹\™ÜÏVÜÙ[‹œ™œKœ×JKÂˆ™YWÛÛˆˆˆ‹››İHˆ“›È]H‹ˆJBˆÙ[‹˜\ÜÙ\\]X[
-™\ÜÛœÙKœİ]\×ØÛÙKŒ
-BˆÙ[‹˜\ÜÙ\˜[ÙJ›ÛİÕ\›Øš™XİË™^\İÊ
-JB‚ˆYˆ\İØÛÛ\][Û—Ü™\]Z\™\×ÜÜİØ[™Ú\×ÛİÛ™\—ÜØÛÜY
-Ù[ŠN‚ˆ›Ûİ×İ\H›ÛİÕ\›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹™œO\Ù[‹œ™œKYWÛÛHŒŒ‹LLKLŒÈ‹›İOHØ[ŠBˆ›Ü™ZYÛ—Ù›Ûİ×İ\H›ÛİÕ\›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹›İ\‹™œO\Ù[‹›İ\—Ü™œKYWÛÛHŒŒ‹LLKLŒÈ‹›İOH”š]˜]H™[Z[™\ˆ‹ˆ
-BˆÛÛ\]Wİ\›H™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÛÛ\]H‹\™ÜÏVÙ›Ûİ×İ\œ×JBˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜ÛY[™Ù]
-ÛÛ\]Wİ\›
-Kœİ]\×ØÛÙKJBˆÙ[‹˜\ÜÙ\\]X[
-ˆÙ[‹˜ÛY[œÜİ
-™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÛÛ\]H‹\™ÜÏVÙ›Ü™ZYÛ—Ù›Ûİ×İ\œ×JJKœİ]\×ØÛÙKˆˆ
-Bˆ™\ÜÛœÙHHÙ[‹˜ÛY[œÜİ
-ÛÛ\]Wİ\›
-BˆÙ[‹˜\ÜÙ\™Y\™XİÊ™\ÜÛœÙK™]™\œÙJ™\Ú›Ø\™œ™œWÙ]Z[‹\™ÜÏVÜÙ[‹œ™œKœ×JJBˆ›Ûİ×İ\œ™Yœ™\ÚÙœ›ÛWÙŠ
-BˆÙ[‹˜\ÜÙ\\Ó›İ›Û™J›Ûİ×İ\˜ÛÛ\]YØ]
-BˆÙ[‹˜\ÜÙ\›İÛÛZ[œÊÙ[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™™›Ûİİ\Û\İŠJK‘•KLHŠB‚ˆYˆ\İÜ\[[™WÜİ]\×ØÚ[™Ù\×ÛÛ›Wİ›İYÚİ˜[YÛİÛ™\—ÜÜİ
-Ù[ŠN‚ˆİ]\×İ\›H™]™\œÙJ™\Ú›Ø\™œ™œWİ\]WÜİ]\È‹\™ÜÏVÜÙ[‹œ™œKœ×JBˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜ÛY[™Ù]
-İ]\×İ\›
-Kœİ]\×ØÛÙKJBˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜ÛY[œÜİ
-İ]\×İ\›Èœİ]\Èˆ››İXK\İ]\ÈŸJKœİ]\×ØÛÙKÌŠBˆÙ[‹œ™œKœ™Yœ™\ÚÙœ›ÛWÙŠ
-BˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹œ™œKœİ]\Ë‘”K”İ]\Ë“‘UÊBˆÙ[‹˜ÛY[œÜİ
-İ]\×İ\›Èœİ]\Èˆ‘”K”İ]\Ë’S—Ô“ÑÔ‘TÔßJBˆÙ[‹œ™œKœ™Yœ™\ÚÙœ›ÛWÙŠ
-BˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹œ™œKœİ]\Ë‘”K”İ]\Ë’S—Ô“ÑÔ‘TÔÊBˆÙ[‹˜\ÜÙ\\]X[
-ˆÙ[‹˜ÛY[œÜİ
-™]™\œÙJ™\Ú›Ø\™œ™œWİ\]WÜİ]\È‹\™ÜÏVÜÙ[‹›İ\—Ü™œKœ×JKÂˆœİ]\Èˆ‘”K”İ]\ËÓÔÑQˆJKœİ]\×ØÛÙKˆˆ
-B‚ˆYˆ\İÚ[˜[YØ[™İ˜[YİÚ]Ø\Û[X™\œ×Ø\™WÜØY™WÜİY™—İšYÙÙ\™YÛ[šÜÊÙ[ŠN‚ˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜İ\İÛY\‹Ú]Ø\ØÚ]İ\›šÎ‹ËİØK›YKÎLLŠBˆÙ[‹˜İ\İÛY\‹œÛ™HH››İHÛ™H‚ˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜İ\İÛY\‹Ú]Ø\ØÚ]İ\›ˆŠBˆÙ[‹˜İ\İÛY\‹œÛ™HHŠÎNNHH‚ˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜İ\İÛY\‹Ú]Ø\ØÚ]İ\›šÎ‹ËİØK›YKÎNNLHŠBˆÙ[‹˜İ\İÛY\‹œÛ™HHŒ‚ˆ]Z[HÙ[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ™œWÙ]Z[‹\™ÜÏVÜÙ[‹œ™œKœ×JJBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊ]Z[“Ü[ˆÚ]Ğ\Ú]
-İY™ˆXİ[ÛŠHŠBˆÙ[‹˜\ÜÙ\ÛÛZ[œÊ]Z[	İ\™Ù]H—Ø›[šÈˆ™[H››ÛÜ[™\ˆ›Ü™Y™\œ™\ˆ‰ÊB‚ˆYˆ\İÙ›Ûİİ\ÛØš™Xİ×Ø\™WÙš[\™YØYØZ[œİØ[Ü™[]YÛİÛ™\œÊÙ[ŠN‚ˆY[ˆH›ÛİÕ\›Øš™XİË˜Ü™X]JˆİÛ™\\Ù[‹\Ù\‹™œO\Ù[‹›İ\—Ü™œKYWÛÛHŒŒ‹LLKLŒÈ‹›İOH“]\İİ^HY[ˆ‹ˆ
-Bˆ™\ÜÛœÙHHÙ[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™™›Ûİİ\Û\İŠJBˆÙ[‹˜\ÜÙ\›İÛÛZ[œÊ™\ÜÛœÙK“]\İİ^HY[ˆŠBˆÙ[‹˜\ÜÙ\\]X[
-ˆÙ[‹˜ÛY[œÜİ
-™]™\œÙJ™\Ú›Ø\™™›Ûİİ\ØÛÛ\]H‹\™ÜÏVÚY[‹œ×JJKœİ]\×ØÛÙKˆˆ
-B‚‚˜Û\ÜÈ›ÙXİÔÕ•\İÊ\İØ\ÙJN‚ˆXY\œÈH›˜[YKÜ˜YKÚ\K[Y[œÚ[ÛœË[š]ÙZYÚØ˜\Ú\ËÙZYÚÚÙË›İ\×ˆ‚‚ˆYˆÙ]\
-Ù[ŠN‚ˆÙ[‹\Ù\ˆHÙ]İ\Ù\—Û[Ù[
+    def test_customer_list_does_not_disclose_other_account(self):
+        self.login_owner()
+        response = self.client.get(reverse("dashboard:customer_list"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Demo Buyer")
+        self.assertNotContains(response, "Other Buyer")
 
-K›Øš™XİË˜Ü™X]Wİ\Ù\Š\Ù\›˜[YOH˜Üİ‹[İÛ™\ˆ‹\ÜİÛÜ™H›ØØ[]\İ\\ÜİÛÜ™ŠBˆÙ[‹›İ\ˆHÙ]İ\Ù\—Û[Ù[
+    def test_other_account_customer_cannot_be_edited(self):
+        self.login_owner()
+        response = self.client.get(
+            reverse("dashboard:customer_update", args=[self.other_customer.pk])
+        )
+        self.assertEqual(response.status_code, 404)
 
-K›Øš™XİË˜Ü™X]Wİ\Ù\Š\Ù\›˜[YOH˜Üİ‹[İ\ˆ‹\ÜİÛÜ™H›ØØ[]\İ\\ÜİÛÜ™ŠBˆÙ[‹˜ÛY[™›Ü˜ÙWÛÙÚ[ŠÙ[‹\Ù\ŠB‚ˆYˆ\ØY
-Ù[‹ÛÛ[˜[YOHœ›ÙXİË˜ÜİˆŠN‚ˆ™]\›ˆÙ[‹˜ÛY[œÜİ
-™]™\œÙJ™\Ú›Ø\™œ›ÙXİØÜİ—Ú[\ÜŠKÂˆ™š[HˆÚ[\U\ØYYš[J˜[YKÛÛ[™[˜ÛÙJ]‹NŠKÛÛ[İ\OH^ØÜİˆŠKˆJB‚ˆYˆ\İÛİÛ™\—ØØ[—Ú[\Üİ˜[YÜ›İÜ×Ø[™Ú[\ÜÜÙ]×ÛİÛ™\—Ùœ›ÛWÜÙ\ÜÚ[ÛŠÙ[ŠN‚ˆÛÛ[HÙ[‹šXY\œÈ
-È”›İ[™˜\‹Ì›İ[™Ø˜\‹H[HX[Y]\‹ÙË˜KŞ[]XÈ][Wˆ‚ˆ™\ÜÛœÙHHÙ[‹\ØY
-ÛÛ[
-BˆÙ[‹˜\ÜÙ\™Y\™XİÊ™\ÜÛœÙK™]™\œÙJ™\Ú›Ø\™œ›ÙXİÛ\İŠJBˆ›ÙXİH›ÙXİ›Øš™XİË™Ù]
+    def test_other_account_rfq_cannot_be_opened(self):
+        self.login_owner()
+        response = self.client.get(
+            reverse("dashboard:rfq_detail", args=[self.other_rfq.pk])
+        )
+        self.assertEqual(response.status_code, 404)
 
-BˆÙ[‹˜\ÜÙ\\]X[
-›ÙXİ›İÛ™\‹Ù[‹\Ù\ŠBˆÙ[‹˜\ÜÙ\\]X[
-›ÙXİ›˜[YK”›İ[™˜\ˆŠB‚ˆYˆ\İÚ[\ÜÚ\×Ø[ÛÜ—Û›İ[™×Ø[™İ˜[Y]\×Ü]X[]Y\×Ø[™İ[š]ÊÙ[ŠN‚ˆÛÛ[HÙ[‹šXY\œÈ
-È
-ˆ•˜[YÚY]ÚY]ˆHHÈ[KYXÙK˜Kˆ‚ˆ’[˜[Y›İËÚY][™K˜Kˆ‚ˆ
-Bˆ™\ÜÛœÙHHÙ[‹\ØY
-ÛÛ[
-BˆÙ[‹˜\ÜÙ\\]X[
-™\ÜÛœÙKœİ]\×ØÛÙKŒ
-BˆÙ[‹˜\ÜÙ\˜[ÙJ›ÙXİ›Øš™XİË™^\İÊ
-JB‚ˆYˆ\İÚ[\ÜÜ™Z™Xİ×İ[šÛ›İÛ—ÚXY\œ×Ø[™Ù\XØ]WÛ˜[Y\ÊÙ[ŠN‚ˆ˜YÚXY\œÈHÙ[‹\ØY
-›˜[YKİÛ™\—”›ÙXİNNWˆŠBˆÙ[‹˜\ÜÙ\\]X[
-˜YÚXY\œËœİ]\×ØÛÙKŒ
-BˆÙ[‹˜\ÜÙ\˜[ÙJ›ÙXİ›Øš™XİË™^\İÊ
-JBˆ›ÙXİ›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹˜[YOH‘^\İ[™È‹Ú\OHœÚY]‹[š]HšÙÈŠBˆ\XØ]HHÙ[‹\ØY
-Ù[‹šXY\œÈ
-È‘^\İ[™ËÚY]ÙË˜KˆŠBˆÙ[‹˜\ÜÙ\\]X[
-\XØ]Kœİ]\×ØÛÙKŒ
-BˆÙ[‹˜\ÜÙ\\]X[
-›ÙXİ›Øš™XİË™š[\ŠİÛ™\\Ù[‹\Ù\ŠK˜Ûİ[
+    def test_supplier_and_product_lists_are_scoped(self):
+        self.login_owner()
+        suppliers = self.client.get(reverse("dashboard:supplier_list"))
+        products = self.client.get(reverse("dashboard:product_list"))
+        self.assertEqual(suppliers.status_code, 200)
+        self.assertEqual(products.status_code, 200)
+        self.assertContains(suppliers, "Demo Steel Supply")
+        self.assertNotContains(suppliers, "Other Supplier")
+        self.assertContains(products, "SS 304 Round Bar")
+        self.assertNotContains(products, "Private Product")
 
-KJB‚ˆYˆ\İÙ^ÜÚ\×ÛİÛ™\—ÜØÛÜYØ[™Ü›İXİ×ÜÜ™XYÚY]Ù›Ü›][WØÙ[ÊÙ[ŠN‚ˆ›ÙXİ›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹\Ù\‹˜[YOIÏRTT“S’ÊšÎ‹ËÙ^[\Kš[˜[YŠIËÚ\OHœÚY]‹[š]HšÙÈŠBˆ›ÙXİ›Øš™XİË˜Ü™X]JİÛ™\\Ù[‹›İ\‹˜[YOH”š]˜]HİY[‹Ú\OHœÚY]‹[š]HšÙÈŠBˆ™\ÜÛœÙHHÙ[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ›ÙXİØÜİ—Ù^ÜŠJBˆÙ[‹˜\ÜÙ\\]X[
-™\ÜÛœÙKœİ]\×ØÛÙKŒ
-BˆÙ[‹˜\ÜÙ\\]X[
-™\ÜÛœÙKšXY\œÖÈÛÛ[Q\ÜÜÚ][Ûˆ—K	Ø]XÚY[Èš[[˜[YOHœİY[\›ÙXİË˜Üİˆ‰ÊBˆÛÛ[H™\ÜÛœÙK˜ÛÛ[™XÛÙJ]‹N\ÚYÈŠBˆÙ[‹˜\ÜÙ\[Š‰ÏRTT“S’È‹ÛÛ[
-BˆÙ[‹˜\ÜÙ\›İ[Š”š]˜]HİY[‹ÛÛ[
-BˆÙ[‹˜\ÜÙ\›İ[ŠœÛ™H‹ÛÛ[›İÙ\Š
-JB‚ˆYˆ\İØÜİ—Ü›İ]\×Ü™\]Z\™WÛÙÚ[ŠÙ[ŠN‚ˆÙ[‹˜ÛY[›ÙÛİ]
+    def test_enquiry_rejects_foreign_customer(self):
+        self.rfq.customer = self.other_customer
+        with self.assertRaises(ValidationError):
+            self.rfq.full_clean()
 
-BˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ›ÙXİØÜİ—Ù^ÜŠJKœİ]\×ØÛÙKÌŠBˆÙ[‹˜\ÜÙ\\]X[
-Ù[‹˜ÛY[™Ù]
-™]™\œÙJ™\Ú›Ø\™œ›ÙXİØÜİ—Ú[\ÜŠJKœİ]\×ØÛÙKÌŠB
+    def test_enquiry_line_rejects_foreign_product(self):
+        self.line.product = self.other_product
+        with self.assertRaises(ValidationError):
+            self.line.full_clean()
+
+    def test_offer_rejects_foreign_supplier(self):
+        self.offer.supplier = self.other_supplier
+        with self.assertRaises(ValidationError):
+            self.offer.full_clean()
+
+    def test_tonne_to_kg_conversion_is_exact(self):
+        self.assertEqual(self.offer.unit_conversion_factor, Decimal("1000"))
+        self.assertEqual(
+            self.offer.converted_available_quantity, Decimal("1000"),
+        )
+        self.assertTrue(self.offer.covers_full_quantity)
+        self.assertEqual(self.offer.normalized_unit_price, Decimal("188"))
+        self.assertEqual(
+            self.offer.landed_cost_per_requested_unit, Decimal("193"),
+        )
+        self.assertEqual(self.offer.total_landed_cost, Decimal("193000"))
+
+    def test_partial_offer_cannot_cover_whole_enquiry(self):
+        self.offer.available_quantity = Decimal("0.400")
+        self.assertFalse(self.offer.covers_full_quantity)
+        settings = QuotePricingSettings(owner=self.owner)
+        form = QuoteCreateForm(
+            owner=self.owner, lines=[self.line], pricing_settings=settings,
+        )
+        offer_field, _ = form.line_fields[self.line.pk]
+        self.assertNotIn(
+            self.offer.pk,
+            list(form.fields[offer_field].queryset.values_list("pk", flat=True)),
+        )
+
+    def test_unconvertible_metre_offer_rejected(self):
+        self.offer.unit = Product.Unit.METRE
+        with self.assertRaises(ValidationError):
+            self.offer.full_clean()
+
+    def test_quote_money_math_uses_gross_margin_not_markup(self):
+        self.assertEqual(self.quote.total_landed_cost, Decimal("193000.00"))
+        self.assertEqual(self.quote.total_selling_price, Decimal("225000.00"))
+        self.assertEqual(self.quote.gross_margin_percent, Decimal("14.22"))
+        self.assertEqual(self.quote.tax_amount, Decimal("40500.00"))
+        self.assertEqual(self.quote.grand_total, Decimal("265500.00"))
+        self.assertEqual(
+            self.quote_line.target_price_per_unit, Decimal("219.3182"),
+        )
+
+    def test_discounted_quote_line_needs_review_below_floor(self):
+        self.quote.minimum_margin_percent = Decimal("15.00")
+        self.assertTrue(self.quote_line.needs_review)
+
+    def test_quote_detail_and_pdf_reject_other_user(self):
+        self.client.force_login(self.other_user)
+        for name in ("dashboard:quote_detail", "dashboard:quote_pdf"):
+            response = self.client.get(reverse(name, args=[self.quote.pk]))
+            self.assertEqual(response.status_code, 404)
+
+    def test_quote_pdf_is_available_when_margin_is_safe(self):
+        self.login_owner()
+        response = self.client.get(
+            reverse("dashboard:quote_pdf", args=[self.quote.pk])
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "application/pdf")
+        self.assertTrue(response.content.startswith(b"%PDF-"))
+
+    def test_quote_pdf_blocks_unapproved_low_margin(self):
+        self.login_owner()
+        self.quote.status = Quote.Status.NEEDS_REVIEW
+        self.quote.save(update_fields=["status"])
+        response = self.client.get(
+            reverse("dashboard:quote_pdf", args=[self.quote.pk])
+        )
+        self.assertEqual(response.status_code, 403)
+
+    def test_quote_approval_requires_staff(self):
+        self.login_owner()
+        self.quote.status = Quote.Status.NEEDS_REVIEW
+        self.quote.save(update_fields=["status"])
+        response = self.client.post(
+            reverse("dashboard:quote_approve", args=[self.quote.pk])
+        )
+        self.assertEqual(response.status_code, 403)
+
+    def test_csv_export_excludes_other_user_products(self):
+        self.login_owner()
+        response = self.client.get(reverse("dashboard:product_csv_export"))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("SS 304 Round Bar", response.content.decode("utf-8"))
+        self.assertNotIn("Private Product", response.content.decode("utf-8"))
+
+    def test_csv_formula_like_product_names_are_escaped(self):
+        Product.objects.create(
+            owner=self.owner, name="=1+2",
+            shape=Product.Shape.SHEET, unit=Product.Unit.KG,
+        )
+        self.login_owner()
+        response = self.client.get(reverse("dashboard:product_csv_export"))
+        self.assertIn("'=1+2", response.content.decode("utf-8"))
+
+    def test_followup_is_scoped_to_owner(self):
+        followup = FollowUp.objects.create(
+            owner=self.owner, rfq=self.rfq,
+            due_on=timezone.localdate(), note="Manual callback",
+        )
+        self.client.force_login(self.other_user)
+        response = self.client.post(
+            reverse("dashboard:followup_complete", args=[followup.pk])
+        )
+        self.assertEqual(response.status_code, 404)
+        followup.refresh_from_db()
+        self.assertIsNone(followup.completed_at)
+
+    def test_followup_can_be_completed_by_owner(self):
+        followup = FollowUp.objects.create(
+            owner=self.owner, rfq=self.rfq,
+            due_on=timezone.localdate(), note="Manual callback",
+        )
+        self.login_owner()
+        response = self.client.post(
+            reverse("dashboard:followup_complete", args=[followup.pk])
+        )
+        self.assertEqual(response.status_code, 302)
+        followup.refresh_from_db()
+        self.assertIsNotNone(followup.completed_at)
