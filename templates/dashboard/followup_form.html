@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Schedule follow-up · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Schedule a follow-up</h1>
+  <p>Enquiry: <a href="{% url 'dashboard:rfq_detail' rfq.pk %}">{{ rfq.reference|default:rfq }} · {{ rfq.customer }}</a></p>
+  <form method="post">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="errors">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.help_text %}<small> {{ field.help_text }}</small>{% endif %}</label>
+      {{ field }}{% if field.errors %}<div class="errors">{{ field.errors }}</div>{% endif %}
+    {% endfor %}
+    <button type="submit">Save follow-up</button>
+  </form>
+  <p><a href="{% url 'dashboard:rfq_detail' rfq.pk %}">Cancel</a></p>
+</section>
+{% endblock %}

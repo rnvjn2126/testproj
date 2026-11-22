@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Steel Quotes{% endblock %}</title>
+  <style>
+    :root { color-scheme: light; font: 16px/1.5 system-ui, sans-serif; color: #17212b; background: #f3f6f8; }
+    * { box-sizing: border-box; } body { margin: 0; } header { padding: 1rem max(1rem, calc((100% - 58rem)/2)); background: #17324d; color: white; }
+    main { max-width: 58rem; margin: 2rem auto; padding: 0 1rem; } .card { background: white; border: 1px solid #d9e1e7; border-radius: .6rem; padding: 1.5rem; }
+    label { display: block; margin: .8rem 0 .2rem; } input, select, textarea { box-sizing: border-box; width: 100%; max-width: 32rem; padding: .6rem; } .field { border: 1px solid #aebbc5; border-radius: .25rem; } textarea { min-height: 5rem; } nav { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin-top: .5rem; } nav a { color: white; } a { color: #176b87; } .row { padding: .8rem 0; border-bottom: 1px solid #e2e8ec; } .errors { color: #9f2525; }
+    button { margin-top: 1rem; padding: .65rem 1rem; background: #176b87; color: white; border: 0; border-radius: .3rem; cursor: pointer; }
+    .table-scroll { overflow-x: auto; } .inline-form { display: flex; align-items: end; flex-wrap: wrap; gap: .5rem; } .inline-form label { margin: 0; }
+    @media (max-width: 640px) { main { margin: 1rem auto; padding: 0 .65rem; } .card { padding: 1rem; } header { padding: .8rem 1rem; } h1 { font-size: 1.55rem; } }
+  </style>
+</head>
+<body>
+  <header>Steel Quotes{% if request.user.is_authenticated %}<nav><a href="{% url 'dashboard:home' %}">Workspace</a><a href="{% url 'dashboard:customer_list' %}">Customers</a><a href="{% url 'dashboard:supplier_list' %}">Suppliers</a><a href="{% url 'dashboard:product_list' %}">Products</a><a href="{% url 'dashboard:rfq_list' %}">Enquiries</a><a href="{% url 'dashboard:followup_list' %}">Follow-ups</a><a href="{% url 'dashboard:quote_list' %}">Quotations</a><a href="{% url 'dashboard:quote_pricing_settings' %}">Quote pricing</a></nav>{% endif %}</header>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>

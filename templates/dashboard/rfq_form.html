@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Record enquiry · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Record customer enquiry</h1>
+  <form method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}<label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<p class="errors">{{ error }}</p>{% endfor %}{% endfor %}
+    <h2>Requested items</h2>
+    {{ formset.management_form }}{{ formset.non_form_errors }}
+    <div id="rfq-lines">{% for line in formset %}<fieldset class="row"><legend>Item {{ forloop.counter }}</legend>{{ line.non_field_errors }}{% for field in line %}<label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<p class="errors">{{ error }}</p>{% endfor %}{% endfor %}</fieldset>{% endfor %}</div>
+    <template id="empty-line"><fieldset class="row"><legend>Additional item</legend>{% for field in formset.empty_form %}<label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% endfor %}</fieldset></template>
+    <button type="button" id="add-line">Add requested item</button>
+    <button type="submit">Save enquiry</button>
+  </form>
+</section>
+<script>
+  document.getElementById("add-line").addEventListener("click", function () {
+    const total = document.getElementById("id_lines-TOTAL_FORMS");
+    const index = Number(total.value);
+    const html = document.getElementById("empty-line").innerHTML.replaceAll("__prefix__", index);
+    document.getElementById("rfq-lines").insertAdjacentHTML("beforeend", html);
+    total.value = index + 1;
+  });
+</script>
+{% endblock %}

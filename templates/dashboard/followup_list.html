@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Follow-ups · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Open follow-ups</h1>
+  {% for follow_up in follow_ups %}
+    <article class="row">
+      <strong>Due {{ follow_up.due_on }}</strong>{% if follow_up.due_on < today %}<span class="errors"> · Overdue</span>{% endif %}
+      <div><a href="{% url 'dashboard:rfq_detail' follow_up.rfq.pk %}">{{ follow_up.rfq.reference|default:follow_up.rfq }} · {{ follow_up.rfq.customer }}</a></div>
+      {% if follow_up.note %}<p>{{ follow_up.note|linebreaksbr }}</p>{% endif %}
+      <form method="post" action="{% url 'dashboard:followup_complete' follow_up.pk %}">
+        {% csrf_token %}<button type="submit">Mark complete</button>
+      </form>
+    </article>
+  {% empty %}<p>No open follow-ups.</p>{% endfor %}
+  <p><a href="{% url 'dashboard:rfq_list' %}">Back to enquiries</a></p>
+</section>
+{% endblock %}

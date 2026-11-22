@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} · Steel Quotes{% endblock %}
+{% block content %}<section class="card"><h1>{{ title }}</h1><p>Delete “{{ object }}”?</p><form method="post">{% csrf_token %}<button type="submit">Delete</button></form><p><a href="{% url 'dashboard:'|add:singular|add:'_list' %}">Cancel</a></p></section>{% endblock %}

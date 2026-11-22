@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>{{ title }}</h1>
+  <p><a href="{% url create_url %}">Add {{ singular }}</a></p>
+  {% if import_url %}<p><a href="{% url import_url %}">Import products from CSV</a> · <a href="{% url export_url %}">Export products to CSV</a></p>{% endif %}
+  {% for record in records %}
+    <article class="row"><strong>{{ record.name }}</strong>
+      {% if record.company_name %}<div>{{ record.company_name }}</div>{% endif %}
+      {% if record.grade %}<div>{{ record.grade }} · {{ record.get_shape_display }} · {{ record.dimensions|default:"Dimensions not recorded" }} · {{ record.get_unit_display }}{% if record.weight_kg %} · {{ record.weight_kg }} kg/item ({{ record.get_weight_basis_display|lower }}){% endif %}</div>{% endif %}
+      {% if record.email %}<div>{{ record.email }}</div>{% endif %}{% if record.phone %}<div>{{ record.phone }}</div>{% endif %}
+      <a href="{% url 'dashboard:'|add:singular|add:'_update' record.pk %}">Edit</a> · <a href="{% url 'dashboard:'|add:singular|add:'_delete' record.pk %}">Delete</a>
+    </article>
+  {% empty %}<p>No {{ title|lower }} yet.</p>{% endfor %}
+</section>
+{% endblock %}

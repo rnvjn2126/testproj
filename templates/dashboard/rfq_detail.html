@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}{{ rfq }} · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>{{ rfq.reference|default:rfq }}</h1>
+  {% if rfq.customer.whatsapp_chat_url %}
+    <p><a href="{{ rfq.customer.whatsapp_chat_url }}" target="_blank" rel="noopener noreferrer">Open WhatsApp chat (staff action)</a></p>
+  {% endif %}
+  <form class="inline-form" method="post" action="{% url 'dashboard:rfq_update_status' rfq.pk %}">
+    {% csrf_token %}<label for="{{ status_form.status.id_for_label }}">{{ status_form.status.label }}</label>
+    {{ status_form.status }}<button type="submit">Update status</button>
+  </form>
+  <p>{{ rfq.customer }} · {{ rfq.get_source_display }} · Received {{ rfq.received_on }} · {{ rfq.get_status_display }}</p>
+  {% if rfq.required_by %}<p>Required by {{ rfq.required_by }}</p>{% endif %}
+  {% if rfq.notes %}<p>{{ rfq.notes|linebreaksbr }}</p>{% endif %}
+
+  <h2>Follow-ups</h2>
+  <p><a href="{% url 'dashboard:followup_create' rfq.pk %}">Schedule a follow-up</a></p>
+  {% for follow_up in rfq.follow_ups.all %}
+    <div class="row">
+      <strong>Due {{ follow_up.due_on }}</strong>
+      {% if not follow_up.completed_at and follow_up.due_on < today %}<span class="errors"> · Overdue</span>{% endif %}
+      {% if follow_up.completed_at %}<span> · Completed {{ follow_up.completed_at|date:"Y-m-d H:i" }}</span>{% endif %}
+      {% if follow_up.note %}<p>{{ follow_up.note|linebreaksbr }}</p>{% endif %}
+      {% if not follow_up.completed_at %}
+        <form method="post" action="{% url 'dashboard:followup_complete' follow_up.pk %}">
+          {% csrf_token %}<button type="submit">Mark complete</button>
+        </form>
+      {% endif %}
+    </div>
+  {% empty %}<p>No follow-ups scheduled.</p>{% endfor %}
+
+  <h2>Requested items and supplier comparison</h2>
+  {% for line in rfq.lines.all %}
+    <section class="row">
+      <h3>{{ line.product|default:line.description|default:"Unspecified item" }}</h3>
+      <p>{% if line.grade %}{{ line.grade }} · {% endif %}{% if line.dimensions %}{{ line.dimensions }} · {% endif %}Requested {{ line.quantity }} {{ line.get_unit_display }}</p>
+      <p><a href="{% url 'dashboard:supplier_offer_create' rfq.pk line.pk %}">Add supplier offer</a></p>
+
+      {% if line.comparison_offers %}
+        <div style="overflow-x:auto">
+          <table style="width:100%; border-collapse:collapse; text-align:left">
+            <thead>
+              <tr>
+                <th style="padding:.45rem">Supplier</th>
+                <th style="padding:.45rem">Coverage</th>
+                <th style="padding:.45rem">Entered rate</th>
+                <th style="padding:.45rem">Landed / {{ line.get_unit_display }}</th>
+                <th style="padding:.45rem">Landed total for covered quantity</th>
+                <th style="padding:.45rem">Delivery</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for offer in line.comparison_offers %}
+                <tr style="border-top:1px solid #e2e8ec">
+                  <td style="padding:.45rem">{{ offer.supplier }}</td>
+                  <td style="padding:.45rem">
+                    Supplier availability {{ offer.available_quantity|floatformat:3 }} {{ offer.get_unit_display }}
+                    ({{ offer.converted_available_quantity|floatformat:3 }} {{ line.get_unit_display }} after conversion).
+                    {% if offer.covers_full_quantity %}
+                      Covers {{ offer.covered_quantity|floatformat:3 }} {{ line.get_unit_display }}
+                    {% else %}
+                      Partial: covers {{ offer.covered_quantity|floatformat:3 }} of {{ line.quantity|floatformat:3 }} {{ line.get_unit_display }}
+                    {% endif %}
+                  </td>
+                  <td style="padding:.45rem">INR {{ offer.unit_price|floatformat:4 }} / {{ offer.get_unit_display }}</td>
+                  <td style="padding:.45rem"><strong>INR {{ offer.landed_cost_per_requested_unit|floatformat:4 }}</strong></td>
+                  <td style="padding:.45rem">INR {{ offer.total_landed_cost|floatformat:2 }}</td>
+                  <td style="padding:.45rem">{{ offer.delivery_days }} day{{ offer.delivery_days|pluralize }}</td>
+                </tr>
+                <tr>
+                  <td colspan="6" style="padding:0 .45rem .8rem; color:#475866">
+                    {{ offer.conversion_assumption }} Freight (INR {{ offer.freight_cost|floatformat:2 }}) and packaging/incidental cost (INR {{ offer.packaging_cost|floatformat:2 }}) allocated across {{ offer.covered_quantity|floatformat:3 }} {{ line.get_unit_display }} covered.
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p>No supplier offers yet.</p>
+      {% endif %}
+    </section>
+  {% empty %}
+    <p>No requested items.</p>
+  {% endfor %}
+  {% if rfq.lines.all %}<p><a href="{% url 'dashboard:quote_create' rfq.pk %}">Prepare quotation</a></p>{% endif %}
+  <p><a href="{% url 'dashboard:rfq_list' %}">Back to enquiries</a></p>
+</section>
+{% endblock %}

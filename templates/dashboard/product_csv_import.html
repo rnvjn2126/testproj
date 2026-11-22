@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Import products · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Import product catalogue</h1>
+  <p>Upload a UTF-8 CSV with these headers: <code>name, grade, shape, dimensions, unit, weight_basis, weight_kg, notes</code>. The import validates every row first and saves all rows together. It does not include suppliers, customers, contact details, or pricing.</p>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="errors">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.help_text %}<small> {{ field.help_text }}</small>{% endif %}</label>
+      {{ field }}{% if field.errors %}<div class="errors">{{ field.errors }}</div>{% endif %}
+    {% endfor %}
+    <button type="submit">Validate and import</button>
+  </form>
+  <p><a href="{% url 'dashboard:product_list' %}">Back to products</a></p>
+</section>
+{% endblock %}

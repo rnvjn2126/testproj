@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Quotation {{ quote.number }} R{{ quote.revision }} · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Quotation {{ quote.number }} <small>Revision {{ quote.revision }}</small></h1>
+  <p>{{ quote.rfq.reference|default:quote.rfq }} · {{ quote.rfq.customer }}</p>
+  <p>Issued {{ quote.issue_date }} · Valid until {{ quote.valid_until }} · Tax rate {{ quote.tax_rate_percent }}%</p>
+  {% if quote.revision_of %}<p>Revision of <a href="{% url 'dashboard:quote_detail' quote.revision_of.pk %}">{{ quote.revision_of.number }} R{{ quote.revision_of.revision }}</a></p>{% endif %}
+  {% if quote.revision_history.count > 1 %}
+    <p>Revision history: {% for revision in quote.revision_history %}<a href="{% url 'dashboard:quote_detail' revision.pk %}">R{{ revision.revision }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+  {% endif %}
+  <p>Status: <strong>{{ quote.get_status_display }}</strong></p>
+  {% if can_update_status %}
+    <form class="inline-form" method="post" action="{% url 'dashboard:quote_update_status' quote.pk %}">
+      {% csrf_token %}
+      <label for="{{ status_form.status.id_for_label }}">{{ status_form.status.label }}</label>
+      {{ status_form.status }}<button type="submit">Update status</button>
+    </form>
+  {% endif %}
+  {% if quote.status == "needs_review" %}
+    <div class="errors">
+      <p>This quotation is below the configured {{ quote.minimum_margin_percent }}% gross-margin floor. It is not approved for customer issue.</p>
+      {% if user.is_staff %}
+        <form method="post" action="{% url 'dashboard:quote_approve' quote.pk %}">
+          {% csrf_token %}
+          <button type="submit">Approve after manager review</button>
+        </form>
+      {% else %}
+        <p>A staff reviewer must record approval before this quotation can proceed.</p>
+      {% endif %}
+    </div>
+  {% elif quote.status == "approved" %}
+    <p>Reviewed by {{ quote.approved_by }} on {{ quote.approved_at }}.</p>
+  {% endif %}
+  <p>Saved pricing settings: target margin {{ quote.target_margin_percent }}%, minimum margin {{ quote.minimum_margin_percent }}%, maximum discount {{ quote.maximum_discount_percent }}%.</p>
+  <div style="overflow-x:auto">
+    <table style="width:100%; border-collapse:collapse; text-align:left">
+      <thead>
+        <tr>
+          <th style="padding:.45rem">Requested item</th>
+          <th style="padding:.45rem">Supplier</th>
+          <th style="padding:.45rem">Quantity</th>
+          <th style="padding:.45rem">Landed / unit</th>
+          <th style="padding:.45rem">Target / unit</th>
+          <th style="padding:.45rem">Discount</th>
+          <th style="padding:.45rem">Selling / unit</th>
+          <th style="padding:.45rem">Gross margin</th>
+          <th style="padding:.45rem">Line total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for line in quote.lines.all %}
+          <tr style="border-top:1px solid #e2e8ec">
+            <td style="padding:.45rem">{{ line.rfq_line.product|default:line.rfq_line.description|default:"Requested item" }}</td>
+            <td style="padding:.45rem">{{ line.supplier_offer.supplier }}</td>
+            <td style="padding:.45rem">{{ line.quantity|floatformat:3 }} {{ line.get_unit_display }}</td>
+            <td style="padding:.45rem">INR {{ line.landed_cost_per_unit|floatformat:4 }}</td>
+            <td style="padding:.45rem">INR {{ line.target_price_per_unit|floatformat:4 }}</td>
+            <td style="padding:.45rem">{{ line.discount_percent }}%</td>
+            <td style="padding:.45rem">INR {{ line.selling_price_per_unit|floatformat:4 }}</td>
+            <td style="padding:.45rem">{{ line.gross_margin_percent }}%{% if line.needs_review %} · Review{% endif %}</td>
+            <td style="padding:.45rem">INR {{ line.total_selling_price|floatformat:2 }}</td>
+          </tr>
+          <tr>
+            <td colspan="9" style="padding:0 .45rem .8rem; color:#475866">
+              Landed cost total INR {{ line.total_landed_cost|floatformat:2 }}. Margin = (selling price - landed cost) / selling price × 100.
+              {% if line.gross_margin_percent < 0 %}<strong class="errors">Negative margin: manager review is required.</strong>{% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr style="border-top:2px solid #aebbc5">
+          <th colspan="3" style="padding:.45rem">Quote totals</th>
+          <td colspan="2" style="padding:.45rem">Landed cost INR {{ quote.total_landed_cost|floatformat:2 }}</td>
+          <td colspan="3" style="padding:.45rem">Gross margin {{ quote.gross_margin_percent }}%</td>
+          <th style="padding:.45rem">INR {{ quote.total_selling_price|floatformat:2 }}</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p>Subtotal INR {{ quote.total_selling_price|floatformat:2 }} · GST / tax INR {{ quote.tax_amount|floatformat:2 }} · Total INR {{ quote.grand_total|floatformat:2 }}</p>
+  {% if quote.payment_terms %}<p><strong>Payment terms:</strong> {{ quote.payment_terms|linebreaksbr }}</p>{% endif %}
+  {% if quote.delivery_terms %}<p><strong>Delivery terms:</strong> {{ quote.delivery_terms|linebreaksbr }}</p>{% endif %}
+  {% if not quote.needs_review %}<p><a href="{% url 'dashboard:quote_pdf' quote.pk %}">Download customer quotation PDF</a></p>{% endif %}
+  <p><a href="{% url 'dashboard:quote_revision_create' quote.pk %}">Prepare a new quotation revision</a></p>
+  <p><a href="{% url 'dashboard:quote_list' %}">Back to quotations</a></p>
+  <p><a href="{% url 'dashboard:rfq_detail' quote.rfq.pk %}">Back to enquiry</a></p>
+</section>
+{% endblock %}
