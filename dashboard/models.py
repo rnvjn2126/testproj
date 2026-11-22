@@ -1,7 +1,7 @@
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 
 from django.conf import settings
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -303,3 +303,172 @@ class SupplierOffer(OwnedRecord):
                     f"of {_decimal(weight)} kg per piece."
                 )
         return f"Converted {offered_display.lower()} to {requested_display.lower()} using the metric weight ratio."
+
+
+class QuotePricingSettings(OwnedRecord):
+    """Account-owned pricing guardrails used as defaults for new quotations."""
+
+    owner = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    target_margin_percent = models.DecimalField(
+        max_digits=5, decimal_places=2, default=Decimal("12.00"),
+        validators=[MinValueValidator(Decimal("0.00")), MaxValueValidator(Decimal("99.99"))],
+        help_text="Target gross margin. This is margin on the selling price, not markup on cost.",
+    )
+    minimum_margin_percent = models.DecimalField(
+        max_digits=5, decimal_places=2, default=Decimal("8.00"),
+        validators=[MinValueValidator(Decimal("0.00")), MaxValueValidator(Decimal("99.99"))],
+        help_text="Quotes below this gross margin require explicit staff review.",
+    )
+    maximum_discount_percent = models.DecimalField(
+        max_digits=5, decimal_places=2, default=Decimal("5.00"),
+        validators=[MinValueValidator(Decimal("0.00")), MaxValueValidator(Decimal("99.99"))],
+        help_text="Largest discount allowed from the target-margin selling price.",
+    )
+
+    class Meta:
+        verbose_name = "quote pricing settings"
+        verbose_name_plural = "quote pricing settings"
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+
+        errors = {}
+        if self.target_margin_percent is not None and self.target_margin_percent >= 100:
+            errors["target_margin_percent"] = "Target gross margin must be less than 100%."
+        if self.minimum_margin_percent is not None and self.minimum_margin_percent >= 100:
+            errors["minimum_margin_percent"] = "Minimum gross margin must be less than 100%."
+        if self.maximum_discount_percent is not None and self.maximum_discount_percent >= 100:
+            errors["maximum_discount_percent"] = "Maximum discount must be less than 100%."
+        if errors:
+            raise ValidationError(errors)
+
+
+class Quote(OwnedRecord):
+    class Status(models.TextChoices):
+        READY = "ready", "Ready"
+        NEEDS_REVIEW = "needs_review", "Needs manager review"
+        APPROVED = "approved", "Approved after review"
+
+    rfq = models.ForeignKey(RFQ, on_delete=models.PROTECT, related_name="quotes")
+    target_margin_percent = models.DecimalField(max_digits=5, decimal_places=2)
+    minimum_margin_percent = models.DecimalField(max_digits=5, decimal_places=2)
+    maximum_discount_percent = models.DecimalField(max_digits=5, decimal_places=2)
+    status = models.CharField(max_length=16, choices=Status.choices, default=Status.READY)
+    approved_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.PROTECT,
+        related_name="approved_steel_quotes",
+    )
+    approved_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at", "-id"]
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+
+        errors = {}
+        if self.rfq_id and self.owner_id and self.rfq.owner_id != self.owner_id:
+            errors["rfq"] = "Choose an enquiry owned by your account."
+        elif self.rfq_id and self.owner_id and self.rfq.customer.owner_id != self.owner_id:
+            errors["rfq"] = "The enquiry's customer must belong to your account."
+        for field in ("target_margin_percent", "minimum_margin_percent", "maximum_discount_percent"):
+            value = getattr(self, field)
+            if value is not None and (value < 0 or value >= 100):
+                errors[field] = "Enter a percentage from 0 up to (but not including) 100."
+        if self.approved_by_id and self.owner_id and self.approved_by_id != self.owner_id:
+            errors["approved_by"] = "The reviewer must belong to this account."
+        if self.status == self.Status.APPROVED and (not self.approved_by_id or not self.approved_at):
+            errors["status"] = "A reviewed quotation must record its reviewer and review time."
+        if errors:
+            raise ValidationError(errors)
+
+    @property
+    def needs_review(self):
+        return self.status == self.Status.NEEDS_REVIEW
+
+    @property
+    def total_landed_cost(self):
+        return sum((line.total_landed_cost for line in self.lines.all()), Decimal("0.00"))
+
+    @property
+    def total_selling_price(self):
+        return sum((line.total_selling_price for line in self.lines.all()), Decimal("0.00"))
+
+    @property
+    def gross_margin_percent(self):
+        selling_price = self.total_selling_price
+        if selling_price <= 0:
+            return None
+        return ((selling_price - self.total_landed_cost) / selling_price * Decimal("100")).quantize(
+            Decimal("0.01"), rounding=ROUND_HALF_UP,
+        )
+
+
+class QuoteLine(OwnedRecord):
+    quote = models.ForeignKey(Quote, on_delete=models.CASCADE, related_name="lines")
+    rfq_line = models.ForeignKey(RFQLine, on_delete=models.PROTECT, related_name="quote_lines")
+    supplier_offer = models.ForeignKey(SupplierOffer, on_delete=models.PROTECT, related_name="quote_lines")
+    quantity = models.DecimalField(max_digits=14, decimal_places=3, validators=[MinValueValidator(Decimal("0.001"))])
+    unit = models.CharField(max_length=12, choices=Product.Unit.choices)
+    landed_cost_per_unit = models.DecimalField(max_digits=14, decimal_places=4, validators=[MinValueValidator(Decimal("0.0001"))])
+    discount_percent = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(Decimal("0.00"))])
+    selling_price_per_unit = models.DecimalField(max_digits=14, decimal_places=4, validators=[MinValueValidator(Decimal("0.0001"))])
+
+    class Meta:
+        ordering = ["id"]
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+
+        errors = {}
+        if self.quote_id and self.owner_id and self.quote.owner_id != self.owner_id:
+            errors["quote"] = "The quotation must belong to your account."
+        if self.rfq_line_id and self.quote_id:
+            if self.rfq_line.owner_id != self.owner_id or self.rfq_line.rfq_id != self.quote.rfq_id:
+                errors["rfq_line"] = "Choose an item from this quotation's enquiry."
+            if self.rfq_line.product_id and self.rfq_line.product.owner_id != self.owner_id:
+                errors["rfq_line"] = "The enquiry item's product must belong to your account."
+            if self.unit != self.rfq_line.unit or self.quantity != self.rfq_line.quantity:
+                errors["quantity"] = "The quoted quantity and unit must match the enquiry item."
+        if self.supplier_offer_id and self.rfq_line_id:
+            if self.supplier_offer.owner_id != self.owner_id or self.supplier_offer.rfq_line_id != self.rfq_line_id:
+                errors["supplier_offer"] = "Choose an offer for this enquiry item from your account."
+            elif self.supplier_offer.supplier.owner_id != self.owner_id:
+                errors["supplier_offer"] = "The offer's supplier must belong to your account."
+            elif not self.supplier_offer.covers_full_quantity:
+                errors["supplier_offer"] = "The selected offer must cover the full quoted quantity."
+        if self.quote_id and self.discount_percent is not None and self.discount_percent > self.quote.maximum_discount_percent:
+            errors["discount_percent"] = "The discount exceeds this quotation's saved guardrail."
+        if errors:
+            raise ValidationError(errors)
+
+    @property
+    def total_landed_cost(self):
+        return (self.quantity * self.landed_cost_per_unit).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+    @property
+    def total_selling_price(self):
+        return (self.quantity * self.selling_price_per_unit).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+    @property
+    def target_price_per_unit(self):
+        target_margin = self.quote.target_margin_percent / Decimal("100")
+        return (self.landed_cost_per_unit / (Decimal("1") - target_margin)).quantize(
+            Decimal("0.0001"), rounding=ROUND_HALF_UP,
+        )
+
+    @property
+    def gross_margin_percent(self):
+        selling_price = self.selling_price_per_unit
+        if selling_price <= 0:
+            return None
+        return ((selling_price - self.landed_cost_per_unit) / selling_price * Decimal("100")).quantize(
+            Decimal("0.01"), rounding=ROUND_HALF_UP,
+        )
+
+    @property
+    def needs_review(self):
+        margin = self.gross_margin_percent
+        return margin is None or margin < self.quote.minimum_margin_percent
+

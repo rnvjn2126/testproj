@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Prepare quotation · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Prepare quotation</h1>
+  <p>{{ rfq.reference|default:rfq }} · {{ rfq.customer }}</p>
+  <p>Target gross margin: {{ pricing_settings.target_margin_percent }}%. Selling price before discount = landed cost / (1 - target margin). Discounts apply to that price, up to {{ pricing_settings.maximum_discount_percent }}%.</p>
+  <p>Quotes below the {{ pricing_settings.minimum_margin_percent }}% minimum margin, including any negative-margin quote, are held for explicit staff review. Supplier cost and margin are internal pricing details.</p>
+  {% if has_foreign_product_line %}
+    <div class="errors"><p>This enquiry includes an item linked to a product outside this account, so it cannot be quoted.</p></div>
+  {% elif not lines %}
+    <p>This enquiry has no requested items to quote.</p>
+  {% elif not can_create %}
+    <div class="errors"><p>Add a supplier offer that covers the full requested quantity for every item before preparing this quotation.</p></div>
+    {% for row in line_rows %}
+      {% if not row.has_offer %}
+        <p>{{ row.line.product|default:row.line.description|default:"Requested item" }}: no full-quantity offer yet. <a href="{% url 'dashboard:supplier_offer_create' rfq.pk row.line.pk %}">Add supplier offer</a></p>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if form.non_field_errors %}<div class="errors">{{ form.non_field_errors }}</div>{% endif %}
+  {% if lines %}
+    <form method="post">
+      {% csrf_token %}
+      {% for row in line_rows %}
+        <section class="row">
+          <h2>{{ row.line.product|default:row.line.description|default:"Requested item" }}</h2>
+          <p>Quantity {{ row.line.quantity }} {{ row.line.get_unit_display }}{% if row.line.grade %} · {{ row.line.grade }}{% endif %}{% if row.line.dimensions %} · {{ row.line.dimensions }}{% endif %}</p>
+          <label for="{{ row.offer_field.id_for_label }}">{{ row.offer_field.label }}</label>
+          {{ row.offer_field }}
+          {% if row.offer_field.help_text %}<small>{{ row.offer_field.help_text }}</small>{% endif %}
+          {% if row.offer_field.errors %}<div class="errors">{{ row.offer_field.errors }}</div>{% endif %}
+          <label for="{{ row.discount_field.id_for_label }}">{{ row.discount_field.label }}</label>
+          {{ row.discount_field }}
+          {% if row.discount_field.help_text %}<small>{{ row.discount_field.help_text }}</small>{% endif %}
+          {% if row.discount_field.errors %}<div class="errors">{{ row.discount_field.errors }}</div>{% endif %}
+        </section>
+      {% endfor %}
+      {% if can_create %}<button type="submit">Calculate quotation</button>{% endif %}
+    </form>
+  {% endif %}
+  <p><a href="{% url 'dashboard:rfq_detail' rfq.pk %}">Back to enquiry</a> · <a href="{% url 'dashboard:quote_pricing_settings' %}">Edit pricing settings</a></p>
+</section>
+{% endblock %}
+

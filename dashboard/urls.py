@@ -9,6 +9,10 @@ urlpatterns = [
     path("rfqs/new/", views.rfq_create, name="rfq_create"),
     path("rfqs/<int:pk>/", views.rfq_detail, name="rfq_detail"),
     path("rfqs/<int:pk>/lines/<int:line_pk>/offers/new/", views.supplier_offer_create, name="supplier_offer_create"),
+    path("rfqs/<int:pk>/quote/", views.quote_create, name="quote_create"),
+    path("quotes/settings/", views.quote_pricing_settings, name="quote_pricing_settings"),
+    path("quotes/<int:pk>/", views.quote_detail, name="quote_detail"),
+    path("quotes/<int:pk>/approve/", views.quote_approve, name="quote_approve"),
 ]
 for slug, label in (("customer", "customers"), ("supplier", "suppliers"), ("product", "products")):
     urlpatterns += [
@@ -17,3 +21,4 @@ for slug, label in (("customer", "customers"), ("supplier", "suppliers"), ("prod
         path(f"{label}/<int:pk>/edit/", getattr(views, f"{label.title()[:-1]}UpdateView").as_view(), name=f"{slug}_update"),
         path(f"{label}/<int:pk>/delete/", getattr(views, f"{label.title()[:-1]}DeleteView").as_view(), name=f"{slug}_delete"),
     ]
+

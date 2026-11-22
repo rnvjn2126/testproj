@@ -61,6 +61,8 @@
   {% empty %}
     <p>No requested items.</p>
   {% endfor %}
+  {% if rfq.lines.all %}<p><a href="{% url 'dashboard:quote_create' rfq.pk %}">Prepare quotation</a></p>{% endif %}
   <p><a href="{% url 'dashboard:rfq_list' %}">Back to enquiries</a></p>
 </section>
 {% endblock %}
+

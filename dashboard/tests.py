@@ -1,9 +1,14 @@
+from decimal import Decimal
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Customer, Product, RFQ, RFQLine, Supplier, SupplierOffer
+from .models import (
+    Customer, Product, Quote, QuoteLine, QuotePricingSettings, RFQ, RFQLine,
+    Supplier, SupplierOffer,
+)
 
 
 class FoundationTests(TestCase):
@@ -331,3 +336,178 @@ class SupplierOfferTests(TestCase):
         self.client.logout()
         response = self.client.get(reverse("dashboard:supplier_offer_create", args=[self.rfq.pk, self.line.pk]))
         self.assertEqual(response.status_code, 302)
+
+
+class QuotePricingTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username="quote-owner", password="local-test-password")
+        self.other = get_user_model().objects.create_user(username="quote-other", password="local-test-password")
+        self.customer = Customer.objects.create(owner=self.user, name="Quotation customer")
+        self.product = Product.objects.create(owner=self.user, name="Quote bar", shape="round_bar", unit=Product.Unit.KG)
+        self.supplier = Supplier.objects.create(owner=self.user, name="Quote supplier")
+        self.rfq = RFQ.objects.create(owner=self.user, customer=self.customer, reference="Q-001", received_on="2026-11-22")
+        self.line = RFQLine.objects.create(
+            owner=self.user, rfq=self.rfq, product=self.product, quantity="100", unit=Product.Unit.KG,
+        )
+        self.offer = SupplierOffer.objects.create(
+            owner=self.user, rfq_line=self.line, supplier=self.supplier, available_quantity="100",
+            unit=Product.Unit.KG, unit_price="90.0000", freight_cost="500.00",
+            packaging_cost="100.00", delivery_days=4,
+        )
+        self.client.force_login(self.user)
+
+    def post_quote(self, discount="0.00"):
+        return self.client.post(reverse("dashboard:quote_create", args=[self.rfq.pk]), {
+            f"offer_{self.line.pk}": self.offer.pk,
+            f"discount_{self.line.pk}": discount,
+        })
+
+    def test_default_target_margin_calculates_a_transparent_quote(self):
+        response = self.post_quote()
+        quote = Quote.objects.get()
+        self.assertRedirects(response, reverse("dashboard:quote_detail", args=[quote.pk]))
+        self.assertEqual(quote.status, Quote.Status.READY)
+        line = quote.lines.get()
+        self.assertEqual(line.landed_cost_per_unit, 96)
+        self.assertEqual(line.target_price_per_unit, Decimal("109.0909"))
+        self.assertEqual(line.selling_price_per_unit, Decimal("109.0909"))
+        self.assertEqual(line.total_landed_cost, Decimal("9600.00"))
+        self.assertEqual(line.total_selling_price, Decimal("10909.09"))
+        self.assertEqual(line.gross_margin_percent, Decimal("12.00"))
+        detail = self.client.get(reverse("dashboard:quote_detail", args=[quote.pk]))
+        self.assertContains(detail, "INR 96.0000")
+        self.assertContains(detail, "INR 109.0909")
+        self.assertContains(detail, "12.00%")
+        self.assertContains(detail, "Margin = (selling price - landed cost) / selling price")
+
+    def test_discount_above_account_guardrail_is_rejected(self):
+        settings = QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
+            maximum_discount_percent="4.00",
+        )
+        response = self.post_quote(discount="4.01")
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Quote.objects.exists())
+        settings.refresh_from_db()
+        self.assertEqual(settings.maximum_discount_percent, Decimal("4.00"))
+
+    def test_below_floor_quote_is_held_for_staff_review_and_settings_are_snapshotted(self):
+        settings = QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
+            maximum_discount_percent="10.00",
+        )
+        response = self.post_quote(discount="5.00")
+        quote = Quote.objects.get()
+        line = quote.lines.get()
+        self.assertRedirects(response, reverse("dashboard:quote_detail", args=[quote.pk]))
+        self.assertEqual(quote.status, Quote.Status.NEEDS_REVIEW)
+        self.assertEqual(line.gross_margin_percent, Decimal("7.37"))
+        self.assertTrue(line.needs_review)
+        self.assertContains(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])), "not approved for customer issue")
+
+        settings.target_margin_percent = Decimal("20.00")
+        settings.save()
+        quote.refresh_from_db()
+        self.assertEqual(quote.target_margin_percent, Decimal("12.00"))
+        self.assertEqual(quote.maximum_discount_percent, Decimal("10.00"))
+
+    def test_negative_margin_never_auto_approves(self):
+        QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="0.00",
+            maximum_discount_percent="30.00",
+        )
+        response = self.post_quote(discount="25.00")
+        quote = Quote.objects.get()
+        line = quote.lines.get()
+        self.assertEqual(response.status_code, 302)
+        self.assertLess(line.gross_margin_percent, Decimal("0.00"))
+        self.assertEqual(quote.status, Quote.Status.NEEDS_REVIEW)
+        self.assertIsNone(quote.approved_by)
+        self.assertContains(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])), "Negative margin")
+
+    def test_partial_offer_cannot_be_used_for_full_quantity_quotation(self):
+        self.offer.available_quantity = Decimal("50.000")
+        self.offer.save()
+        response = self.client.get(reverse("dashboard:quote_create", args=[self.rfq.pk]))
+        self.assertContains(response, "Add a supplier offer that covers the full requested quantity")
+        self.assertNotContains(response, "INR 96.0000 per Kilogram")
+        submitted = self.post_quote()
+        self.assertEqual(submitted.status_code, 200)
+        self.assertFalse(Quote.objects.exists())
+
+    def test_every_requested_line_needs_a_full_coverage_offer(self):
+        another_line = RFQLine.objects.create(
+            owner=self.user, rfq=self.rfq, description="Sheet", quantity="4", unit=Product.Unit.PIECE,
+        )
+        response = self.client.get(reverse("dashboard:quote_create", args=[self.rfq.pk]))
+        self.assertContains(response, "Sheet: no full-quantity offer yet")
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Quote.objects.exists())
+        self.assertTrue(RFQLine.objects.filter(pk=another_line.pk).exists())
+
+    def test_staff_action_is_required_and_records_reviewer(self):
+        QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
+            maximum_discount_percent="10.00",
+        )
+        quote = self.post_quote(discount="5.00")
+        quote = Quote.objects.get()
+        approve_url = reverse("dashboard:quote_approve", args=[quote.pk])
+        forbidden = self.client.post(approve_url)
+        self.assertEqual(forbidden.status_code, 403)
+        quote.refresh_from_db()
+        self.assertEqual(quote.status, Quote.Status.NEEDS_REVIEW)
+        self.user.is_staff = True
+        self.user.save(update_fields=["is_staff"])
+        approved = self.client.post(approve_url)
+        self.assertRedirects(approved, reverse("dashboard:quote_detail", args=[quote.pk]))
+        quote.refresh_from_db()
+        self.assertEqual(quote.status, Quote.Status.APPROVED)
+        self.assertEqual(quote.approved_by, self.user)
+        self.assertIsNotNone(quote.approved_at)
+
+    def test_quote_pages_and_approval_are_scoped_to_owner(self):
+        self.post_quote()
+        quote = Quote.objects.get()
+        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])).status_code, 200)
+        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk + 100])).status_code, 404)
+
+        other_customer = Customer.objects.create(owner=self.other, name="Other quote customer")
+        foreign_rfq = RFQ.objects.create(owner=self.other, customer=other_customer, received_on="2026-11-22")
+        self.assertEqual(self.client.get(reverse("dashboard:quote_create", args=[foreign_rfq.pk])).status_code, 404)
+        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])).status_code, 200)
+        quote.owner = self.other
+        quote.save()
+        self.user.is_staff = True
+        self.user.save(update_fields=["is_staff"])
+        self.assertEqual(self.client.post(reverse("dashboard:quote_approve", args=[quote.pk])).status_code, 404)
+
+    def test_pricing_settings_are_account_scoped_and_reject_percentages_at_100(self):
+        foreign_settings = QuotePricingSettings.objects.create(owner=self.other, target_margin_percent="20.00")
+        response = self.client.get(reverse("dashboard:quote_pricing_settings"))
+        self.assertContains(response, "12.00")
+        self.assertNotContains(response, "20.00")
+        invalid = self.client.post(reverse("dashboard:quote_pricing_settings"), {
+            "target_margin_percent": "100", "minimum_margin_percent": "8", "maximum_discount_percent": "5",
+        })
+        self.assertEqual(invalid.status_code, 200)
+        settings = QuotePricingSettings.objects.get(owner=self.user)
+        self.assertEqual(settings.target_margin_percent, Decimal("12.00"))
+        self.assertEqual(QuotePricingSettings.objects.get(pk=foreign_settings.pk).owner, self.other)
+
+    def test_quote_pricing_requires_login_and_approval_requires_post(self):
+        settings = QuotePricingSettings.objects.create(
+            owner=self.user, target_margin_percent="12.00", minimum_margin_percent="8.00",
+            maximum_discount_percent="10.00",
+        )
+        self.post_quote(discount="5.00")
+        quote = Quote.objects.get()
+        self.client.logout()
+        self.assertEqual(self.client.get(reverse("dashboard:quote_create", args=[self.rfq.pk])).status_code, 302)
+        self.assertEqual(self.client.get(reverse("dashboard:quote_detail", args=[quote.pk])).status_code, 302)
+        self.assertEqual(self.client.post(reverse("dashboard:quote_pricing_settings"), {}).status_code, 302)
+        self.client.force_login(self.user)
+        self.user.is_staff = True
+        self.user.save(update_fields=["is_staff"])
+        self.assertEqual(self.client.get(reverse("dashboard:quote_approve", args=[quote.pk])).status_code, 405)
+

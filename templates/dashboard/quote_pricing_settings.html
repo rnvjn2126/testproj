@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Quote pricing settings · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Quote pricing settings</h1>
+  <p>These settings apply to new quotations for this account. Gross margin is calculated on selling price: (selling price - landed cost) / selling price × 100.</p>
+  <form method="post">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="errors">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+      {% if field.errors %}<div class="errors">{{ field.errors }}</div>{% endif %}
+    {% endfor %}
+    <button type="submit">Save pricing settings</button>
+  </form>
+</section>
+{% endblock %}
+

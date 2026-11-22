@@ -13,7 +13,8 @@
   </style>
 </head>
 <body>
-  <header>Steel Quotes{% if request.user.is_authenticated %}<nav><a href="{% url 'dashboard:home' %}">Workspace</a><a href="{% url 'dashboard:customer_list' %}">Customers</a><a href="{% url 'dashboard:supplier_list' %}">Suppliers</a><a href="{% url 'dashboard:product_list' %}">Products</a><a href="{% url 'dashboard:rfq_list' %}">Enquiries</a></nav>{% endif %}</header>
+  <header>Steel Quotes{% if request.user.is_authenticated %}<nav><a href="{% url 'dashboard:home' %}">Workspace</a><a href="{% url 'dashboard:customer_list' %}">Customers</a><a href="{% url 'dashboard:supplier_list' %}">Suppliers</a><a href="{% url 'dashboard:product_list' %}">Products</a><a href="{% url 'dashboard:rfq_list' %}">Enquiries</a><a href="{% url 'dashboard:quote_pricing_settings' %}">Quote pricing</a></nav>{% endif %}</header>
   <main>{% block content %}{% endblock %}</main>
 </body>
 </html>
+

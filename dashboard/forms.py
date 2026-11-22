@@ -1,7 +1,10 @@
 from django import forms
 from django.forms import inlineformset_factory
+from decimal import Decimal, ROUND_HALF_UP
 
-from .models import Customer, Product, RFQ, RFQLine, Supplier, SupplierOffer
+from .models import (
+    Customer, Product, QuotePricingSettings, RFQ, RFQLine, Supplier, SupplierOffer,
+)
 
 
 class StyledModelForm(forms.ModelForm):
@@ -90,6 +93,112 @@ class SupplierOfferForm(StyledModelForm):
         return cleaned
 
 
+class QuotePricingSettingsForm(StyledModelForm):
+    class Meta:
+        model = QuotePricingSettings
+        fields = ["target_margin_percent", "minimum_margin_percent", "maximum_discount_percent"]
+        widgets = {
+            "target_margin_percent": forms.NumberInput(attrs={"step": "0.01", "min": "0", "max": "99.99"}),
+            "minimum_margin_percent": forms.NumberInput(attrs={"step": "0.01", "min": "0", "max": "99.99"}),
+            "maximum_discount_percent": forms.NumberInput(attrs={"step": "0.01", "min": "0", "max": "99.99"}),
+        }
+
+
+class QuoteOfferChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, offer):
+        return (
+            f"{offer.supplier} — INR {offer.landed_cost_per_requested_unit:.4f} per "
+            f"{offer.rfq_line.get_unit_display()} ({offer.delivery_days} days)"
+        )
+
+
+class QuoteCreateForm(forms.Form):
+    """Select one full-coverage supplier offer and discount for every enquiry line."""
+
+    def __init__(self, *args, owner, lines, pricing_settings, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.owner = owner
+        self.lines = list(lines)
+        self.pricing_settings = pricing_settings
+        self.pricing_rows = []
+        self.line_fields = {}
+        for line in self.lines:
+            available_offers = [
+                offer for offer in SupplierOffer.objects.filter(
+                    owner=owner, supplier__owner=owner, rfq_line=line,
+                ).select_related("supplier", "rfq_line")
+                if offer.covers_full_quantity and offer.landed_cost_per_requested_unit is not None
+            ]
+            offer_field = QuoteOfferChoiceField(
+                queryset=SupplierOffer.objects.filter(
+                    owner=owner, supplier__owner=owner, rfq_line=line,
+                    pk__in=[offer.pk for offer in available_offers],
+                ),
+                empty_label="Choose a supplier offer",
+                label=f"Supplier offer for {line.product or line.description or 'requested item'}",
+                help_text="Only offers that cover the full requested quantity are available.",
+            )
+            discount_field = forms.DecimalField(
+                min_value=Decimal("0.00"),
+                max_value=pricing_settings.maximum_discount_percent,
+                max_digits=5,
+                decimal_places=2,
+                initial=Decimal("0.00"),
+                label="Discount from target price (%)",
+                help_text=f"Maximum allowed: {pricing_settings.maximum_discount_percent}%.",
+            )
+            for field in (offer_field, discount_field):
+                field.widget.attrs["class"] = "field"
+            offer_name = f"offer_{line.pk}"
+            discount_name = f"discount_{line.pk}"
+            self.fields[offer_name] = offer_field
+            self.fields[discount_name] = discount_field
+            self.line_fields[line.pk] = (offer_name, discount_name)
+
+    def clean(self):
+        cleaned = super().clean()
+        target = self.pricing_settings.target_margin_percent
+        divisor = Decimal("1") - target / Decimal("100")
+        rows = []
+        for line in self.lines:
+            offer_name, discount_name = self.line_fields[line.pk]
+            offer = cleaned.get(offer_name)
+            discount = cleaned.get(discount_name)
+            if offer is None or discount is None:
+                continue
+            cost = offer.landed_cost_per_requested_unit
+            if cost is None or cost <= 0 or divisor <= 0:
+                self.add_error(offer_name, "This offer cannot produce a valid positive selling price.")
+                continue
+            target_price = cost / divisor
+            price = (target_price * (Decimal("1") - discount / Decimal("100"))).quantize(
+                Decimal("0.0001"), rounding=ROUND_HALF_UP,
+            )
+            if price <= 0 or price > Decimal("9999999999.9999"):
+                self.add_error(discount_name, "This discount or target margin is outside the supported price range.")
+                continue
+            selling_total = (line.quantity * price).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+            if selling_total <= 0:
+                self.add_error(discount_name, "The selling total must round to at least INR 0.01.")
+                continue
+            margin = ((price - cost) / price * Decimal("100")).quantize(
+                Decimal("0.01"), rounding=ROUND_HALF_UP,
+            )
+            rows.append({
+                "rfq_line": line,
+                "supplier_offer": offer,
+                "discount_percent": discount,
+                "landed_cost_per_unit": cost,
+                "selling_price_per_unit": price,
+                "gross_margin_percent": margin,
+                "needs_review": margin < self.pricing_settings.minimum_margin_percent,
+            })
+        if not self.errors:
+            self.pricing_rows = rows
+        return cleaned
+
+
 RFQLineFormSet = inlineformset_factory(
     RFQ, RFQLine, form=RFQLineForm, extra=1, can_delete=True, min_num=1, validate_min=True,
 )
+
