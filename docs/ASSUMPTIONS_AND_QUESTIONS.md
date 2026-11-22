@@ -14,6 +14,7 @@
 | Date | Task | Decision | Rationale | Reversible? |
 |---|---|---|---|---|
 | 2026-11-22 | Initial setup | Choose safe defaults listed above | Permit unattended work without pretending business rules are confirmed | Yes |
+| 2026-11-22 | Django foundation | Use Django's built-in session authentication; provision local accounts with `createsuperuser` or Django admin; no public sign-up | Keeps the local demo access-controlled without introducing account approval or recovery workflows | Yes |
 
 ## Questions for the next morning review
 1. Should the first demo focus on stainless steel only or include MS/alloy products?

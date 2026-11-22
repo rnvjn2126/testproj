@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Steel Quotes{% endblock %}</title>
+  <style>
+    :root { color-scheme: light; font: 16px/1.5 system-ui, sans-serif; color: #17212b; background: #f3f6f8; }
+    body { margin: 0; } header { padding: 1rem max(1rem, calc((100% - 58rem)/2)); background: #17324d; color: white; }
+    main { max-width: 58rem; margin: 2rem auto; padding: 0 1rem; } .card { background: white; border: 1px solid #d9e1e7; border-radius: .6rem; padding: 1.5rem; }
+    label { display: block; margin: .8rem 0 .2rem; } input { box-sizing: border-box; width: 100%; max-width: 24rem; padding: .6rem; }
+    button { margin-top: 1rem; padding: .65rem 1rem; background: #176b87; color: white; border: 0; border-radius: .3rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header>Steel Quotes</header>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>

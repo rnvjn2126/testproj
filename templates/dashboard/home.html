@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Workspace · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Steel quotation workspace</h1>
+  <p>Signed in as {{ request.user.get_username }}.</p>
+  <p>Your quotation workspace is ready. Catalogue and enquiry tools will appear here as they are added.</p>
+  <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">Sign out</button></form>
+</section>
+{% endblock %}
