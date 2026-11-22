@@ -2,10 +2,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.db import transaction
+from django.views.decorators.http import require_http_methods
 
-from .forms import CustomerForm, ProductForm, SupplierForm
-from .models import Customer, Product, Supplier
+from .forms import CustomerForm, ProductForm, RFQForm, RFQLineFormSet, SupplierForm
+from .models import Customer, Product, RFQ, Supplier
 
 
 @login_required
@@ -14,7 +16,45 @@ def home(request):
         "customer_count": Customer.objects.filter(owner=request.user).count(),
         "supplier_count": Supplier.objects.filter(owner=request.user).count(),
         "product_count": Product.objects.filter(owner=request.user).count(),
+        "rfq_count": RFQ.objects.filter(owner=request.user).count(),
     })
+
+
+@login_required
+def rfq_list(request):
+    return render(request, "dashboard/rfq_list.html", {"rfqs": RFQ.objects.filter(owner=request.user).select_related("customer")})
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def rfq_create(request):
+    from .models import RFQLine
+    rfq = RFQ(owner=request.user)
+    form = RFQForm(request.POST or None, owner=request.user)
+    formset = RFQLineFormSet(request.POST or None, instance=rfq, form_kwargs={"owner": request.user}, prefix="lines")
+    if request.method == "POST" and form.is_valid() and formset.is_valid():
+        with transaction.atomic():
+            rfq = form.save(commit=False)
+            rfq.owner = request.user
+            rfq.full_clean()
+            rfq.save()
+            formset.instance = rfq
+            lines = formset.save(commit=False)
+            for line in lines:
+                line.owner = request.user
+                line.rfq = rfq
+                line.full_clean()
+                line.save()
+            for line in formset.deleted_objects:
+                line.delete()
+        return redirect("dashboard:rfq_detail", pk=rfq.pk)
+    return render(request, "dashboard/rfq_form.html", {"form": form, "formset": formset})
+
+
+@login_required
+def rfq_detail(request, pk):
+    rfq = get_object_or_404(RFQ.objects.filter(owner=request.user).select_related("customer").prefetch_related("lines", "lines__product"), pk=pk)
+    return render(request, "dashboard/rfq_detail.html", {"rfq": rfq})
 
 
 class OwnedListView(LoginRequiredMixin, ListView):

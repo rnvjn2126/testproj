@@ -28,3 +28,5 @@ Questions do not block unrelated safe implementation. Never fabricate an answer;
 
 ## Blockers
 None at setup. Record any task failure with failing command, log, and recommended next action.
+
+| 2026-11-22 | RFQ intake | Capture enquiry channel, received/required dates, customer, notes and one or more requested items; permit a catalogue product or free-text specification, with quantity required in an explicit catalogue metric unit | Supports varied incoming enquiry detail without inferring steel weights or adding supplier/quote workflows | Yes |

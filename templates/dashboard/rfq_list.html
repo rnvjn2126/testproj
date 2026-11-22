@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Enquiries · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Customer enquiries</h1>
+  <p><a href="{% url 'dashboard:rfq_create' %}">Record an enquiry</a></p>
+  {% for rfq in rfqs %}<div class="row"><a href="{% url 'dashboard:rfq_detail' rfq.pk %}">{{ rfq.reference|default:rfq }}</a> · {{ rfq.customer }} · {{ rfq.get_status_display }} · {{ rfq.received_on }}</div>
+  {% empty %}<p>No enquiries recorded yet.</p>{% endfor %}
+</section>
+{% endblock %}

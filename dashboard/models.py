@@ -85,3 +85,57 @@ class Product(OwnedRecord):
 
     def __str__(self):
         return self.name
+
+
+class RFQ(OwnedRecord):
+    class Source(models.TextChoices):
+        PHONE = "phone", "Phone"
+        WHATSAPP = "whatsapp", "WhatsApp"
+        EMAIL = "email", "Email"
+        OTHER = "other", "Other"
+
+    class Status(models.TextChoices):
+        NEW = "new", "New"
+        IN_PROGRESS = "in_progress", "In progress"
+        CLOSED = "closed", "Closed"
+
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name="rfqs")
+    reference = models.CharField(max_length=80, blank=True)
+    source = models.CharField(max_length=16, choices=Source.choices, default=Source.OTHER)
+    received_on = models.DateField()
+    required_by = models.DateField(null=True, blank=True)
+    notes = models.TextField(blank=True)
+    status = models.CharField(max_length=16, choices=Status.choices, default=Status.NEW)
+
+    class Meta:
+        ordering = ["-received_on", "-id"]
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        if self.customer_id and self.owner_id and self.customer.owner_id != self.owner_id:
+            raise ValidationError({"customer": "Choose a customer owned by your account."})
+
+    def __str__(self):
+        return self.reference or f"RFQ {self.pk}"
+
+
+class RFQLine(OwnedRecord):
+    rfq = models.ForeignKey(RFQ, on_delete=models.CASCADE, related_name="lines")
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, null=True, blank=True, related_name="rfq_lines")
+    description = models.CharField(max_length=160, blank=True)
+    grade = models.CharField(max_length=100, blank=True)
+    dimensions = models.CharField(max_length=160, blank=True)
+    quantity = models.DecimalField(max_digits=14, decimal_places=3, validators=[MinValueValidator(0.001)])
+    unit = models.CharField(max_length=12, choices=Product.Unit.choices)
+
+    class Meta:
+        ordering = ["id"]
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        if not self.product and not (self.description or self.grade or self.dimensions):
+            raise ValidationError("Enter a product or provide a description, grade, or dimensions.")
+        if self.product and self.owner_id and self.product.owner_id != self.owner_id:
+            raise ValidationError({"product": "Choose a product owned by your account."})
+        if self.rfq and self.owner_id and self.rfq.owner_id != self.owner_id:
+            raise ValidationError({"rfq": "The enquiry must belong to your account."})

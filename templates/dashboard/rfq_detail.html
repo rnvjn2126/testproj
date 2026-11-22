@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ rfq }} · Steel Quotes{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>{{ rfq.reference|default:rfq }}</h1>
+  <p>{{ rfq.customer }} · {{ rfq.get_source_display }} · Received {{ rfq.received_on }} · {{ rfq.get_status_display }}</p>
+  {% if rfq.required_by %}<p>Required by {{ rfq.required_by }}</p>{% endif %}
+  {% if rfq.notes %}<p>{{ rfq.notes|linebreaksbr }}</p>{% endif %}
+  <h2>Requested items</h2>
+  {% for line in rfq.lines.all %}<div class="row"><strong>{{ line.product|default:line.description|default:"Unspecified item" }}</strong>{% if line.grade %} · {{ line.grade }}{% endif %}{% if line.dimensions %} · {{ line.dimensions }}{% endif %} · {{ line.quantity }} {{ line.get_unit_display }}</div>{% endfor %}
+  <p><a href="{% url 'dashboard:rfq_list' %}">Back to enquiries</a></p>
+</section>
+{% endblock %}

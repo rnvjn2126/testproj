@@ -5,6 +5,9 @@ from . import views
 app_name = "dashboard"
 urlpatterns = [
     path("", views.home, name="home"),
+    path("rfqs/", views.rfq_list, name="rfq_list"),
+    path("rfqs/new/", views.rfq_create, name="rfq_create"),
+    path("rfqs/<int:pk>/", views.rfq_detail, name="rfq_detail"),
 ]
 for slug, label in (("customer", "customers"), ("supplier", "suppliers"), ("product", "products")):
     urlpatterns += [
