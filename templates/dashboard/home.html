@@ -4,7 +4,8 @@
 <section class="card">
   <h1>Steel quotation workspace</h1>
   <p>Signed in as {{ request.user.get_username }}.</p>
-  <p>Your quotation workspace is ready. Catalogue and enquiry tools will appear here as they are added.</p>
+  <p>Catalogue overview: {{ customer_count }} customers, {{ supplier_count }} suppliers and {{ product_count }} products.</p>
+  <p><a href="{% url 'dashboard:customer_list' %}">Manage customers</a> · <a href="{% url 'dashboard:supplier_list' %}">Manage suppliers</a> · <a href="{% url 'dashboard:product_list' %}">Manage products</a></p>
   <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">Sign out</button></form>
 </section>
 {% endblock %}

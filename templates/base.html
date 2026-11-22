@@ -8,12 +8,12 @@
     :root { color-scheme: light; font: 16px/1.5 system-ui, sans-serif; color: #17212b; background: #f3f6f8; }
     body { margin: 0; } header { padding: 1rem max(1rem, calc((100% - 58rem)/2)); background: #17324d; color: white; }
     main { max-width: 58rem; margin: 2rem auto; padding: 0 1rem; } .card { background: white; border: 1px solid #d9e1e7; border-radius: .6rem; padding: 1.5rem; }
-    label { display: block; margin: .8rem 0 .2rem; } input { box-sizing: border-box; width: 100%; max-width: 24rem; padding: .6rem; }
+    label { display: block; margin: .8rem 0 .2rem; } input, select, textarea { box-sizing: border-box; width: 100%; max-width: 32rem; padding: .6rem; } .field { border: 1px solid #aebbc5; border-radius: .25rem; } textarea { min-height: 5rem; } nav { margin-top: .5rem; } nav a { color: white; margin-right: 1rem; } a { color: #176b87; } .row { padding: .8rem 0; border-bottom: 1px solid #e2e8ec; } .errors { color: #9f2525; }
     button { margin-top: 1rem; padding: .65rem 1rem; background: #176b87; color: white; border: 0; border-radius: .3rem; cursor: pointer; }
   </style>
 </head>
 <body>
-  <header>Steel Quotes</header>
+  <header>Steel Quotes{% if request.user.is_authenticated %}<nav><a href="{% url 'dashboard:home' %}">Workspace</a><a href="{% url 'dashboard:customer_list' %}">Customers</a><a href="{% url 'dashboard:supplier_list' %}">Suppliers</a><a href="{% url 'dashboard:product_list' %}">Products</a></nav>{% endif %}</header>
   <main>{% block content %}{% endblock %}</main>
 </body>
 </html>
