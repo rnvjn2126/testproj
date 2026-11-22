@@ -166,6 +166,7 @@ class SteelWorkflowTests(TestCase):
 
     def test_partial_offer_cannot_cover_whole_enquiry(self):
         self.offer.available_quantity = Decimal("0.400")
+        self.offer.save(update_fields=["available_quantity"])
         self.assertFalse(self.offer.covers_full_quantity)
         settings = QuotePricingSettings(owner=self.owner)
         form = QuoteCreateForm(
